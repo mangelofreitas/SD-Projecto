@@ -15,6 +15,20 @@ public class Project
     private ArrayList<Reward> rewards;
     private int currentAmount;
 
+    @Override
+    public String toString() {
+        return "Project{" +
+                "user=" + user +
+                ", projectID=" + projectID +
+                ", projectName='" + projectName + '\'' +
+                ", description='" + description + '\'' +
+                ", dateLimit=" + dateLimit +
+                ", requestedValue=" + requestedValue +
+                ", rewards=" + rewards +
+                ", currentAmount=" + currentAmount +
+                '}';
+    }
+
     public Project(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards)
     {
         this.user = user;

@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class RMIServer implements RMI
 {
-    private Connection conn = null;
+    private java.sql.Connection conn = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet rs = null;
     private String query;
