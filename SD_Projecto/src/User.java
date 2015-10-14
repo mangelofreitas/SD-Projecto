@@ -11,6 +11,11 @@ public class User implements Serializable
     private String password;
     private int money;
 
+    public User(int usernameID)
+    {
+        this.usernameID = usernameID;
+    }
+
     public User(String mail, String password)
     {
         this.mail = mail;
@@ -72,4 +77,5 @@ public class User implements Serializable
     public void setMoney(int money) {
         this.money = money;
     }
+
 }

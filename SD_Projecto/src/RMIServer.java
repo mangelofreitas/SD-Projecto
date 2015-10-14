@@ -2,16 +2,22 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.*;
+
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by miguel and maria
  */
 public class RMIServer implements RMI
 {
-    private java.sql.Connection conn = null;
+    private Connection conn = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet rs = null;
     private String query;
@@ -33,7 +39,23 @@ public class RMIServer implements RMI
     }
 
     public Project projectDetail(Project project) throws RemoteException {
-        System.out.println("Project Detail!");
+        System.out.println("Project Detail of "+project.getProjectID());
+        try
+        {
+            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount FROM projects WHERE projectID=?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, project.getProjectID());
+            rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                Project newProject = new Project(new User(rs.getInt("usernameID")), rs.getInt("projectID"), rs.getString("projectName"), rs.getString("description"), rs.getDate("dateLimit"), rs.getInt("requestedValue"), rs.getInt("currentAmount"), projectRewards(project), projectTypes(project));
+                return newProject;
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
         return null;
     }
 
@@ -43,7 +65,7 @@ public class RMIServer implements RMI
         {
             query = "INSERT INTO users (username, mail, password, money) VALUES (?,?,?,?)";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1,user.getUsername());
+            preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2,user.getMail());
             preparedStatement.setString(3,user.getPassword());
             preparedStatement.setInt(4,100);
@@ -64,7 +86,7 @@ public class RMIServer implements RMI
         {
             query = "SELECT usernameID, username, money FROM users WHERE mail=? AND password=?";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1,user.getMail());
+            preparedStatement.setString(1, user.getMail());
             preparedStatement.setString(2,user.getPassword());
             rs = preparedStatement.executeQuery();
             if(rs.next())
@@ -80,19 +102,42 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public ArrayList<Reward> consultRewards(User user) throws RemoteException {
-        System.out.println("Consult Reward of "+user.getUsername());
+    public ArrayList<ProductType> projectTypes(Project project) throws RemoteException
+    {
+        System.out.println("Project Types of "+project.getProjectID());
         try
         {
-            query = "SELECT name, description, valueOfReward FROM rewards WHERE mail=? AND password=?";
+            query = "SELECT votes, type FROM types_products WHERE projectID=?";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1,user.getMail());
-            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setInt(1,project.getProjectID());
             rs = preparedStatement.executeQuery();
-            if(rs.next())
+            ArrayList<ProductType> productTypes = new ArrayList<ProductType>();
+            while(rs.next())
             {
-
+                productTypes.add(new ProductType(rs.getString("type"), rs.getInt("votes")));
             }
+            return productTypes;
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+    public ArrayList<Reward> projectRewards(Project project) throws RemoteException {
+        System.out.println("Project Rewards of "+project.getProjectID());
+        try
+        {
+            query = "SELECT name, description, valueOfReward FROM rewards WHERE projectID=?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,project.getProjectID());
+            rs = preparedStatement.executeQuery();
+            ArrayList<Reward> rewards = new ArrayList<Reward>();
+            while(rs.next())
+            {
+                rewards.add(new Reward(rs.getString("name"),rs.getString("description"),rs.getInt("valueOfReward")));
+            }
+            return rewards;
         }
         catch (SQLException e)
         {
@@ -111,13 +156,89 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean createProject(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards) throws RemoteException {
+    public boolean createProject(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes) throws RemoteException {
         System.out.println("Create Project!");
+        try
+        {
+            query = "INSERT INTO projects (usernameID, projectName, description, dateLimit, requestedValue, currentAmount, alive) VALUES(?,?,?,?,?,?,?)";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, user.getUsernameID());
+            preparedStatement.setString(2, projectName);
+            preparedStatement.setString(3, description);
+            preparedStatement.setDate(4, dateLimit);
+            preparedStatement.setInt(5, requestedValue);
+            preparedStatement.setInt(6, 0);
+            preparedStatement.setBoolean(7, true);
+            int result =preparedStatement.executeUpdate();
+            if(result!=1)
+            {
+                return false;
+            }
+            Project thisProject = getProjectID(projectName,user);
+            query = "INSERT INTO rewards (projectID, name, description, valueOfReward) VALUES (?,?,?,?)";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,thisProject.getProjectID());
+            for(int i=0;i<rewards.size();i++)
+            {
+                preparedStatement.setString(2,rewards.get(i).getName());
+                preparedStatement.setString(3,rewards.get(i).getDescription());
+                preparedStatement.setInt(4, rewards.get(i).getValueOfReward());
+                result = preparedStatement.executeUpdate();
+                if(result!=1)
+                {
+                    return false;
+                }
+            }
+            query = "INSERT INTO types_products (projectID, votes, type) VALUES (?,?,?)";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,thisProject.getProjectID());
+            preparedStatement.setInt(2, 0);
+            for(int i=0;i<productTypes.size();i++)
+            {
+                preparedStatement.setString(3, productTypes.get(i).getType());
+                result = preparedStatement.executeUpdate();
+                if(result!=1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
         return false;
     }
 
-    public boolean addReward(User user, Project project, String reward) throws RemoteException {
+    public boolean addReward(User user, Project project, Reward reward) throws RemoteException {
         System.out.println("Add Reward!");
+        try
+        {
+            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount FROM projects WHERE projectID=? AND usernameID=?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,project.getProjectID());
+            preparedStatement.setInt(2,user.getUsernameID());
+            rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                query = "INSERT INTO rewards (projectID, name, description, valueOfReward) VALUES (?,?,?,?)";
+                preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setInt(1, project.getProjectID());
+                preparedStatement.setString(2,reward.getName());
+                preparedStatement.setString(3,reward.getDescription());
+                preparedStatement.setInt(4,reward.getValueOfReward());
+                int result = preparedStatement.executeUpdate();
+                if(result==1)
+                {
+                    return true;
+                }
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
         return false;
     }
 
@@ -141,6 +262,28 @@ public class RMIServer implements RMI
         return false;
     }
 
+    public Project getProjectID(String projectName, User user) throws RemoteException {
+        System.out.println("Get Project ID of "+projectName);
+        try
+        {
+            query = "SELECT projectID FROM projects WHERE projectName=? AND usernameID=?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1,projectName);
+            preparedStatement.setInt(2,user.getUsernameID());
+            rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                Project newProject = new Project(user,rs.getInt("projectID"));
+                return newProject;
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+
     private void connectDB()
     {
         String dataBase = "jdbc:mysql://localhost/fund_starter";
@@ -148,7 +291,7 @@ public class RMIServer implements RMI
         String passdb = "";
         try
         {
-            conn = DriverManager.getConnection(dataBase,userdb,passdb);
+            conn = DriverManager.getConnection(dataBase, userdb, passdb);
         }
         catch (SQLException e)
         {

@@ -1,11 +1,18 @@
+import java.io.Serializable;
+
 /**
  * Created by miguel and maria
  */
-public class Reward
+public class Reward implements Serializable
 {
     private String name;
     private String description;
     private int valueOfReward;
+
+    public Reward()
+    {
+
+    }
 
     public Reward(String name, String description, int valueOfReward)
     {

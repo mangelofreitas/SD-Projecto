@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by miguel and maria
  */
-public class Project
+public class Project implements Serializable
 {
     private User user;
     private int projectID;
@@ -14,22 +15,21 @@ public class Project
     private int requestedValue;
     private ArrayList<Reward> rewards;
     private int currentAmount;
+    private ArrayList<ProductType> productTypes;
 
-    @Override
-    public String toString() {
-        return "Project{" +
-                "user=" + user +
-                ", projectID=" + projectID +
-                ", projectName='" + projectName + '\'' +
-                ", description='" + description + '\'' +
-                ", dateLimit=" + dateLimit +
-                ", requestedValue=" + requestedValue +
-                ", rewards=" + rewards +
-                ", currentAmount=" + currentAmount +
-                '}';
+    public Project()
+    {
+        rewards = new ArrayList<Reward>();
+        productTypes = new ArrayList<ProductType>();
     }
 
-    public Project(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards)
+    public Project(User user, int projectID)
+    {
+        this.user = user;
+        this.projectID = projectID;
+    }
+
+    public Project(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes)
     {
         this.user = user;
         this.projectName = projectName;
@@ -38,9 +38,24 @@ public class Project
         this.requestedValue = requestedValue;
         this.rewards = rewards;
         this.currentAmount = 0;
+        this.productTypes = productTypes;
     }
 
-    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, int currentAmount)
+    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes)
+    {
+        this.user = user;
+        this.projectID = projectID;
+        this.projectName = projectName;
+        this.description = description;
+        this.dateLimit = dateLimit;
+        this.requestedValue = requestedValue;
+        this.rewards = rewards;
+        this.currentAmount = 0;
+        this.currentAmount = currentAmount;
+        this.productTypes = productTypes;
+    }
+
+    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount, ArrayList<Reward> rewards)
     {
         this.user = user;
         this.projectID = projectID;
@@ -52,7 +67,6 @@ public class Project
         this.currentAmount = 0;
         this.currentAmount = currentAmount;
     }
-
     public User getUser() {
         return user;
     }
@@ -115,5 +129,13 @@ public class Project
 
     public void setCurrentAmount(int currentAmount) {
         this.currentAmount = currentAmount;
+    }
+
+    public ArrayList<ProductType> getProductTypes() {
+        return productTypes;
+    }
+
+    public void setProductTypes(ArrayList<ProductType> productTypes) {
+        this.productTypes = productTypes;
     }
 }
