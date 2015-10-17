@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.sql.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,14 +25,10 @@ public class TCPClient {
 
             in = new DataInputStream(s.getInputStream());
             out = new DataOutputStream(s.getOutputStream());
-
-            String texto = "teste";
+            objOut = new ObjectOutputStream(out);
+            objIn = new ObjectInputStream(in);
             InputStreamReader input = new InputStreamReader(System.in);
             BufferedReader reader = new BufferedReader(input);
-
-            out.writeUTF(texto);
-
-            System.out.println(in.readUTF());
 
             loginSignup();
         }
@@ -81,7 +78,7 @@ public class TCPClient {
         }
     }
 
-    public static void login(){ //throws IOException{
+    public static void login(){
 
         String mail, password;
         Scanner sc = new Scanner(System.in);
@@ -94,43 +91,27 @@ public class TCPClient {
 
         User log = new User(mail, password);
 
-        User confirmation = null;
+        try {
+            out.writeInt(1);
+            objOut.writeObject(log);
+            objOut.flush();
 
-        /*try {
-            out.writeInt(1);
-            objOut.writeObject(log);
-            objOut.flush();
-            confirmation = (User) objIn.readObject();
-        } catch (IOException ex) {
-            reconnect();
-            out.writeInt(1);
-            objOut.writeObject(log);
-            objOut.flush();
-            try {
-                confirmation = (User) objIn.readObject();
-            } catch (ClassNotFoundException ex1) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex1);
+            log=(User)objIn.readObject();
+
+            if (log == null){
+                System.out.println("\n WRONG LOGIN!\n Exiting now...\n");
+                login();
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            else{
+                System.out.println("\nLOGIN ACCEPTED!\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
-        try {
-
-            if (confirmation.getId() > 0) {
-                System.out.println("\n LOGIN ACCEPTED!\n Welcome, " + confirmation.getUsername() + ", ID: " + confirmation.getId() + "\n");
-                activeUser.setUsername(confirmation.getUsername());
-                activeUser.setPassword(confirmation.getPassword());
-                activeUser.setId(confirmation.getId());
-                printMenu();
-            } else {
-                System.out.println("\n WRONG LOGIN!\n Exiting now...");
-                loginSignup()
-            }
-        } catch (Exception e) {
-            System.out.println("ERRO: recepção de confirmação de login no cliente");
-            e.printStackTrace();
-        }*/
         menu();
     }
 
@@ -148,6 +129,29 @@ public class TCPClient {
 
         System.out.println("\nPassword: ");
         password = sc.nextLine();
+
+        User sig = new User(name, email, password);
+
+        try {
+            out.writeInt(2);
+            objOut.writeObject(sig);
+            objOut.flush();
+
+            sig=(User)objIn.readObject();
+
+            if (sig == null){
+                System.out.println("\n WRONG SIGN UP!\n Exiting now...\n");
+                signup();
+            }
+            else{
+                System.out.println("\nSIGN UP ACCEPTED!\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         login();
     }
@@ -171,21 +175,39 @@ public class TCPClient {
 
         switch(option){
             case "1":
+                Project project = new Project();
                 System.out.println("\n\nCREATE A PROJECT");
                 System.out.println("\nName: ");
-                String nameP = sc.nextLine();
+                project.setProjectName(sc.nextLine());
 
                 System.out.println("\nDescription: ");
-                String descrip = sc.nextLine();
+                project.setDescription(sc.nextLine());
 
                 System.out.println("\nDeadline: ");
-                String deadline = sc.nextLine();
+                project.setDateLimit(new Date(2015));
 
                 System.out.println("\nRequested value: ");
-                String reqValue = sc.nextLine();
+                project.setRequestedValue(sc.nextInt());
 
-                System.out.println("\nCurrent amount: ");
-                String currentA = sc.nextLine();
+                /*try{
+                    out.writeInt(1);
+                    objOut.writeObject(project);
+                    objOut.flush();
+
+                    project=(Project)objIn.readObject();
+
+                    if (project == null){
+                        System.out.println("\n ERROR!\n Exiting now...\n");
+                        menu();
+                    }
+                    else{
+                        System.out.println("\nPROJECT ACCEPTED!\n");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }*/
 
                 break;
 
@@ -294,6 +316,7 @@ public class TCPClient {
                 break;
 
             case "11":
+                System.out.println("EXIT FUNDSTARTER");
                 exit();
                 break;
 
