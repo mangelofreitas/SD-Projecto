@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by miguel and maria
@@ -10,6 +11,7 @@ public class User implements Serializable
     private String mail;
     private String password;
     private int money;
+    private ArrayList<Reward> rewards;
 
     public User(int usernameID)
     {
@@ -29,13 +31,14 @@ public class User implements Serializable
         this.password = password;
     }
 
-    public User(int usernameID, String username, String mail, String password, int money)
+    public User(int usernameID, String username, String mail, String password, int money, ArrayList<Reward> rewards)
     {
         this.usernameID = usernameID;
         this.username = username;
         this.mail = mail;
         this.password = password;
         this.money = money;
+        this.rewards = rewards;
     }
 
     public int getUsernameID() {
@@ -78,4 +81,11 @@ public class User implements Serializable
         this.money = money;
     }
 
+    public ArrayList<Reward> getRewards() {
+        return rewards;
+    }
+
+    public void setRewards(ArrayList<Reward> rewards) {
+        this.rewards = rewards;
+    }
 }

@@ -8,17 +8,19 @@ public class Reward implements Serializable
     private String name;
     private String description;
     private int valueOfReward;
+    private int rewardID;
 
     public Reward()
     {
 
     }
 
-    public Reward(String name, String description, int valueOfReward)
+    public Reward(String name, String description, int valueOfReward, int rewardID)
     {
         this.name = name;
         this.description = description;
         this.valueOfReward = valueOfReward;
+        this.rewardID = rewardID;
     }
 
     public String getName() {
@@ -43,5 +45,19 @@ public class Reward implements Serializable
 
     public void setValueOfReward(int valueOfReward) {
         this.valueOfReward = valueOfReward;
+    }
+
+    public int getRewardID() {
+        return rewardID;
+    }
+
+    public void setRewardID(int rewardID) {
+        this.rewardID = rewardID;
+    }
+
+    public String toString() {
+        return "Name = " + name +
+                ", Description = " + description +
+                ", Value Of Reward = " + valueOfReward;
     }
 }

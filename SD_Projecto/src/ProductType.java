@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class ProductType implements Serializable
 {
     private String type;
+    private int productTypeID;
     private int vote;
 
     public ProductType()
@@ -13,10 +14,11 @@ public class ProductType implements Serializable
 
     }
 
-    public ProductType(String type, int vote)
+    public ProductType(String type, int vote, int productTypeID)
     {
         this.type = type;
         this.vote = vote;
+        this.productTypeID = productTypeID;
     }
 
     public String getType() {
@@ -35,4 +37,18 @@ public class ProductType implements Serializable
         this.vote = vote;
     }
 
+    public int getProductTypeID() {
+        return productTypeID;
+    }
+
+    public void setProductTypeID(int productTypeID) {
+        this.productTypeID = productTypeID;
+    }
+
+    @Override
+    public String toString() {
+        return  "Type = " + type +
+                ", Product Type ID = " + productTypeID +
+                ", Vote = " + vote;
+    }
 }
