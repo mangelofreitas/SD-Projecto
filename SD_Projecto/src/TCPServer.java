@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
 import java.rmi.registry.LocateRegistry;
@@ -76,21 +77,57 @@ class Connection extends Thread {
 
 
             int choose = in.readInt();
+            User log = null;
             if (choose == 1) {
-                User log = (User) objIn.readObject();
+                log = (User) objIn.readObject();
                 log = rmiConnection.makeLogin(log);
                 objOut.writeObject(log);
             }
 
             else if (choose == 2) {
-                User log = (User) objIn.readObject();
+                log = (User) objIn.readObject();
                 log = rmiConnection.makeRegist(log);
                 objOut.writeObject(log);
             }
 
-            //while (true) {
+            if(log!=null)
+            {
+                while (true)
+                {
+                    choose = in.readInt();
+                    if(choose == 1)
+                    {
+                        Project newProject = (Project) objIn.readObject();
+                        boolean pass = rmiConnection.createProject(log,newProject.getProjectName(),newProject.getDescription(),newProject.getDateLimit(),newProject.getRequestedValue(),newProject.getRewards(),newProject.getProductTypes());
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 2)
+                    {
+                        ArrayList<Project> projects = rmiConnection.actualProjects();
+                        objOut.writeObject(projects);
+                        Project projectChoosen = (Project) objIn.readObject();
+                        ProductType typeChoosen = (ProductType) objIn.readObject();
+                        int money = in.readInt();
+                        boolean pass = rmiConnection.donateMoney(log,projectChoosen,typeChoosen,money);
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 3)
+                    {
+                        int choose1 = in.readInt();
+                        ArrayList<Project> projects = null;
+                        if(choose1 == 1)
+                        {
+                            projects = rmiConnection.oldProjects();
+                        }
+                        else if(choose1 == 2)
+                        {
+                            projects = rmiConnection.actualProjects();
+                        }
+                        objOut.writeObject(projects);
+                    }
+                }
+            }
 
-            //}
 
         } catch (EOFException e) {
             System.out.println("EOF:" + e);
