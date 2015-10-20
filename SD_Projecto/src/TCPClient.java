@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
 import java.sql.Date;
@@ -13,7 +14,6 @@ public class TCPClient {
     private static ObjectOutputStream objOut;
     private static ObjectInputStream objIn;
     private static Socket s;
-    private static User actUser;
 
     public static void main(String args[]) {
 
@@ -107,13 +107,13 @@ public class TCPClient {
                 System.out.println("\nLOGIN ACCEPTED!\n");
             }
 
+            menu(log);
+
         } catch (IOException e) {
             System.err.println("IO exception:" + e);
         } catch (ClassNotFoundException e) {
             System.err.println("Class Not Found Exception:" + e);
         }
-
-        menu();
     }
 
     public static void signup(){
@@ -148,17 +148,18 @@ public class TCPClient {
                 System.out.println("\nSIGN UP ACCEPTED!\n");
             }
 
+            login();
+
         } catch (IOException e) {
             System.err.println("IO exception:" + e);
         } catch (ClassNotFoundException e) {
             System.err.println("Class Not Found Exception:" + e);
         }
-
-        login();
     }
 
-    public static void menu(){
+    public static void menu(User log){
         Scanner sc = new Scanner(System.in);
+        
         while(true)
         {
             System.out.println("\nChoose an option:\n");
@@ -176,7 +177,7 @@ public class TCPClient {
             System.out.println("\nOption: ");
             String option = sc.nextLine();
 
-            switch(option){
+            switch(option) {
                 case "1":
                     Project project = new Project();
                     System.out.println("\n\nCREATE A PROJECT");
@@ -194,22 +195,19 @@ public class TCPClient {
                     project.setRequestedValue(sc.nextInt());
                     sc.nextLine();
 
-                    System.out.println("Types of object (ex: azul, vermelho...)");
-                    while(true)
-                    {
+                    System.out.println("\nTypes of object (ex: azul, vermelho...)");
+                    while (true) {
                         ProductType productType = new ProductType();
                         System.out.println("Type:");
                         productType.setType(sc.nextLine());
                         project.getProductTypes().add(productType);
                         System.out.println("Another? (Y/N)");
-                        if(sc.nextLine().equals("N"))
-                        {
+                        if (sc.nextLine().equals("N")) {
                             break;
                         }
                     }
-                    System.out.println("Rewards of project");
-                    while (true)
-                    {
+                    System.out.println("\nRewards of project");
+                    while (true) {
                         Reward reward = new Reward();
                         System.out.println("Name:");
                         reward.setName(sc.nextLine());
@@ -220,75 +218,63 @@ public class TCPClient {
                         sc.nextLine();
                         project.getRewards().add(reward);
                         System.out.println("Another? (Y/N)");
-                        if(sc.nextLine().equals("N"))
-                        {
+                        if (sc.nextLine().equals("N")) {
                             break;
                         }
                     }
 
-                    try{
+                    try {
                         out.writeInt(1);
                         objOut.writeObject(project);
                         objOut.flush();
 
 
-
-                        if (in.readBoolean() == false){
+                        if (in.readBoolean() == false) {
                             System.out.println("\n ERROR!\n Exiting now...\n");
-                            menu();
-                        }
-                        else{
+                            menu(log);
+                        } else {
                             System.out.println("\nPROJECT ACCEPTED!\n");
                         }
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         System.err.println("IO exception:" + e);
                     }
 
                     break;
 
                 case "2":
-                    System.out.println("\n\nDONATE PROJECT TO THE PROJECT");
-                    try
-                    {
+                    System.out.println("\n\nDONATE MONEY TO THE PROJECT");
+                    try {
                         out.writeInt(2);
 
                         ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
-                        for(int i=0;i<projects.size();i++)
-                        {
-                            System.out.println("\n"+projects.get(i)+"\n\n");
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
                         }
-                        System.out.println("Select project to donate money [from 0 to " + (projects.size() - 1) + "]:");
+                        System.out.println("\nSelect project to donate money [from 0 to " + (projects.size() - 1) + "]:");
                         int choose = sc.nextInt();
                         sc.nextLine();
-                        System.out.println("Vote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
-                        for(int n=0;n<projects.get(choose).getProductTypes().size();n++)
-                        {
-                            System.out.println(n+" -> "+projects.get(choose).getProductTypes().get(n));
+                        System.out.println("\nVote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
+                        for (int n = 0; n < projects.get(choose).getProductTypes().size(); n++) {
+                            System.out.println(n + " -> " + projects.get(choose).getProductTypes().get(n));
                         }
                         int vote = sc.nextInt();
                         sc.nextLine();
-                        System.out.println("Quantity of money you donate:");
+                        System.out.println("\nQuantity of money you donate:");
                         int money = sc.nextInt();
                         sc.nextLine();
                         objOut.writeObject(projects.get(choose));
                         objOut.writeObject(projects.get(choose).getProductTypes().get(vote));
                         out.writeInt(money);
-                        if (!in.readBoolean()){
+                        objOut.flush();
+                        if (!in.readBoolean()) {
                             System.out.println("\n ERROR!\n Exiting now...\n");
-                            menu();
-                        }
-                        else{
+                            menu(log);
+                        } else {
                             System.out.println("\nDONATE ACCEPTED!\n");
                         }
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         System.err.println("IO exception:" + e);
-                    }
-                    catch (ClassNotFoundException e)
-                    {
+                    } catch (ClassNotFoundException e) {
                         System.err.println("Class Not Found Exception:" + e);
                     }
 
@@ -300,12 +286,11 @@ public class TCPClient {
                     System.out.println("\n1 - List Old Projects;");
                     System.out.println("2 - List Current Projects.");
                     System.out.println("\nOption: ");
-                    try
-                    {
+                    try {
                         out.writeInt(3);
                         String option1 = sc.nextLine();
                         ArrayList<Project> projects;
-                        switch (option1){
+                        switch (option1) {
                             case "1":
                                 out.writeInt(1);
                                 break;
@@ -314,13 +299,138 @@ public class TCPClient {
                                 break;
                             default:
                                 System.out.println("\nWRONG OPTION! Try again.");
-                                menu();
+                                menu(log);
                                 break;
                         }
-                        projects = (ArrayList<Project>)objIn.readObject();
-                        for(int i=0;i<projects.size();i++)
+                        projects = (ArrayList<Project>) objIn.readObject();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+
+                        menu(log);
+
+                    } catch (IOException e) {
+                        System.err.println("IO exception:" + e);
+                    } catch (ClassNotFoundException e) {
+                        System.err.println("Class Not Found Exception:" + e);
+                    }
+                    break;
+
+                case "4":
+                    System.out.println("\n\nCONSULT");
+                    System.out.println("\n1 - Consult money;");
+                    System.out.println("2 - Consult project details;");
+                    //System.out.println("3 - Consult rewards.");
+                    System.out.println("\nOption: ");
+
+                    try {
+                        out.writeInt(4);
+                        String option2 = sc.nextLine();
+                        ArrayList<Project> projects1;
+                        switch (option2) {
+                            case "1":
+                                System.out.println("\nMoney: " + log.getMoney());
+                                break;
+                            case "2":
+                                out.writeInt(2);
+                                projects1 = (ArrayList<Project>) objIn.readObject();
+                                for (int i = 0; i < projects1.size(); i++) {
+                                    System.out.println("\n" + projects1.get(i) + "\n");
+                                }
+                                break;
+                            /*case "3":
+                                out.writeInt(3);
+                                break;*/
+                            default:
+                                System.out.println("\nWRONG OPTION! Try again.");
+                                menu(log);
+                                break;
+                        }
+
+                        menu(log);
+                    } catch (IOException e) {
+                        System.err.println("IO exception:" + e);
+                    } catch (ClassNotFoundException e) {
+                        System.err.println("Class Not Found Exception:" + e);
+                    }
+
+                case "5":
+                    System.out.println("\n\nADD REWARDS");
+
+                    try {
+                        Reward reward = new Reward();
+                        out.writeInt(5);
+
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+                        System.out.println("\nSelect project to add reward [from 0 to " + (projects.size() - 1) + "]:");
+                        int choose = sc.nextInt();
+                        sc.nextLine();
+
+                        System.out.println("\nName: ");
+                        reward.setName(sc.nextLine());
+
+                        System.out.println("\nDescription: ");
+                        reward.setDescription(sc.nextLine());
+
+                        System.out.println("\nValue of reward: ");
+                        reward.setValueOfReward(sc.nextInt());
+                        sc.nextLine();
+
+                        objOut.writeObject(projects.get(choose));
+                        objOut.writeObject(projects.get(choose).getRewards());
+                        objOut.flush();
+
+                        if (!in.readBoolean()) {
+                            System.out.println("\n ERROR!\n Exiting now...\n");
+                            menu(log);
+                        } else {
+                            System.out.println("\nREWARD ADDED!\n");
+                        }
+                    }
+
+                    catch (IOException e)
+                    {
+                        System.err.println("IO exception:" + e);
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    break;
+
+                case "6":
+                    System.out.println("\n\nREMOVE REWARDS");
+                    try {
+                        out.writeInt(6);
+
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+                        System.out.println("\nSelect project to remove reward [from 0 to " + (projects.size() - 1) + "]:");
+                        int choose = sc.nextInt();
+                        sc.nextLine();
+
+                        System.out.println("\nSelect reward to remove [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                        for(int n=0;n<projects.get(choose).getRewards().size();n++)
                         {
-                            System.out.println("\n"+projects.get(i)+"\n\n");
+                            System.out.println(n+" -> "+projects.get(choose).getRewards().get(n));
+                        }
+                        int rew = sc.nextInt();
+                        sc.nextLine();
+
+                        objOut.writeObject(projects.get(choose));
+                        objOut.writeObject(projects.get(choose).getRewards().get(rew));
+                        objOut.flush();
+
+                        if (!in.readBoolean()){
+                            System.out.println("\n ERROR!\n Exiting now...\n");
+                            menu(log);
+                        }
+                        else{
+                            System.out.println("\nREWARD REMOVED!\n");
                         }
                     }
                     catch (IOException e)
@@ -333,76 +443,130 @@ public class TCPClient {
                     }
                     break;
 
-                case "4":
-                    System.out.println("\n\nCONSULT");
-                    System.out.println("\n1 - Consult money;");
-                    System.out.println("2 - Consult project details;");
-                    System.out.println("3 - Consult rewards.");
-                    System.out.println("\nOption: ");
-                    String option2 = sc.nextLine();
+                case "7":
+                    System.out.println("\n\nSEND MESSAGE TO THE PROJECT");
 
-                    switch(option2){
-                        case "1":
-                            break;
+                    try{
+                        out.writeInt(7);
+                        Message sms = new Message();
 
-                        case "2":
-                            break;
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+                        System.out.println("\nSelect project to send message [from 0 to " + (projects.size() - 1) + "]:");
+                        int choose = sc.nextInt();
+                        sc.nextLine();
+                        sms.setProject(projects.get(choose));
 
-                        case "3":
-                            break;
+                        System.out.println("\nMessage: ");
+                        sms.setMessage(sc.nextLine());
 
-                        default:
-                            System.out.println("\nWRONG OPTION! Try again.");
-                            menu();
-                            break;
+                        objOut.writeObject(sms.getMessage());
+                        objOut.flush();
+
+                        if (!in.readBoolean()){
+                            System.out.println("\n ERROR!\n Exiting now...\n");
+                            menu(log);
+                        }
+                        else{
+                            System.out.println("\nMESSAGE SENT!\n");
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        System.err.println("IO exception:" + e);
+                    }
+                    catch (ClassNotFoundException e)
+                    {
+                        System.err.println("Class Not Found Exception:" + e);
                     }
                     break;
 
-                case "5":
-                    System.out.println("\n\nADD REWARDS");
-                    System.out.println("\nName: ");
-                    String nameR = sc.nextLine();
-
-                    System.out.println("\nDescription: ");
-                    String desc = sc.nextLine();
-
-                    System.out.println("\nValue of reward: ");
-                    int valueR = sc.nextInt();
-
-                    break;
-
-                case "6":
-                    System.out.println("\n\nREMOVE REWARDS");
-                    //listar todos os projetos
-                    int valueRe = sc.nextInt();
-
-                    break;
-
-                case "7":
-                    System.out.println("\n\nSEND MESSAGE TO THE PROJECT");
-                    System.out.println("\nProject name: ");
-                    String namePro= sc.nextLine();
-
-                    System.out.println("\nMessage: ");
-                    String message= sc.nextLine();
-
-                    break;
-
                 case "8":
-                    //listar sms dos apoiantes
                     System.out.println("\n\nANSWER SUPPORTERS MESSAGES");
-                    System.out.println("\nOption");
-                    int supporter = sc.nextInt();
-                    System.out.println("\nAnswer: ");
 
+                    try{
+                        out.writeInt(8);
+                        Reply rep = new Reply();
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+                        System.out.println("\nSelect project to answer supporters messages [from 0 to " + (projects.size() - 1) + "]:");
+                        int choose = sc.nextInt();
+                        sc.nextLine();
+                        objOut.writeObject(projects.get(choose));
+                        objOut.flush();
+
+                        ArrayList<Message> messages = (ArrayList<Message>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int j = 0; j < messages.size(); j++) {
+                            System.out.println("\n" + messages.get(j) + "\n\n");
+                        }
+                        System.out.println("\nSelect message to answer [from 0 to " + (messages.size() - 1) + "]:");
+                        int choose1 = sc.nextInt();
+                        sc.nextLine();
+
+                        System.out.println("\nAnswer: ");
+                        rep.setMessage(sc.nextLine());
+                        rep.setUser(log);
+
+                        objOut.writeObject(rep.getMessage());
+                        objOut.writeObject(rep.getUser());
+                        objOut.flush();
+
+                        if (!in.readBoolean()){
+                            System.out.println("\n ERROR!\n Exiting now...\n");
+                            menu(log);
+                        }
+                        else{
+                            System.out.println("\nMESSAGE SENT!\n");
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        System.err.println("IO exception:" + e);
+                    }
+                    catch (ClassNotFoundException e)
+                    {
+                        System.err.println("Class Not Found Exception:" + e);
+                    }
                     break;
 
                 case "9":
-                    //listar para cancelar projetos
                     System.out.println("\n\nCANCEL PROJECT");
-                    System.out.println("\nOption");
-                    int projectC = sc.nextInt();
 
+                    try{
+                        out.writeInt(9);
+
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();// = rmiConnection.actualProjects();
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+
+                        System.out.println("\nSelect project to cancel [from 0 to " + (projects.size() - 1) + "]:");
+                        int choose = sc.nextInt();
+                        sc.nextLine();
+
+                        objOut.writeObject(projects.get(choose));
+                        objOut.flush();
+
+                        if (!in.readBoolean()){
+                            System.out.println("\n ERROR!\n Exiting now...\n");
+                            menu(log);
+                        }
+                        else{
+                            System.out.println("\nPROJECT CANCELED!\n");
+                        }
+                    }
+                    catch (IOException e)
+                    {
+                        System.err.println("IO exception:" + e);
+                    }
+                    catch (ClassNotFoundException e)
+                    {
+                        System.err.println("Class Not Found Exception:" + e);
+                    }
                     break;
 
                 case "10":
@@ -410,13 +574,13 @@ public class TCPClient {
                     break;
 
                 case "11":
-                    System.out.println("EXIT FUNDSTARTER");
+                    System.out.println("\n\nEXIT FUNDSTARTER");
                     exit();
                     break;
 
                 default:
                     System.out.println("\nWRONG OPTION! Try again.");
-                    menu();
+                    menu(log);
                     break;
             }
         }

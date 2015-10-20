@@ -76,20 +76,21 @@ class Connection extends Thread {
         try {
 
 
-            int choose = in.readInt();
+            int choose;
             User log = null;
-            if (choose == 1) {
-                log = (User) objIn.readObject();
-                log = rmiConnection.makeLogin(log);
-                objOut.writeObject(log);
+            while(log==null) {
+                 choose = in.readInt();
+                if (choose == 1) {
+                    log = (User) objIn.readObject();
+                    log = rmiConnection.makeLogin(log);
+                    objOut.writeObject(log);
+                } else if (choose == 2) {
+                    log = (User) objIn.readObject();
+                    log = rmiConnection.makeRegist(log);
+                    objOut.writeObject(log);
+                    objOut.flush();
+                }
             }
-
-            else if (choose == 2) {
-                log = (User) objIn.readObject();
-                log = rmiConnection.makeRegist(log);
-                objOut.writeObject(log);
-            }
-
             if(log!=null)
             {
                 while (true)
@@ -105,6 +106,7 @@ class Connection extends Thread {
                     {
                         ArrayList<Project> projects = rmiConnection.actualProjects();
                         objOut.writeObject(projects);
+                        objOut.flush();
                         Project projectChoosen = (Project) objIn.readObject();
                         ProductType typeChoosen = (ProductType) objIn.readObject();
                         int money = in.readInt();
@@ -124,6 +126,59 @@ class Connection extends Thread {
                             projects = rmiConnection.actualProjects();
                         }
                         objOut.writeObject(projects);
+                        objOut.flush();
+                    }
+                    if(choose == 4)
+                    {
+                        int choose2 = in.readInt();
+                        ArrayList<Project> projects = null;
+                        if(choose2 == 2)
+                        {
+                            projects = rmiConnection.actualProjects();
+                        }
+                        objOut.writeObject(projects);
+                        objOut.flush();
+                    }
+                    if (choose == 5){
+                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        objOut.flush();
+                        Reward newR = (Reward) objIn.readObject();
+                        Project projectChoosen = (Project) objIn.readObject();
+                        boolean pass = rmiConnection.addReward(log, projectChoosen, newR );
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 6){
+                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        objOut.flush();
+                        Project projectChoosen = (Project) objIn.readObject();
+                        Reward rewardChoosen = (Reward) objIn.readObject();
+                        boolean pass = rmiConnection.removeReward(log, projectChoosen, rewardChoosen.getRewardID());
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 7){
+                        ArrayList<Project> projects = rmiConnection.actualProjects();
+                        objOut.writeObject(projects);
+                        objOut.flush();
+                        Message messageChoosen = (Message) objIn.readObject();
+                        boolean pass = rmiConnection.sendMessage(messageChoosen);
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 8){
+                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        Project project = (Project)objIn.readObject();
+                        objOut.writeObject(rmiConnection.getProjectMessages(project));
+                        objOut.flush();
+                        Message message =(Message) objIn.readObject();
+                        Reply reply = (Reply) objIn.readObject();
+                        boolean pass = rmiConnection.replyMessage(message, reply);
+                        out.writeBoolean(pass);
+                    }
+                    if(choose == 9){
+                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        objOut.flush();
+                        Project projectChoosen = (Project) objIn.readObject();
+                        boolean pass = rmiConnection.cancelProject(log, projectChoosen);
+                        out.writeBoolean(pass);
                     }
                 }
             }
