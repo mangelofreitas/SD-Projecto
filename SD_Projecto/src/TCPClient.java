@@ -439,6 +439,7 @@ public class TCPClient {
                                     System.out.println("\nWRONG OPTION! Try again.");
                                     break;
                             }
+                            notIO = true;
                         } catch (IOException e) {
                             System.err.println("IO exception:" + e);
                             createSocket();
@@ -447,6 +448,7 @@ public class TCPClient {
                             System.err.println("Class Not Found Exception:" + e);
                         }
                     }
+                    notIO=false;
                     break;
                 case "5":
                     System.out.println("\n\nADD REWARDS");
@@ -481,7 +483,7 @@ public class TCPClient {
                                 sc.nextLine();
                             }
                             objOut.writeObject(projects.get(choose));
-                            objOut.writeObject(projects.get(choose).getRewards());
+                            objOut.writeObject(reward);
                             objOut.flush();
 
                             if (!in.readBoolean()) {
@@ -581,8 +583,9 @@ public class TCPClient {
 
                                 System.out.println("\nMessage: ");
                                 sms.setMessage(sc.nextLine());
+                                sms.setUser(log);
                             }
-                            objOut.writeObject(sms.getMessage());
+                            objOut.writeObject(sms);
                             objOut.flush();
 
                             if (!in.readBoolean()){
@@ -617,7 +620,7 @@ public class TCPClient {
                         try{
                             out.writeInt(8);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            if(rep == null || choose == -1)
+                            if(choose == -1)
                             {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
@@ -643,8 +646,8 @@ public class TCPClient {
                                 rep.setMessage(sc.nextLine());
                                 rep.setUser(log);
                             }
-                            objOut.writeObject(rep.getMessage());
-                            objOut.writeObject(rep.getUser());
+                            objOut.writeObject(messages.get(choose1));
+                            objOut.writeObject(rep);
                             objOut.flush();
 
                             if (!in.readBoolean()){
