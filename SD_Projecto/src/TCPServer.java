@@ -184,8 +184,8 @@ class Connection extends Thread {
                     if (choose == 5){
                         objOut.writeObject(rmiConnection.getMyProjects(log));
                         objOut.flush();
-                        Reward newR = (Reward) objIn.readObject();
                         Project projectChoosen = (Project) objIn.readObject();
+                        Reward newR = (Reward) objIn.readObject();
                         boolean pass = rmiConnection.addReward(log, projectChoosen, newR );
                         out.writeBoolean(pass);
                     }
