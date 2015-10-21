@@ -13,46 +13,53 @@ import java.util.Scanner;
 
 public class TCPServer {
     private static RMI rmiConnection;
-    private static ArrayList<SocketInformation> sockets = new ArrayList<>();
 
-    public TCPServer(ArrayList<SocketInformation> sockets)
-    {
-        this.sockets = sockets;
-    }
 
     public static void main(String args[])
     {
+        Scanner sc = new Scanner(System.in);
         try {
             int serverPort = 6000;
-            int serverNumber = Integer.parseInt(args[0]);
+            int serverNumber;
+            if(args.length==0)
+            {
+                System.out.print("Number of the server: ");
+                serverNumber = sc.nextInt();
+                sc.nextLine();
+            }
+            else
+            {
+                serverNumber = Integer.parseInt(args[0]);
+            }
             if(serverNumber == 1)
             {
-                System.out.println("I'm the number 1");
                 int numero = 0;
                 ArrayList<DataOutputStream> clientes = new ArrayList<DataOutputStream>();
                 System.getProperties().put("java.security.policy", "politics.policy");
                 System.setSecurityManager(new SecurityManager());
                 int rmiport = 7697;
                 String name = "DB";
-                new UDPThread(serverNumber,sockets);
+                String path;
+                if(args.length==0)
+                {
+                    System.out.print("Address of server 2: ");
+                    path = sc.nextLine();
+                }
+                else
+                {
+                    path = args[1];
+                }
+                System.out.println("I'm the number 1");
+                new UDPThread(serverNumber,path);
                 System.out.println("A Escuta no Porto 6000");
                 ServerSocket listenSocket = new ServerSocket(serverPort);
                 System.out.println("LISTEN SOCKET=" + listenSocket);
                 Registry regis = LocateRegistry.getRegistry(rmiport);
                 rmiConnection = (RMI) regis.lookup(name);
                 System.out.println("Connected to RMI");
-                /*for(int i=0;i<sockets.size();i++)
-                {
-                    Socket socket = new Socket(sockets.get(i).getInet().getHostAddress(),sockets.get(i).getPort());
-                    System.out.println("CLIENT_SOCKET (created at accept())=" + sockets.get(i));
-                    numero++;
-                    clientes.add(new DataOutputStream(socket.getOutputStream()));
-                    new Connection(socket,numero,rmiConnection);
-                }*/
                 while (true)
                 {
                     Socket clientSocket = listenSocket.accept();
-                    sockets.add(new SocketInformation(clientSocket.getInetAddress(),clientSocket.getPort()));
                     System.out.println("CLIENT_SOCKET (created at accept())=" + clientSocket);
                     numero++;
                     clientes.add(new DataOutputStream(clientSocket.getOutputStream()));
@@ -61,8 +68,10 @@ public class TCPServer {
             }
             else if(serverNumber == 2)
             {
+                System.out.print("Address of server 1: ");
+                String path = sc.nextLine();
                 System.out.println("I'm the number 2");
-                new UDPThread(serverNumber,args[1]);
+                new UDPThread(serverNumber,path);
             }
 
         } catch (IOException e) {
@@ -75,33 +84,6 @@ public class TCPServer {
     }
 }
 
-class SocketInformation implements Serializable
-{
-    private InetAddress inet;
-    private int port;
-
-    public SocketInformation(InetAddress inet, int port)
-    {
-        this.inet = inet;
-        this.port = port;
-    }
-
-    public InetAddress getInet() {
-        return inet;
-    }
-
-    public void setInet(InetAddress inet) {
-        this.inet = inet;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-}
 
 class Connection extends Thread {
     DataInputStream in;
@@ -260,14 +242,6 @@ class UDPThread extends Thread
     private int number;
     private DatagramSocket aSocket = null;
     private String path;
-    private ArrayList<SocketInformation> sockets;
-
-    public UDPThread(int number,ArrayList<SocketInformation> sockets)
-    {
-        this.number = number;
-        this.sockets = sockets;
-        this.start();
-    }
 
     public UDPThread(int number, String path)
     {
@@ -280,32 +254,28 @@ class UDPThread extends Thread
     {
         if(number == 1)
         {
+            String text = "Ping 1";
             try
             {
-                aSocket = new DatagramSocket(6789);
+                aSocket = new DatagramSocket(6788);
+                aSocket.setSoTimeout(8000);
                 while(true)
                 {
-                    byte[] buffer = new byte[4096];
-                    DatagramPacket request = new DatagramPacket(buffer, buffer.length);
-                    aSocket.receive(request);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    ObjectOutputStream oos = new ObjectOutputStream(baos);
-                    oos.writeObject(sockets);
-                    byte [] data = baos.toByteArray();
-                    DatagramPacket reply = new DatagramPacket(data,data.length,request.getAddress(),request.getPort());
-                    aSocket.send(reply);
-                    sleep(1000);
+                    byte[] buffer = text.getBytes();
+                    InetAddress aHost = InetAddress.getByName(path);
+                    int serverPort = 6789;
+                    DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
+                    aSocket.send(request);
+                    buffer = new byte[1024];
+                    DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
+                    aSocket.receive(reply);
                     aSocket.setSoTimeout(1000);
                 }
             }
             catch (IOException e)
             {
                 System.out.println("IO:" + e);
-                new UDPThread(number,sockets);
-            }
-            catch (InterruptedException e)
-            {
-                System.out.println("Interrupted Exception:" + e);
+                new UDPThread(number,path);
             }
             finally
             {
@@ -317,24 +287,21 @@ class UDPThread extends Thread
         }
         else if(number == 2)
         {
-            String text = "Ping";
+            String text = "Ping 2";
             try
             {
-                aSocket = new DatagramSocket();
+                aSocket = new DatagramSocket(6789);
+                aSocket.setSoTimeout(8000);
                 while(true)
                 {
-                    byte[] msg = text.getBytes();
+                    byte[] buffer = text.getBytes();
                     InetAddress aHost = InetAddress.getByName(path);
-                    DatagramPacket request = new DatagramPacket(msg, msg.length, aHost, 6789);
+                    int serverPort = 6788;
+                    DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
                     aSocket.send(request);
-                    byte[] buffer = new byte[4096];
-                    DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
+                    buffer = new byte[1024];
+                    DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                     aSocket.receive(reply);
-                    byte[] data = reply.getData();
-                    ByteArrayInputStream in = new ByteArrayInputStream(data);
-                    ObjectInputStream is = new ObjectInputStream(in);
-                    sockets = (ArrayList<SocketInformation>) is.readObject();
-                    sleep(1000);
                     aSocket.setSoTimeout(1000);
                 }
             }
@@ -348,15 +315,12 @@ class UDPThread extends Thread
             }
             catch(IOException e)
             {
+                aSocket.close();
                 System.out.println("IO:" + e);
-                String[] strings = {"1"};
-                new TCPServer(sockets).main(strings);
+                String[] strings = {"1",path};
+                new TCPServer().main(strings);
             }
-            catch(InterruptedException e){
-                System.out.println("Interrupted Exception:" + e);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally
+            finally
             {
                 if(aSocket!=null)
                 {

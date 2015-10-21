@@ -292,12 +292,13 @@ public class RMIServer implements RMI
             {
                 return false;
             }
+            return true;
         }
         catch (SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean sendMessage(Message message) throws RemoteException {
@@ -314,12 +315,13 @@ public class RMIServer implements RMI
             {
                 return false;
             }
+            return true;
         }
         catch (SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean createProject(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes) throws RemoteException {
@@ -369,12 +371,13 @@ public class RMIServer implements RMI
                     return false;
                 }
             }
+            return true;
         }
         catch (SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean addReward(User user, Project project, Reward reward) throws RemoteException {
@@ -400,12 +403,13 @@ public class RMIServer implements RMI
                     return false;
                 }
             }
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean removeReward(User user, Project project, int rewardID) throws RemoteException {
@@ -428,12 +432,13 @@ public class RMIServer implements RMI
                     return false;
                 }
             }
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean retrieveMoney(Project project) throws RemoteException
@@ -473,12 +478,13 @@ public class RMIServer implements RMI
                 }
 
             }
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean deleteMessages(Project project) throws RemoteException
@@ -499,14 +505,15 @@ public class RMIServer implements RMI
             System.out.println("Delete Messages of "+project.getProjectName()+"!");
             query = "DELETE FROM messages_send WHERE projectID = ?";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1,project.getProjectID());
+            preparedStatement.setInt(1, project.getProjectID());
             preparedStatement.executeUpdate();
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean deleteReplies(Message message) throws RemoteException
@@ -518,12 +525,13 @@ public class RMIServer implements RMI
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, message.getMessageID());
             preparedStatement.executeUpdate();
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean deleteRewards(Project project) throws RemoteException
@@ -533,14 +541,15 @@ public class RMIServer implements RMI
         {
             query = "DELETE FROM rewards WHERE projectID = ?";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1,project.getProjectID());
+            preparedStatement.setInt(1, project.getProjectID());
             preparedStatement.executeUpdate();
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean deleteProductTypes(Project project) throws RemoteException
@@ -550,14 +559,15 @@ public class RMIServer implements RMI
         {
             query = "DELETE FROM types_products WHERE projectID = ?";
             preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1,project.getProjectID());
+            preparedStatement.setInt(1, project.getProjectID());
             preparedStatement.executeUpdate();
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public boolean cancelProject(User user, Project project) throws RemoteException {
@@ -585,12 +595,13 @@ public class RMIServer implements RMI
                     return false;
                 }
             }
+            return true;
         }
         catch (SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public ArrayList<Project> getMyProjects(User user) throws RemoteException
@@ -642,17 +653,13 @@ public class RMIServer implements RMI
                     return false;
                 }
             }
-            else
-            {
-                return false;
-            }
-
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public ArrayList<Reply> getReplyMessage(Message message) throws RemoteException
@@ -713,27 +720,21 @@ public class RMIServer implements RMI
             {
                 Date dateNow = new Date(new java.util.Date().getTime());
                 Date date = rs.getDate("dateLimit");
-                System.out.println("WOW");
                 if(true)
                 {
-                    System.out.println("Passou");
                     if(rs.getInt("currentAmount")>=rs.getInt("requestedValue"))
                     {
-                        System.out.println("Ya");
                         query = "SELECT money FROM users WHERE usernameID = ?";
                         preparedStatement = conn.prepareStatement(query);
                         preparedStatement.setInt(1,rs.getInt("usernameID"));
                         ResultSet resultSet = preparedStatement.executeQuery();
-                        System.out.println("Cenas");
                         if(resultSet.next())
                         {
-                            System.out.println("Coisas");
                             query = "UPDATE users SET money = ? WHERE usernameID = ?";
                             preparedStatement = conn.prepareStatement(query);
                             preparedStatement.setInt(1,resultSet.getInt("money")+rs.getInt("currentAmount"));
                             preparedStatement.setInt(2,rs.getInt("usernameID"));
                             int result = preparedStatement.executeUpdate();
-                            System.out.println("Yey");
                             if(result != 1)
                             {
                                 return false;
@@ -743,7 +744,6 @@ public class RMIServer implements RMI
                             preparedStatement.setBoolean(1,false);
                             preparedStatement.setBoolean(2,true);
                             preparedStatement.executeUpdate();
-                            System.out.println("Acabou");
                         }
                     }
                     else
@@ -752,12 +752,13 @@ public class RMIServer implements RMI
                     }
                 }
             }
+            return true;
         }
         catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
-        return true;
+        return false;
     }
 
     public Project getProjectID(String projectName, User user) throws RemoteException {
