@@ -7,6 +7,7 @@ import java.sql.Date;
  */
 public interface RMI extends Remote
 {
+    public String printTest() throws RemoteException;
     public ArrayList<Project> actualProjects() throws RemoteException;
     public ArrayList<Project> oldProjects() throws RemoteException;
     public Project projectDetail(Project project) throws RemoteException;

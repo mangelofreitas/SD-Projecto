@@ -1,6 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.rmi.AccessException;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -81,24 +82,24 @@ public class TCPServer
             try
             {
                 System.getProperties().put("java.security.policy", "politics.policy");
-                System.setSecurityManager(new SecurityManager());
+                //System.setSecurityManager(new SecurityManager());
                 int rmiport = 7697;
-                String name = "DB";
-                Registry regis = LocateRegistry.getRegistry(ip,rmiport);
-                rmiConnection = (RMI) regis.lookup(name);
-                System.out.println("Connected to RMI");
+                String name = "rmi://"+ip+":"+rmiport+"/DB";
+                System.setProperty("java.rmi.server.hostname", "localhost");
+                rmiConnection = (RMI) Naming.lookup(name);
+                System.out.println(rmiConnection.printTest());
             }
             catch (NotBoundException e)
             {
                 System.err.println("RMI Not Bound Exception:" + e);
             }
-            catch (AccessException e)
-            {
-                System.err.println("RMI Access Exception:" + e);
-            }
             catch (RemoteException e)
             {
                 System.err.println("RMI Down Attempt to reconnect");
+            }
+            catch (MalformedURLException e)
+            {
+                System.err.println("RMI Malformed URL Exception");
             }
         }
     }
@@ -266,15 +267,13 @@ class Connection extends Thread {
         {
             System.err.println("EOF:" + e);
         }
-        catch (RemoteException e)
-        {
+        catch (RemoteException e) {
             System.err.println("RemoteException RMI Down Attempt to reconnect");
             try
             {
                 clientSocket.close();
             }
-            catch (IOException e1)
-            {
+            catch (IOException e1) {
                 System.err.println("Close Socket Exception");
             }
         }
@@ -283,8 +282,7 @@ class Connection extends Thread {
             System.err.println("IO Exception "+e);
 
         }
-        catch (ClassNotFoundException e)
-        {
+        catch (ClassNotFoundException e) {
             System.err.println("Class Not Found Exception:" + e);
         }
     }
@@ -327,7 +325,7 @@ class UDPThread extends Thread
             }
             catch (IOException e)
             {
-                System.err.println("IO:" + e);
+                System.out.println("IO No Ping from other server...");
                 new UDPThread(number,path);
             }
             finally
@@ -358,14 +356,12 @@ class UDPThread extends Thread
                     aSocket.setSoTimeout(1000);
                 }
             }
-            catch (SocketException e)
-            {
+            catch (SocketException e) {
                 System.err.println("Socket Exception:" + e);
                 new UDPThread(number,path);
 
             }
-            catch(UnknownHostException e)
-            {
+            catch(UnknownHostException e) {
                 System.err.println("Unknown Host Exception:" + e);
             }
             catch(IOException e)

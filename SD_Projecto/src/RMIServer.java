@@ -51,6 +51,12 @@ public class RMIServer implements RMI
         return null;
     }
 
+    public String printTest() throws RemoteException
+    {
+        System.out.println("Connected to TCP Server");
+        return "Connected to RMI";
+    }
+
     public ArrayList<Project> actualProjects() throws RemoteException {
         System.out.println("Actual Projects!");
         try
