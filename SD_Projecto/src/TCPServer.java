@@ -50,14 +50,15 @@ public class TCPServer
                 System.out.println("LISTEN SOCKET=" + listenSocket);
                 System.out.print("IP do RMI:");
                 String ip = sc.nextLine();
-                connectToRMI(ip);
                 while (true)
                 {
                     Socket clientSocket = listenSocket.accept();
+                    rmiConnection = null;
+                    connectToRMI(ip);
                     System.out.println("CLIENT_SOCKET (created at accept())=" + clientSocket);
                     numero++;
                     clientes.add(new DataOutputStream(clientSocket.getOutputStream()));
-                    new Connection(clientSocket, numero, rmiConnection, ip);
+                    new Connection(clientSocket, numero, rmiConnection);
                 }
             }
             else if(serverNumber == 2)
@@ -82,9 +83,8 @@ public class TCPServer
                 System.getProperties().put("java.security.policy", "politics.policy");
                 System.setSecurityManager(new SecurityManager());
                 int rmiport = 7697;
-
-                String name = "//"+ip+"/DB";
-                Registry regis = LocateRegistry.getRegistry(rmiport);
+                String name = "DB";
+                Registry regis = LocateRegistry.getRegistry(ip,rmiport);
                 rmiConnection = (RMI) regis.lookup(name);
                 System.out.println("Connected to RMI");
             }
@@ -112,10 +112,10 @@ class Connection extends Thread {
     ObjectOutputStream objOut;
     ObjectInputStream objIn;
     RMI rmiConnection;
-    String ip;
+    User log = null;
 
 
-    public Connection(Socket aClientSocket, int numero,  RMI rmiConnection, String ip) {
+    public Connection(Socket aClientSocket, int numero,  RMI rmiConnection) {
         thread_number = numero;
         try {
             clientSocket = aClientSocket;
@@ -124,48 +124,10 @@ class Connection extends Thread {
             objOut = new ObjectOutputStream(out);
             objIn = new ObjectInputStream(in);
             this.rmiConnection = rmiConnection;
-            this.ip = ip;
 
             this.start();
         } catch (IOException e) {
-            System.out.println("Connection:" + e.getMessage());
-        }
-    }
-
-    public void connectToRMI()
-    {
-        while (rmiConnection == null)
-        {
-            try
-            {
-                System.getProperties().put("java.security.policy", "politics.policy");
-                System.setSecurityManager(new SecurityManager());
-                int rmiport = 7697;
-                String name = "//"+ip+"/DB";
-                Registry regis = LocateRegistry.getRegistry(rmiport);
-                rmiConnection = (RMI) regis.lookup(name);
-                System.out.println("Connected to RMI");
-            }
-            catch (NotBoundException e)
-            {
-                System.err.println("RMI Not Bound Exception:" + e);
-            }
-            catch (AccessException e)
-            {
-                System.err.println("RMI Access Exception:" + e);
-            }
-            catch (RemoteException e)
-            {
-                System.err.println("RMI Remote Exception:" + e);
-                try
-                {
-                    sleep(5000);
-                }
-                catch (InterruptedException e1)
-                {
-                    System.out.println("Thread:" + e1);
-                }
-            }
+            System.err.println("Connection:" + e);
         }
     }
 
@@ -173,12 +135,9 @@ class Connection extends Thread {
         try
         {
             int choose;
-            User log = null;
-            System.out.println(log);
             while(log==null) {
                 choose = in.readInt();
                 if (choose == 1) {
-
                     log = (User) objIn.readObject();
                     log = rmiConnection.makeLogin(log);
                     objOut.writeObject(log);
@@ -305,17 +264,28 @@ class Connection extends Thread {
         }
         catch (EOFException e)
         {
-            System.out.println("EOF:" + e);
+            System.err.println("EOF:" + e);
+        }
+        catch (RemoteException e)
+        {
+            System.err.println("RemoteException RMI Down Attempt to reconnect");
+            try
+            {
+                clientSocket.close();
+            }
+            catch (IOException e1)
+            {
+                System.err.println("Close Socket Exception");
+            }
         }
         catch (IOException e)
         {
-            System.out.println("IO RMI Down Attempt to reconnect");
-            rmiConnection = null;
-            connectToRMI();
+            System.err.println("IO Exception "+e);
+
         }
         catch (ClassNotFoundException e)
         {
-            System.out.println("Class Not Found Exception:" + e);
+            System.err.println("Class Not Found Exception:" + e);
         }
     }
 }
@@ -357,7 +327,7 @@ class UDPThread extends Thread
             }
             catch (IOException e)
             {
-                System.out.println("IO:" + e);
+                System.err.println("IO:" + e);
                 new UDPThread(number,path);
             }
             finally
@@ -390,18 +360,18 @@ class UDPThread extends Thread
             }
             catch (SocketException e)
             {
-                System.out.println("Socket Exception:" + e);
+                System.err.println("Socket Exception:" + e);
                 new UDPThread(number,path);
 
             }
             catch(UnknownHostException e)
             {
-                System.out.println("Unknown Host Exception:" + e);
+                System.err.println("Unknown Host Exception:" + e);
             }
             catch(IOException e)
             {
                 aSocket.close();
-                System.out.println("IO:" + e);
+                System.err.println("IO:" + e);
                 String[] strings = {"1",path};
                 new TCPServer().main(strings);
             }
