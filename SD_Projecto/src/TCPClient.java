@@ -202,6 +202,11 @@ public class TCPClient {
                     System.out.println("\n WRONG SIGN UP!\n Exiting now...\n");
                     signup();
                 }
+                else if (sig.getUsernameID()==-1)
+                {
+                    System.out.println("\n USERNAME OR MAIL ALREADY TAKEN CHOOSE ANOTHER\n Exiting now...");
+                    signup();
+                }
                 else
                 {
                     System.out.println("\nSIGN UP ACCEPTED!\n");
@@ -214,7 +219,6 @@ public class TCPClient {
             }
         }
         login();
-
     }
 
 
@@ -570,6 +574,14 @@ public class TCPClient {
                         try{
                             out.writeInt(7);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
+                            for(int i=0;i<projects.size();i++)
+                            {
+                                if(projects.get(i).getUser().getUsernameID()==log.getUsernameID())
+                                {
+                                    projects.remove(i);
+                                    i--;
+                                }
+                            }
                             if(sms == null || choose == -1)
                             {
                                 sms = new Message();

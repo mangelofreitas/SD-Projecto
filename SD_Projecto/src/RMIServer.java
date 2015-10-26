@@ -130,12 +130,22 @@ public class RMIServer implements RMI
         System.out.println("Make Regist of "+user.getMail());
         try
         {
+            query = "SELECT * FROM users WHERE username = ? OR mail = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2,user.getMail());
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+
+                return new User(-1);
+            }
             query = "INSERT INTO users (username, mail, password, money) VALUES (?,?,?,?)";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getMail());
             preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setInt(4,100);
+            preparedStatement.setInt(4, 100);
             preparedStatement.executeUpdate();
             user = makeLogin(user);
             return user;
@@ -720,8 +730,9 @@ public class RMIServer implements RMI
             {
                 Date dateNow = new Date(new java.util.Date().getTime());
                 Date date = rs.getDate("dateLimit");
-                if(true)
+                if(dateNow.getYear()>=date.getYear() && dateNow.getMonth()>=date.getMonth() && dateNow.getDay()>date.getDay())
                 {
+                    System.out.println("ya");
                     if(rs.getInt("currentAmount")>=rs.getInt("requestedValue"))
                     {
                         query = "SELECT money FROM users WHERE usernameID = ?";

@@ -45,7 +45,9 @@ public class Teste extends UnicastRemoteObject
             else
             {
                 System.out.println("Username:" + user.getUsername() + "\nWith ID:" + user.getUsernameID() + "\nCash:" + user.getMoney()+"\nYour Rewards:");
-                for (int i=0;i<user.getRewards().size();i++)
+
+                System.out.println(rmiConnection.endProject(new Project(new User(3),7)));
+                /*for (int i=0;i<user.getRewards().size();i++)
                 {
                     System.out.println(user.getRewards().get(i));
                 }
@@ -58,7 +60,7 @@ public class Teste extends UnicastRemoteObject
                 System.out.println("Select project to end [from 0 to " + (projects.size() - 1) + "]:");
                 int choose = sc.nextInt();
                 sc.nextLine();
-                System.out.println(rmiConnection.cancelProject(user,projects.get(choose)));
+                System.out.println(rmiConnection.cancelProject(user,projects.get(choose)));*/
 
                 /*//Cancelar um projecto
                 ArrayList<Project> projects = rmiConnection.getMyProjects(user);
