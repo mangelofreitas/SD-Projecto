@@ -1,11 +1,8 @@
 import java.net.*;
 import java.io.*;
-import java.rmi.AccessException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -305,22 +302,21 @@ class UDPThread extends Thread
     {
         if(number == 1)
         {
-            String text = "Ping 1";
             try
             {
                 aSocket = new DatagramSocket(6788);
                 aSocket.setSoTimeout(8000);
                 while(true)
                 {
-                    byte[] buffer = text.getBytes();
+                    byte[] buffer = new byte[10];
                     InetAddress aHost = InetAddress.getByName(path);
                     int serverPort = 6789;
                     DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
                     aSocket.send(request);
-                    buffer = new byte[1024];
+                    buffer = new byte[10];
                     DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                     aSocket.receive(reply);
-                    aSocket.setSoTimeout(1000);
+                    aSocket.setSoTimeout(2000);
                 }
             }
             catch (IOException e)
@@ -338,22 +334,21 @@ class UDPThread extends Thread
         }
         else if(number == 2)
         {
-            String text = "Ping 2";
             try
             {
                 aSocket = new DatagramSocket(6789);
                 aSocket.setSoTimeout(8000);
                 while(true)
                 {
-                    byte[] buffer = text.getBytes();
+                    byte[] buffer = new byte[10];
                     InetAddress aHost = InetAddress.getByName(path);
                     int serverPort = 6788;
                     DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
                     aSocket.send(request);
-                    buffer = new byte[1024];
+                    buffer = new byte[10];
                     DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                     aSocket.receive(reply);
-                    aSocket.setSoTimeout(1000);
+                    aSocket.setSoTimeout(2000);
                 }
             }
             catch (SocketException e) {
@@ -367,7 +362,7 @@ class UDPThread extends Thread
             catch(IOException e)
             {
                 aSocket.close();
-                System.err.println("IO:" + e);
+                System.err.println("IO No Ping from other Server\nGoing to Primary Server...");
                 String[] strings = {"1",path};
                 new TCPServer().main(strings);
             }

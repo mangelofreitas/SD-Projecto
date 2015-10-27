@@ -257,6 +257,10 @@ public class RMIServer implements RMI
 
     public boolean donateMoney(User user, Project project, ProductType productType, int moneyGiven) throws RemoteException {
         System.out.println("Donate Money!");
+        if(user.getMoney()-moneyGiven<0)
+        {
+            return false;
+        }
         try
         {
             query = "INSERT INTO users_contributes (projectID, usernameID, moneyGiven, typeProductID, rewardID) VALUES (?,?,?,?,?)";
