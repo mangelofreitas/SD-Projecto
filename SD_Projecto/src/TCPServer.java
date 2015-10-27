@@ -52,7 +52,9 @@ public class TCPServer
                 {
                     Socket clientSocket = listenSocket.accept();
                     rmiConnection = null;
-                    connectToRMI(ip);
+                    RMIConnection thread = new RMIConnection(rmiConnection,ip);
+                    thread.join();
+                    rmiConnection = thread.rmiConnection;
                     System.out.println("CLIENT_SOCKET (created at accept())=" + clientSocket);
                     numero++;
                     clientes.add(new DataOutputStream(clientSocket.getOutputStream()));
@@ -67,37 +69,12 @@ public class TCPServer
             }
 
         } catch (IOException e) {
-            System.out.println("Listen:" + e);
+            System.err.println("Listen:" + e);
 
         }
-    }
-
-    public static void connectToRMI(String ip)
-    {
-        while (rmiConnection == null)
+        catch (InterruptedException e)
         {
-            try
-            {
-                System.getProperties().put("java.security.policy", "politics.policy");
-                //System.setSecurityManager(new SecurityManager());
-                int rmiport = 7697;
-                String name = "rmi://"+ip+":"+rmiport+"/DB";
-                System.setProperty("java.rmi.server.hostname", "localhost");
-                rmiConnection = (RMI) Naming.lookup(name);
-                System.out.println(rmiConnection.printTest());
-            }
-            catch (NotBoundException e)
-            {
-                System.err.println("RMI Not Bound Exception:" + e);
-            }
-            catch (RemoteException e)
-            {
-                System.err.println("RMI Down Attempt to reconnect");
-            }
-            catch (MalformedURLException e)
-            {
-                System.err.println("RMI Malformed URL Exception");
-            }
+            System.err.println("Interruption Exception " + e);
         }
     }
 }
@@ -281,6 +258,57 @@ class Connection extends Thread {
         }
         catch (ClassNotFoundException e) {
             System.err.println("Class Not Found Exception:" + e);
+        }
+    }
+}
+
+class RMIConnection extends Thread
+{
+    RMI rmiConnection;
+    String ip;
+
+    RMIConnection(RMI rmiConnection, String ip)
+    {
+        this.rmiConnection = rmiConnection;
+        this.ip = ip;
+        this.start();
+    }
+
+    public void run()
+    {
+        while (rmiConnection == null)
+        {
+            try
+            {
+                System.getProperties().put("java.security.policy", "politics.policy");
+                //System.setSecurityManager(new SecurityManager());
+                int rmiport = 7697;
+                String name = "rmi://"+ip+":"+rmiport+"/DB";
+                System.setProperty("java.rmi.server.hostname", "localhost");
+                rmiConnection = (RMI) Naming.lookup(name);
+                System.out.println(rmiConnection.printTest());
+            }
+            catch (NotBoundException e)
+            {
+                System.err.println("RMI Not Bound Exception:" + e);
+            }
+            catch (RemoteException e)
+            {
+                System.err.println("RMI is drinking beers, wait for him");
+
+                try
+                {
+                    sleep(3000);
+                }
+                catch (InterruptedException e1)
+                {
+                    System.err.println("No sleep for you!");
+                }
+            }
+            catch (MalformedURLException e)
+            {
+                System.err.println("RMI Malformed URL Exception");
+            }
         }
     }
 }
