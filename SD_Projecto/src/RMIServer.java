@@ -84,7 +84,8 @@ public class RMIServer implements RMI
         return "Connected to RMI";
     }
 
-    public ArrayList<Project> actualProjects() throws RemoteException {
+    public ArrayList<Project> actualProjects() throws RemoteException
+    {
         System.out.println("Actual Projects!");
         try
         {
@@ -111,7 +112,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public ArrayList<Project> oldProjects() throws RemoteException {
+    public ArrayList<Project> oldProjects() throws RemoteException
+    {
         System.out.println("Old Projects!");
         try
         {
@@ -138,7 +140,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public Project projectDetail(Project project) throws RemoteException {
+    public Project projectDetail(Project project) throws RemoteException
+    {
         System.out.println("Project Detail of "+project.getProjectID());
         try
         {
@@ -159,7 +162,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public User makeRegist(User user) throws RemoteException {
+    public User makeRegist(User user) throws RemoteException
+    {
         System.out.println("Make Regist of "+user.getMail());
         try
         {
@@ -190,7 +194,7 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public ArrayList<Reward> getUserRewards(User user) throws RemoteException
+    public ArrayList<Reward> getUserRewards(User user)
     {
         System.out.println("Get User Rewards");
         try
@@ -216,7 +220,8 @@ public class RMIServer implements RMI
     }
 
 
-    public User makeLogin(User user) throws RemoteException {
+    public User makeLogin(User user) throws RemoteException
+    {
         System.out.println("Make Login of "+user.getMail());
         try
         {
@@ -238,7 +243,7 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public ArrayList<ProductType> projectTypes(Project project) throws RemoteException
+    public ArrayList<ProductType> projectTypes(Project project)
     {
         System.out.println("Project Types of "+project.getProjectID());
         try
@@ -260,7 +265,8 @@ public class RMIServer implements RMI
         }
         return null;
     }
-    public ArrayList<Reward> projectRewards(Project project) throws RemoteException {
+    public ArrayList<Reward> projectRewards(Project project)
+    {
         System.out.println("Project Rewards of "+project.getProjectID());
         try
         {
@@ -282,7 +288,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public boolean donateMoney(User user, Project project, ProductType productType, int moneyGiven) throws RemoteException {
+    public boolean donateMoney(User user, Project project, ProductType productType, int moneyGiven) throws RemoteException
+    {
         System.out.println("Donate Money!");
         if(user.getMoney()-moneyGiven<0)
         {
@@ -427,7 +434,8 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean addReward(User user, Project project, Reward reward) throws RemoteException {
+    public boolean addReward(User user, Project project, Reward reward) throws RemoteException
+    {
         System.out.println("Add Reward!");
         try
         {
@@ -459,7 +467,8 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean removeReward(User user, Project project, int rewardID) throws RemoteException {
+    public boolean removeReward(User user, Project project, int rewardID) throws RemoteException
+    {
         System.out.println("Remove Reward!");
         try
         {
@@ -488,7 +497,7 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean retrieveMoney(Project project) throws RemoteException
+    public boolean retrieveMoney(Project project)
     {
         System.out.println("Retrieve Money to Users of "+project.getProjectName()+"!");
         try
@@ -534,7 +543,7 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean deleteMessages(Project project) throws RemoteException
+    public boolean deleteMessages(Project project)
     {
         try
         {
@@ -563,7 +572,7 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean deleteReplies(Message message) throws RemoteException
+    public boolean deleteReplies(Message message)
     {
         System.out.println("Delete Replies of "+message.getMessageID()+"!");
         try
@@ -581,7 +590,7 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean deleteRewards(Project project) throws RemoteException
+    public boolean deleteRewards(Project project)
     {
         System.out.println("Delete Rewards of "+project.getProjectName()+"!");
         try
@@ -599,7 +608,7 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean deleteProductTypes(Project project) throws RemoteException
+    public boolean deleteProductTypes(Project project)
     {
         System.out.println("Delete Product Types of "+project.getProjectName()+"!");
         try
@@ -617,7 +626,8 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public boolean cancelProject(User user, Project project) throws RemoteException {
+    public boolean cancelProject(User user, Project project) throws RemoteException
+    {
         System.out.println("Cancel Project "+project.getProjectName()+"!");
         try
         {
@@ -656,9 +666,10 @@ public class RMIServer implements RMI
         System.out.println("Get Projects of "+user.getUsername()+"!");
         try
         {
-            query = "SELECT projectID, projectName, description, dateLimit, requestedValue, currentAmount FROM projects WHERE usernameID=?";
+            query = "SELECT projectID, projectName, description, dateLimit, requestedValue, currentAmount FROM projects WHERE usernameID=? AND alive = ?";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, user.getUsernameID());
+            preparedStatement.setBoolean(2, true);
             ArrayList<Project> projects = new ArrayList<Project>();
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next())
@@ -677,7 +688,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public boolean replyMessage(Message message, Reply reply) throws RemoteException {
+    public boolean replyMessage(Message message, Reply reply) throws RemoteException
+    {
         System.out.println("Reply Message!");
         try
         {
@@ -755,7 +767,8 @@ public class RMIServer implements RMI
         return null;
     }
 
-    public boolean endProject(Project project) throws RemoteException {
+    public boolean endProject(Project project) throws RemoteException
+    {
         System.out.println("End Project "+project.getProjectName()+"!");
         try
         {
@@ -835,7 +848,8 @@ public class RMIServer implements RMI
         return false;
     }
 
-    public Project getProjectID(String projectName, User user) throws RemoteException {
+    public Project getProjectID(String projectName, User user)
+    {
         System.out.println("Get Project ID of "+projectName);
         try
         {

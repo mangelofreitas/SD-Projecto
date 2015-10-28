@@ -364,36 +364,40 @@ public class TCPClient {
                         try {
                             out.writeInt(2);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            if(choose==-1||vote==-1||money==-1)
+                            if(projects.size()>0)
                             {
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
-                                System.out.println("\nSelect project to donate money [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
-                                System.out.println("\nVote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
-                                for (int n = 0; n < projects.get(choose).getProductTypes().size(); n++) {
-                                    System.out.println(n + " -> " + projects.get(choose).getProductTypes().get(n));
-                                }
-                                vote = sc.nextInt();
-                                sc.nextLine();
-                                System.out.println("\nQuantity of money you donate:");
-                                money = sc.nextInt();
-                                sc.nextLine();
-                            }
-                            objOut.writeObject(projects.get(choose));
-                            objOut.writeObject(projects.get(choose).getProductTypes().get(vote));
-                            out.writeInt(money);
-                            objOut.flush();
-                            if (!in.readBoolean()) {
-                                if(money>log.getMoney())
+                                if(choose==-1||vote==-1||money==-1)
                                 {
-                                    System.out.println("\nInsufficient Money...\n");
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
+                                    System.out.println("\nSelect project to donate money [from 0 to " + (projects.size() - 1) + "]:");
+                                    choose = sc.nextInt();
+                                    sc.nextLine();
+                                    System.out.println("\nVote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
+                                    for (int n = 0; n < projects.get(choose).getProductTypes().size(); n++) {
+                                        System.out.println(n + " -> " + projects.get(choose).getProductTypes().get(n));
+                                    }
+                                    vote = sc.nextInt();
+                                    sc.nextLine();
+                                    System.out.println("\nChoose the reward according to the money you want to donate [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                                    money = sc.nextInt();
+                                    sc.nextLine();
                                 }
-                                System.out.println("\n ERROR!\n Exiting now...\n");
-                            } else {
-                                System.out.println("\nDONATE ACCEPTED!\n");
+                                objOut.writeObject(projects.get(choose));
+                                objOut.writeObject(projects.get(choose).getProductTypes().get(vote));
+                                out.writeInt(projects.get(choose).getRewards().get(money).getValueOfReward());
+                                objOut.flush();
+                                if (!in.readBoolean()) {
+                                    if(money>log.getMoney())
+                                    {
+                                        System.out.println("\nInsufficient Money...\n");
+                                    }
+                                    System.out.println("\n ERROR!\n Exiting now...\n");
+                                } else {
+                                    System.out.println("\nDONATE ACCEPTED!\n");
+                                }
+
                             }
                             notIO = true;
                         } catch (IOException e) {

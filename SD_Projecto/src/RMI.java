@@ -23,7 +23,6 @@ public interface RMI extends Remote
     public boolean removeReward(User user, Project project, int rewardID) throws RemoteException;
     public boolean cancelProject(User user, Project project) throws RemoteException;
     public boolean replyMessage(Message message, Reply reply) throws RemoteException;
-    public boolean endProject(Project project) throws RemoteException;
     public ArrayList<Reward> getUserRewards(User user) throws RemoteException;
     public ArrayList<Message> getProjectMessages(Project project) throws RemoteException;
     public ArrayList<Reply> getReplyMessage(Message message) throws RemoteException;
