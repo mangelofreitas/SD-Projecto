@@ -17,6 +17,8 @@ import java.sql.Date;
 /**
  * Created by miguel and maria
  */
+
+
 public class RMIServer implements RMI
 {
     private Connection conn = null;
@@ -27,6 +29,31 @@ public class RMIServer implements RMI
     {
         super();
         connectDB();
+        new refreshDate().start();
+    }
+
+    public class refreshDate extends Thread
+    {
+        public void run()
+        {
+            while(true)
+            {
+                try
+                {
+                    ArrayList<Project> projects= actualProjects();
+                    for(int i=0; i<projects.size(); i++){
+                        endProject(projects.get(i));
+                    }
+                    sleep(50000);
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public User getUserByID(User user) throws RemoteException
@@ -732,47 +759,73 @@ public class RMIServer implements RMI
         System.out.println("End Project "+project.getProjectName()+"!");
         try
         {
-            query = "SELECT dateLimit, currentAmount, requestedValue, usernameID FROM projects WHERE projectID = ?";
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1,project.getProjectID());
-            ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next())
+            Date dateNow = new Date(new java.util.Date().getTime());
+            Date date = project.getDateLimit();
+            if(dateNow.getYear()>=date.getYear() && dateNow.getMonth()>=date.getMonth() && dateNow.getDay()>date.getDay())
             {
-                Date dateNow = new Date(new java.util.Date().getTime());
-                Date date = rs.getDate("dateLimit");
-                if(dateNow.getYear()>=date.getYear() && dateNow.getMonth()>=date.getMonth() && dateNow.getDay()>date.getDay())
+                if(project.getCurrentAmount()>=project.getRequestedValue())
                 {
-                    System.out.println("ya");
-                    if(rs.getInt("currentAmount")>=rs.getInt("requestedValue"))
+                    query = "SELECT money FROM users WHERE usernameID = ?";
+                    preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setInt(1,project.getUser().getUsernameID());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if(resultSet.next())
                     {
-                        query = "SELECT money FROM users WHERE usernameID = ?";
+                        query = "UPDATE users SET money = ? WHERE usernameID = ?";
                         preparedStatement = conn.prepareStatement(query);
-                        preparedStatement.setInt(1,rs.getInt("usernameID"));
-                        ResultSet resultSet = preparedStatement.executeQuery();
-                        if(resultSet.next())
+                        preparedStatement.setInt(1,resultSet.getInt("money")+project.getCurrentAmount());
+                        preparedStatement.setInt(2,project.getUser().getUsernameID());
+                        int result = preparedStatement.executeUpdate();
+                        if(result != 1)
                         {
-                            query = "UPDATE users SET money = ? WHERE usernameID = ?";
-                            preparedStatement = conn.prepareStatement(query);
-                            preparedStatement.setInt(1,resultSet.getInt("money")+rs.getInt("currentAmount"));
-                            preparedStatement.setInt(2,rs.getInt("usernameID"));
-                            int result = preparedStatement.executeUpdate();
-                            if(result != 1)
+                            return false;
+                        }
+                        int maxVotes = 0,maxVotesIndex = 0;
+                        for(int i=0;i<project.getProductTypes().size();i++)
+                        {
+                            if(maxVotes<project.getProductTypes().get(i).getVote())
                             {
-                                return false;
+                                maxVotes = project.getProductTypes().get(i).getVote();
+                                maxVotesIndex = i;
                             }
-                            query = "UPDATE projects SET alive = ?, success = ? WHERE projectID = ?";
+                        }
+                        if(project.getCurrentAmount()>=project.getRequestedValue()*2 && project.getProductTypes().size()>1)
+                        {
+                            String type= project.getProductTypes().get(maxVotesIndex).getType()+", ";
+                            project.getProductTypes().remove(maxVotesIndex);
+                            for(int i=0;i<project.getProductTypes().size();i++)
+                            {
+                                if(maxVotes<project.getProductTypes().get(i).getVote())
+                                {
+                                    maxVotes = project.getProductTypes().get(i).getVote();
+                                    maxVotesIndex = i;
+                                }
+                            }
+                            type = type + project.getProductTypes().get(maxVotesIndex);
+                            query = "UPDATE projects SET alive = ?, success = ?, finalProduct = ? WHERE projectID = ?";
                             preparedStatement = conn.prepareStatement(query);
                             preparedStatement.setBoolean(1,false);
                             preparedStatement.setBoolean(2,true);
+                            preparedStatement.setString(3,type);
+                            preparedStatement.executeUpdate();
+                        }
+                        else if(project.getCurrentAmount()<project.getRequestedValue()*2)
+                        {
+                            query = "UPDATE projects SET alive = ?, success = ?, finalProduct = ? WHERE projectID = ?";
+                            preparedStatement = conn.prepareStatement(query);
+                            preparedStatement.setBoolean(1,false);
+                            preparedStatement.setBoolean(2,true);
+                            preparedStatement.setString(3,project.getProductTypes().get(maxVotesIndex).getType());
                             preparedStatement.executeUpdate();
                         }
                     }
-                    else
-                    {
-                        cancelProject(new User(rs.getInt("usernameID")),project);
-                    }
+                }
+                else
+                {
+                    cancelProject(project.getUser(),project);
                 }
             }
+
             return true;
         }
         catch(SQLException e)

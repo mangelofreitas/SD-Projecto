@@ -79,70 +79,74 @@ public class TCPClient {
 
     public static void welcome()
     {
-        System.out.print("\n\nWELCOME TO FUNDSTARTER\n");
-        System.out.println("\n1 - Log in;");
-        System.out.println("2 - Sign up;");
-        System.out.println("3 - List;");
-        System.out.println("4 - Exit.");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\nOption: ");
-        String option = sc.nextLine();
-        boolean notIO = false;
+        while(true)
+        {
+            System.out.print("\n\nWELCOME TO FUNDSTARTER\n");
+            System.out.println("\n1 - Log in;");
+            System.out.println("2 - Sign up;");
+            System.out.println("3 - List;");
+            System.out.println("4 - Exit.");
+            Scanner sc = new Scanner(System.in);
+            System.out.println("\nOption: ");
+            String option = sc.nextLine();
+            boolean notIO = false;
 
+            switch(option)
+            {
+                case "1":
+                    login();
+                    break;
 
-        switch(option){
-            case "1":
-                login();
-                break;
+                case "2":
+                    signup();
+                    break;
 
-            case "2":
-                signup();
-                break;
+                case "3":
+                    System.out.println("\n\nLIST");
+                    System.out.println("\n1 - List Old Projects;");
+                    System.out.println("2 - List Current Projects.");
+                    System.out.println("\nOption: ");
+                    String option1 = sc.nextLine();
+                    while(!notIO)
+                    {
+                        try {
+                            out.writeInt(3);
+                            switch (option1) {
+                                case "1":
+                                    out.writeInt(1);
+                                    break;
+                                case "2":
+                                    out.writeInt(2);
+                                    break;
+                                default:
+                                    System.out.println("\nWRONG OPTION! Try again.");
+                                    break;
+                            }
+                            ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
+                            notIO = true;
+                            for (int i = 0; i < projects.size(); i++) {
+                                System.out.println("\n" + projects.get(i) + "\n\n");
+                            }
+                        } catch (IOException e) {
+                            System.err.println("IO exception:" + e);
+                            createSocket();
+                        } catch (ClassNotFoundException e) {
+                            System.err.println("Class Not Found Exception:" + e);                        }
+                    }
+                    notIO = false;
+                    break;
 
-            case "3":
-                System.out.println("\n\nLIST");
-                System.out.println("\n1 - List Old Projects;");
-                System.out.println("2 - List Current Projects.");
-                System.out.println("\nOption: ");
-                String option1 = sc.nextLine();
-                while(!notIO)
-                {
-                    try {
-                        out.writeInt(3);
-                        switch (option1) {
-                            case "1":
-                                out.writeInt(1);
-                                break;
-                            case "2":
-                                out.writeInt(2);
-                                break;
-                            default:
-                                System.out.println("\nWRONG OPTION! Try again.");
-                                break;
-                        }
-                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                        notIO = true;
-                        for (int i = 0; i < projects.size(); i++) {
-                            System.out.println("\n" + projects.get(i) + "\n\n");
-                        }
-                    } catch (IOException e) {
-                        System.err.println("IO exception:" + e);
-                        createSocket();
-                    } catch (ClassNotFoundException e) {
-                        System.err.println("Class Not Found Exception:" + e);                        }
-                }
-                notIO = false;
-                break;
+                case "4":
+                    exit();
+                    break;
 
-            case "4":
-                exit();
-                break;
-
-            default:
-                System.out.println("\nWRONG OPTION! Try again.");
-                welcome();
-                break;
+                default:
+                    System.out.println("\nWRONG OPTION! Try again.");
+                    welcome();
+                    break;
+            }
         }
+
     }
 
     public static void login()
@@ -383,6 +387,10 @@ public class TCPClient {
                             out.writeInt(money);
                             objOut.flush();
                             if (!in.readBoolean()) {
+                                if(money>log.getMoney())
+                                {
+                                    System.out.println("\nInsufficient Money...\n");
+                                }
                                 System.out.println("\n ERROR!\n Exiting now...\n");
                             } else {
                                 System.out.println("\nDONATE ACCEPTED!\n");

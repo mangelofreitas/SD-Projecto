@@ -359,7 +359,7 @@ class UDPThread extends Thread
                     buffer = new byte[10];
                     DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                     aSocket.receive(reply);
-                    aSocket.setSoTimeout(2000);
+                    aSocket.setSoTimeout(3000);
                 }
             }
             catch (IOException e)
@@ -377,11 +377,13 @@ class UDPThread extends Thread
         }
         else if(number == 2)
         {
+            int tries = 0;
             try
             {
                 aSocket = new DatagramSocket(6789);
                 aSocket.setSoTimeout(8000);
-                while(true)
+
+                while(tries>5)
                 {
                     byte[] buffer = new byte[10];
                     InetAddress aHost = InetAddress.getByName(path);
@@ -391,8 +393,12 @@ class UDPThread extends Thread
                     buffer = new byte[10];
                     DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                     aSocket.receive(reply);
-                    aSocket.setSoTimeout(2000);
+                    aSocket.setSoTimeout(3000);
                 }
+                aSocket.close();
+                System.err.println("Going to Primary Server...");
+                String[] strings = {"1",path};
+                new TCPServer().main(strings);
             }
             catch (SocketException e) {
                 System.err.println("Socket Exception:" + e);
@@ -404,10 +410,8 @@ class UDPThread extends Thread
             }
             catch(IOException e)
             {
-                aSocket.close();
-                System.err.println("IO No Ping from other Server\nGoing to Primary Server...");
-                String[] strings = {"1",path};
-                new TCPServer().main(strings);
+                System.err.println("IO No Ping from other Server");
+                tries++;
             }
             finally
             {
