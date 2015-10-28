@@ -761,7 +761,7 @@ public class RMIServer implements RMI
         {
             Date dateNow = new Date(new java.util.Date().getTime());
             Date date = project.getDateLimit();
-            if(dateNow.getYear()>=date.getYear() && dateNow.getMonth()>=date.getMonth() && dateNow.getDay()>date.getDay())
+            if(dateNow != date && date.compareTo(dateNow)<0)
             {
                 if(project.getCurrentAmount()>=project.getRequestedValue())
                 {
@@ -822,7 +822,7 @@ public class RMIServer implements RMI
                 }
                 else
                 {
-                    cancelProject(project.getUser(),project);
+                    cancelProject(project.getUser(), project);
                 }
             }
 

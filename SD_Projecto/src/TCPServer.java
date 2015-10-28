@@ -381,19 +381,26 @@ class UDPThread extends Thread
             try
             {
                 aSocket = new DatagramSocket(6789);
-                aSocket.setSoTimeout(8000);
-
-                while(tries>5)
+                aSocket.setSoTimeout(2000);
+                while(tries<5)
                 {
-                    byte[] buffer = new byte[10];
-                    InetAddress aHost = InetAddress.getByName(path);
-                    int serverPort = 6788;
-                    DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
-                    aSocket.send(request);
-                    buffer = new byte[10];
-                    DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
-                    aSocket.receive(reply);
-                    aSocket.setSoTimeout(3000);
+                    try
+                    {
+                        byte[] buffer = new byte[10];
+                        InetAddress aHost = InetAddress.getByName(path);
+                        int serverPort = 6788;
+                        DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
+                        aSocket.send(request);
+                        buffer = new byte[10];
+                        DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
+                        aSocket.receive(reply);
+                        aSocket.setSoTimeout(3000);
+                    }
+                    catch(SocketTimeoutException e)
+                    {
+                        System.err.println("Timeout No Ping from other Server\nAttempt number "+(tries+1));
+                        tries++;
+                    }
                 }
                 aSocket.close();
                 System.err.println("Going to Primary Server...");
@@ -410,8 +417,7 @@ class UDPThread extends Thread
             }
             catch(IOException e)
             {
-                System.err.println("IO No Ping from other Server");
-                tries++;
+                System.err.println("IO Exception "+e);
             }
             finally
             {
