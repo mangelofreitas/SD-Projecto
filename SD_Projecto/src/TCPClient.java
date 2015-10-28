@@ -74,18 +74,21 @@ public class TCPClient {
         address2 = sc.nextLine();
         path = new Addresses(address1,address2);
         createSocket();
-        loginSignup();
+        welcome();
     }
 
-    public static void loginSignup()
+    public static void welcome()
     {
         System.out.print("\n\nWELCOME TO FUNDSTARTER\n");
         System.out.println("\n1 - Log in;");
         System.out.println("2 - Sign up;");
-        System.out.println("3 - Exit.");
+        System.out.println("3 - List;");
+        System.out.println("4 - Exit.");
         Scanner sc = new Scanner(System.in);
         System.out.println("\nOption: ");
         String option = sc.nextLine();
+        boolean notIO = false;
+
 
         switch(option){
             case "1":
@@ -97,12 +100,47 @@ public class TCPClient {
                 break;
 
             case "3":
+                System.out.println("\n\nLIST");
+                System.out.println("\n1 - List Old Projects;");
+                System.out.println("2 - List Current Projects.");
+                System.out.println("\nOption: ");
+                String option1 = sc.nextLine();
+                while(!notIO)
+                {
+                    try {
+                        out.writeInt(3);
+                        switch (option1) {
+                            case "1":
+                                out.writeInt(1);
+                                break;
+                            case "2":
+                                out.writeInt(2);
+                                break;
+                            default:
+                                System.out.println("\nWRONG OPTION! Try again.");
+                                break;
+                        }
+                        ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
+                        notIO = true;
+                        for (int i = 0; i < projects.size(); i++) {
+                            System.out.println("\n" + projects.get(i) + "\n\n");
+                        }
+                    } catch (IOException e) {
+                        System.err.println("IO exception:" + e);
+                        createSocket();
+                    } catch (ClassNotFoundException e) {
+                        System.err.println("Class Not Found Exception:" + e);                        }
+                }
+                notIO = false;
+                break;
+
+            case "4":
                 exit();
                 break;
 
             default:
                 System.out.println("\nWRONG OPTION! Try again.");
-                loginSignup();
+                welcome();
                 break;
         }
     }
@@ -741,25 +779,18 @@ public class TCPClient {
 
     public static void exit(){
         System.out.println("\nBye bye. Thanks for using FUNDSTARTER!\n");
-        System.exit(0);
-        /*TRATAR DEPOIS
-        try{
-            try{
-                out.writeInt(0);
-            }
-            catch (IOException e){
-                out.write(0);
-            }
+
+        try {
             in.close();
             out.close();
             objIn.close();
             objOut.close();
             s.close();
-            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch(IOException ex){
 
-        }*/
+        System.exit(0);
     }
 
     public static void pause(){

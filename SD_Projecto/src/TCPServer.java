@@ -133,6 +133,21 @@ class Connection extends Thread {
                         objOut.writeObject(log);
                     }
                 }
+                else if(choose == 3)
+                {
+                    int choose1 = in.readInt();
+                    ArrayList<Project> projects = null;
+                    if(choose1 == 1)
+                    {
+                        projects = rmiConnection.oldProjects();
+                    }
+                    else if(choose1 == 2)
+                    {
+                        projects = rmiConnection.actualProjects();
+                    }
+                    objOut.writeObject(projects);
+                    objOut.flush();
+                }
             }
             if(log!=null)
             {
@@ -284,7 +299,7 @@ class RMIConnection extends Thread
                 //System.setSecurityManager(new SecurityManager());
                 int rmiport = 7697;
                 String name = "rmi://"+ip+":"+rmiport+"/DB";
-                System.setProperty("java.rmi.server.hostname", "localhost");
+                System.setProperty("java.rmi.server.hostname", ip);
                 rmiConnection = (RMI) Naming.lookup(name);
                 System.out.println(rmiConnection.printTest());
             }
