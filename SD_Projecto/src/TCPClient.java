@@ -152,6 +152,8 @@ public class TCPClient {
         String mail, password;
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("\n\n LOG IN");
+
         System.out.println("\nMail: ");
         mail = sc.nextLine();
 
@@ -177,13 +179,17 @@ public class TCPClient {
                     ArrayList<Project> projects = (ArrayList<Project>)objIn.readObject();
                     String text;
                     System.out.println("\nLOGIN ACCEPTED!\n");
-                    for (int i = 0;i<projects.size();i++)
+                    if(projects!=null)
                     {
-                        System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
-                        text = sc.nextLine();
-                        objOut.writeObject(projects.get(i));
-                        objOut.writeObject(text);
+                        for (int i = 0;i<projects.size();i++)
+                        {
+                            System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
+                            text = sc.nextLine();
+                            objOut.writeObject(projects.get(i));
+                            objOut.writeObject(text);
+                        }
                     }
+
                 }
                 notIO = true;
             } catch (IOException e) {
@@ -209,13 +215,16 @@ public class TCPClient {
                 objOut.flush();
                 objIn.readObject();
                 ArrayList<Project> projects = (ArrayList<Project>)objIn.readObject();
-                String text;
-                for (int i = 0;i<projects.size();i++)
+                if(projects!=null)
                 {
-                    System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
-                    text = sc.nextLine();
-                    objOut.writeObject(projects.get(i));
-                    objOut.writeObject(text);
+                    String text;
+                    for (int i = 0;i<projects.size();i++)
+                    {
+                        System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
+                        text = sc.nextLine();
+                        objOut.writeObject(projects.get(i));
+                        objOut.writeObject(text);
+                    }
                 }
                 notIO = true;
             } catch (IOException e) {
@@ -233,6 +242,8 @@ public class TCPClient {
         String name,email,password;
         boolean notIO = false;
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("SIGN UP");
 
         System.out.println("\nName: ");
         name = sc.nextLine();
@@ -310,7 +321,7 @@ public class TCPClient {
                     System.out.println("\nDescription: ");
                     project.setDescription(sc.nextLine());
 
-                    System.out.println("\nDeadline(Year, Moth, Day): ");
+                    System.out.println("\nDeadline(Example: 2015 10 11): ");
                     project.setDateLimit(new Date(sc.nextInt() - 1900, sc.nextInt() - 1, sc.nextInt()));
                     sc.nextLine();
 
@@ -319,13 +330,31 @@ public class TCPClient {
                     sc.nextLine();
 
                     System.out.println("\nTypes of object (ex: azul, vermelho...)");
-                    while (true) {
+                    String another="";
+                    Boolean pass = false;
+                    while (true)
+                    {
                         ProductType productType = new ProductType();
                         System.out.println("Type:");
                         productType.setType(sc.nextLine());
                         project.getProductTypes().add(productType);
-                        System.out.println("Another? (Y/N)");
-                        if (sc.nextLine().equals("N")) {
+
+                        while(pass==false)
+                        {
+                            System.out.println("Another? (Y/N)");
+                            another = sc.nextLine();
+                            if (another.equals("N") || another.equals("n")|| another.equals("Y") || another.equals("y"))
+                            {
+                                pass=true;
+                            }
+                            else
+                            {
+                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                pass=false;
+                            }
+                        }
+                        pass=false;
+                        if (another.equals("N") || another.equals("n")) {
                             break;
                         }
                     }
@@ -336,12 +365,43 @@ public class TCPClient {
                         reward.setName(sc.nextLine());
                         System.out.println("Description:");
                         reward.setDescription(sc.nextLine());
-                        System.out.println("Value of Reward:");
-                        reward.setValueOfReward(sc.nextInt());
+
+                        int valueInt;
+                        while(true)
+                        {
+                            try
+                            {
+                                System.out.println("\nValue of reward: ");
+                                String value = sc.nextLine();
+                                valueInt = Integer.parseInt(value);
+                                break;
+                            }
+                            catch(NumberFormatException e)
+                            {
+                                System.out.println("It's not a number, try again.");
+                            }
+
+                        }
+                        reward.setValueOfReward(valueInt);
                         sc.nextLine();
+
                         project.getRewards().add(reward);
-                        System.out.println("Another? (Y/N)");
-                        if (sc.nextLine().equals("N")) {
+                        while(pass==false)
+                        {
+                            System.out.println("Another? (Y/N)");
+                            another = sc.nextLine();
+                            if (another.equals("N") || another.equals("n")|| another.equals("Y") || another.equals("y"))
+                            {
+                                pass=true;
+                            }
+                            else
+                            {
+                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                pass=false;
+                            }
+                        }
+                        pass=false;
+                        if (another.equals("N") || another.equals("n")) {
                             break;
                         }
                     }
@@ -374,7 +434,9 @@ public class TCPClient {
 
                 case "2":
                     System.out.println("\n\nDONATE MONEY TO THE PROJECT");
-                    int choose=-1,vote=-1,money=-1;
+                    int vote=-1,money=-1;
+                    int choose= -1;
+
                     while(!notIO)
                     {
                         try {
@@ -387,18 +449,75 @@ public class TCPClient {
                                     for (int i = 0; i < projects.size(); i++) {
                                         System.out.println("\n" + projects.get(i) + "\n\n");
                                     }
-                                    System.out.println("\nSelect project to donate money [from 0 to " + (projects.size() - 1) + "]:");
-                                    choose = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.println("\nVote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nSelect project to donate money [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
+
+                                            if(choose > projects.size()-1 || choose < 0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
+                                        }
+                                    }
+                                    pass1=false;
+
+                                    System.out.println("\n\n");
                                     for (int n = 0; n < projects.get(choose).getProductTypes().size(); n++) {
                                         System.out.println(n + " -> " + projects.get(choose).getProductTypes().get(n));
                                     }
-                                    vote = sc.nextInt();
-                                    sc.nextLine();
-                                    System.out.println("\nChoose the reward according to the money you want to donate [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
-                                    money = sc.nextInt();
-                                    sc.nextLine();
+
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nVote on the product type [from 0 to " + (projects.get(choose).getProductTypes().size() - 1) + "]:");
+                                            String voteS = sc.nextLine();
+                                            vote = Integer.parseInt(voteS);
+
+                                            if(vote > (projects.get(choose).getProductTypes().size() - 1) || vote <0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
+                                        }
+                                    }
+                                    pass1=false;
+
+                                    while (pass1 == false) {
+                                        try{
+                                            System.out.println("\nChoose the reward according to the money you want to donate [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                                            String moneyS = sc.nextLine();
+                                            money = Integer.parseInt(moneyS);
+
+                                            if(money > (projects.get(choose).getRewards().size() - 1) || money <0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
+                                        }
+                                    }
+                                    pass1=false;
+
                                 }
                                 objOut.writeObject(projects.get(choose));
                                 objOut.writeObject(projects.get(choose).getProductTypes().get(vote));
@@ -487,16 +606,30 @@ public class TCPClient {
                                     projects1 = (ArrayList<Project>) objIn.readObject();
                                     if(choose==-1)
                                     {
-                                        System.out.println("\nSelect project to consult details [from 0 to " + (projects1.size() - 1) + "]:");
 
                                         for (int i = 0; i < projects1.size(); i++) {
                                             System.out.println("\n" + projects1.get(i).getProjectName() + "\n");
                                         }
-                                        choose = sc.nextInt();
-                                        sc.nextLine();
+
+                                        Boolean pass1 = false;
+                                        while (pass1 == false)
+                                        {
+                                            try{
+                                                System.out.println("\nSelect project to consult details [from 0 to " + (projects1.size() - 1) + "]:");
+                                                String chooseS = sc.nextLine();
+                                                choose = Integer.parseInt(chooseS);
+                                            }
+                                            catch(NumberFormatException e)
+                                            {
+                                                System.out.println("It's not a number, try again.");
+                                            }
+                                        }
+                                        pass1=false;
+
                                         System.out.println("\n" + projects1.get(choose) + "\n");
                                     }
                                     break;
+
                                 case "3":
                                     System.out.println("\n");
                                     for (int i=0;i<log.getRewards().size();i++)
@@ -520,6 +653,7 @@ public class TCPClient {
                     }
                     notIO=false;
                     break;
+
                 case "5":
                     System.out.println("\n\nADD REWARDS");
                     Reward reward = null;
@@ -538,18 +672,51 @@ public class TCPClient {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
                                 }
-                                System.out.println("\nSelect project to add reward [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
+
+                                Boolean pass1 = false;
+                                while(pass1==false){
+                                    try {
+                                        System.out.println("\nSelect project to add reward [from 0 to " + (projects.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose = Integer.parseInt(chooseS);
+
+                                        if (choose > projects.size() - 1 || choose < 0) {
+                                            pass1 = false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        } else {
+                                            pass1 = true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
+
 
                                 System.out.println("\nName: ");
                                 reward.setName(sc.nextLine());
 
                                 System.out.println("\nDescription: ");
                                 reward.setDescription(sc.nextLine());
+                                int valueInt;
+                                while(true)
+                                {
+                                    try
+                                    {
+                                        System.out.println("\nValue of reward: ");
+                                        String value = sc.nextLine();
+                                        valueInt = Integer.parseInt(value);
+                                        break;
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
 
-                                System.out.println("\nValue of reward: ");
-                                reward.setValueOfReward(sc.nextInt());
+                                }
+                                reward.setValueOfReward(valueInt);
                                 sc.nextLine();
                             }
                             objOut.writeObject(projects.get(choose));
@@ -592,17 +759,57 @@ public class TCPClient {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
                                 }
-                                System.out.println("\nSelect project to remove reward [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
 
-                                System.out.println("\nSelect reward to remove [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                                Boolean pass1=false;
+                                while(pass1==false){
+                                    try{
+                                        System.out.println("\nSelect project to remove reward [from 0 to " + (projects.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose = Integer.parseInt(chooseS);
+
+                                        if(choose > projects.size()-1 || choose < 0){
+                                            pass1=false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        }
+                                        else{
+                                            pass1=true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
+
+
+                                System.out.println("\n\n");
                                 for(int n=0;n<projects.get(choose).getRewards().size();n++)
                                 {
                                     System.out.println(n+" -> "+projects.get(choose).getRewards().get(n));
                                 }
-                                rew = sc.nextInt();
-                                sc.nextLine();
+
+                                while(pass1==false){
+                                    try{
+                                        System.out.println("\nSelect reward to remove [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                                        String rewS = sc.nextLine();
+                                        rew = Integer.parseInt(rewS);
+
+                                        if(rew > projects.get(choose).getRewards().size() - 1 || rew < 0){
+                                            pass1=false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        }
+                                        else{
+                                            pass1=true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
+
                             }
                             objOut.writeObject(projects.get(choose));
                             objOut.writeObject(projects.get(choose).getRewards().get(rew));
@@ -654,9 +861,27 @@ public class TCPClient {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
                                 }
-                                System.out.println("\nSelect project to send message [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
+
+                                Boolean pass1=false;
+                                while(pass1==false){
+                                    try {
+                                        System.out.println("\nSelect project to send message [from 0 to " + (projects.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose = Integer.parseInt(chooseS);
+
+                                        if (choose > projects.size() - 1 || choose < 0) {
+                                            pass1 = false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        } else {
+                                            pass1 = true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
                                 sms.setProject(projects.get(choose));
 
                                 System.out.println("\nMessage: ");
@@ -703,9 +928,29 @@ public class TCPClient {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
                                 }
-                                System.out.println("\nSelect project to answer supporters messages [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
+
+                                Boolean pass1=false;
+                                while(pass1==false){
+                                    try{
+                                        System.out.println("\nSelect project to answer supporters messages [from 0 to " + (projects.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose = Integer.parseInt(chooseS);
+
+                                        if(choose > projects.size()-1 || choose < 0){
+                                            pass1=false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        }
+                                        else{
+                                            pass1=true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
+
                             }
                             objOut.writeObject(projects.get(choose));
                             objOut.flush();
@@ -716,9 +961,29 @@ public class TCPClient {
                                 for (int j = 0; j < messages.size(); j++) {
                                     System.out.println("\n" + messages.get(j) + "\n\n");
                                 }
-                                System.out.println("\nSelect message to answer [from 0 to " + (messages.size() - 1) + "]:");
-                                choose1 =sc.nextInt();
-                                sc.nextLine();
+
+                                Boolean pass1=false;
+                                while(pass1==false){
+                                    try{
+                                        System.out.println("\nSelect message to answer [from 0 to " + (messages.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose1 = Integer.parseInt(chooseS);
+
+                                        if(choose1 > messages.size()-1 || choose1 < 0){
+                                            pass1=false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        }
+                                        else{
+                                            pass1=true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
+
 
                                 System.out.println("\nAnswer: ");
                                 rep.setMessage(sc.nextLine());
@@ -763,9 +1028,28 @@ public class TCPClient {
                                 for (int i = 0; i < projects.size(); i++) {
                                     System.out.println("\n" + projects.get(i) + "\n\n");
                                 }
-                                System.out.println("\nSelect project to cancel [from 0 to " + (projects.size() - 1) + "]:");
-                                choose = sc.nextInt();
-                                sc.nextLine();
+
+                                Boolean pass1=false;
+                                while(pass1==false){
+                                    try{
+                                        System.out.println("\nSelect project to cancel [from 0 to " + (projects.size() - 1) + "]:");
+                                        String chooseS = sc.nextLine();
+                                        choose = Integer.parseInt(chooseS);
+
+                                        if(choose > projects.size()-1 || choose < 0){
+                                            pass1=false;
+                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                        }
+                                        else{
+                                            pass1=true;
+                                        }
+                                    }
+                                    catch(NumberFormatException e)
+                                    {
+                                        System.out.println("It's not a number, try again.");
+                                    }
+                                }
+                                pass1=false;
                             }
                             objOut.writeObject(projects.get(choose));
                             objOut.flush();
@@ -821,10 +1105,4 @@ public class TCPClient {
         System.exit(0);
     }
 
-    public static void pause(){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("\nPress Enter to continue, please.");
-        sc.nextLine();
-    }
 }

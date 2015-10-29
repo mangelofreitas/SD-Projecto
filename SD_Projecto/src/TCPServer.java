@@ -117,16 +117,24 @@ class Connection extends Thread {
                     log = (User) objIn.readObject();
                     log = rmiConnection.makeLogin(log);
                     objOut.writeObject(log);
-                    ArrayList<Project> projects = rmiConnection.getMyEndedProjects(log);
-                    Project project;
-                    String text;
-                    objOut.writeObject(projects);
-                    for(int i=0;i<projects.size();i++)
+                    ArrayList<Project> projects = null;
+                    if(log != null)
                     {
-                        project = (Project)objIn.readObject();
-                        text = (String) objIn.readObject();
-                        rmiConnection.setFinalProduct(project,text);
+                        projects = rmiConnection.getMyEndedProjects(log);
+                        objOut.writeObject(projects);
                     }
+                    if(projects!=null)
+                    {
+                        Project project;
+                        String text;
+                        for(int i=0;i<projects.size();i++)
+                        {
+                            project = (Project)objIn.readObject();
+                            text = (String) objIn.readObject();
+                            rmiConnection.setFinalProduct(project,text);
+                        }
+                    }
+
                 }
                 else if (choose == 2)
                 {
