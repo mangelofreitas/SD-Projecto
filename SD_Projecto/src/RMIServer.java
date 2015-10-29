@@ -1,6 +1,3 @@
-import javax.xml.transform.Result;
-import java.lang.reflect.Array;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -44,7 +41,7 @@ public class RMIServer implements RMI
                     for(int i=0; i<projects.size(); i++){
                         endProject(projects.get(i));
                     }
-                    sleep(50000);
+                    sleep(1000*60*60);
                 }
                 catch (InterruptedException e)
                 {
@@ -661,6 +658,78 @@ public class RMIServer implements RMI
         return false;
     }
 
+    public boolean setFinalProduct(Project project, String text) throws RemoteException
+    {
+        System.out.println("Set Final Product of "+project.getProjectName()+"!");
+        try
+        {
+            int maxVotes = 0,maxVotesIndex = 0;
+            for(int i=0;i<project.getProductTypes().size();i++)
+            {
+                if(maxVotes<project.getProductTypes().get(i).getVote())
+                {
+                    maxVotes = project.getProductTypes().get(i).getVote();
+                    maxVotesIndex = i;
+                }
+            }
+            String type= project.getProductTypes().get(maxVotesIndex).getType()+", ";
+            project.getProductTypes().remove(maxVotesIndex);
+            for(int i=0;i<project.getProductTypes().size();i++)
+            {
+                if(maxVotes<project.getProductTypes().get(i).getVote())
+                {
+                    maxVotes = project.getProductTypes().get(i).getVote();
+                    maxVotesIndex = i;
+                }
+            }
+            type = type + project.getProductTypes().get(maxVotesIndex)+", "+text;
+            query = "UPDATE projects SET finalProduct = ? WHERE projectID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1,text);
+            preparedStatement.setInt(2,project.getProjectID());
+            int result = preparedStatement.executeUpdate();
+            if(result!=1)
+            {
+                return false;
+            }
+            return true;
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return false;
+    }
+
+    public ArrayList<Project> getMyEndedProjects(User user) throws RemoteException
+    {
+        System.out.println("Get Projects of "+user.getUsername()+"!");
+        try
+        {
+            query = "SELECT projectID, projectName, description, dateLimit, requestedValue, currentAmount, finalProduct FROM projects WHERE usernameID=? AND alive = ? AND success = ? AND finalProduct = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, user.getUsernameID());
+            preparedStatement.setBoolean(2, false);
+            preparedStatement.setBoolean(3, true);
+            preparedStatement.setString(4, null);
+            ArrayList<Project> projects = new ArrayList<Project>();
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next())
+            {
+                Project newProject = new Project(user, rs.getInt("projectID"), rs.getString("projectName"), rs.getString("description"), rs.getDate("dateLimit"), rs.getInt("requestedValue"), rs.getInt("currentAmount"));
+                newProject.setRewards(projectRewards(newProject));
+                newProject.setProductTypes(projectTypes(newProject));
+                projects.add(newProject);
+            }
+            return projects;
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+
     public ArrayList<Project> getMyProjects(User user) throws RemoteException
     {
         System.out.println("Get Projects of "+user.getUsername()+"!");
@@ -820,7 +889,11 @@ public class RMIServer implements RMI
                             preparedStatement.setBoolean(1,false);
                             preparedStatement.setBoolean(2,true);
                             preparedStatement.setString(3,type);
-                            preparedStatement.executeUpdate();
+                            int result1 = preparedStatement.executeUpdate();
+                            if(result1 !=1)
+                            {
+                                return false;
+                            }
                         }
                         else if(project.getCurrentAmount()<project.getRequestedValue()*2)
                         {
@@ -829,7 +902,11 @@ public class RMIServer implements RMI
                             preparedStatement.setBoolean(1,false);
                             preparedStatement.setBoolean(2,true);
                             preparedStatement.setString(3,project.getProductTypes().get(maxVotesIndex).getType());
-                            preparedStatement.executeUpdate();
+                            int result1 = preparedStatement.executeUpdate();
+                            if(result1 !=1)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }

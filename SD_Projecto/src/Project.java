@@ -16,6 +16,7 @@ public class Project implements Serializable
     private ArrayList<Reward> rewards;
     private int currentAmount;
     private ArrayList<ProductType> productTypes;
+    private String finalProduct;
 
     public Project()
     {
@@ -29,16 +30,19 @@ public class Project implements Serializable
         this.projectID = projectID;
     }
 
-    public Project(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes)
+    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes,String finalProduct)
     {
         this.user = user;
+        this.projectID = projectID;
         this.projectName = projectName;
         this.description = description;
         this.dateLimit = dateLimit;
         this.requestedValue = requestedValue;
         this.rewards = rewards;
         this.currentAmount = 0;
+        this.currentAmount = currentAmount;
         this.productTypes = productTypes;
+        this.finalProduct = finalProduct;
     }
 
     public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes)
@@ -136,6 +140,14 @@ public class Project implements Serializable
 
     public void setProductTypes(ArrayList<ProductType> productTypes) {
         this.productTypes = productTypes;
+    }
+
+    public String getFinalProduct() {
+        return finalProduct;
+    }
+
+    public void setFinalProduct(String finalProduct) {
+        this.finalProduct = finalProduct;
     }
 
     public String toString() {

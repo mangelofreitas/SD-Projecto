@@ -1,11 +1,8 @@
-import java.lang.reflect.Array;
 import java.net.*;
 import java.io.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 class Addresses
 {
@@ -170,15 +167,25 @@ public class TCPClient {
                 objOut.flush();
 
                 log=(User)objIn.readObject();
-                notIO = true;
+
                 if (log == null){
                     System.out.println("\n WRONG LOGIN!\n Exiting now...\n");
                     login();
                 }
-                else{
+                else
+                {
+                    ArrayList<Project> projects = (ArrayList<Project>)objIn.readObject();
+                    String text;
                     System.out.println("\nLOGIN ACCEPTED!\n");
+                    for (int i = 0;i<projects.size();i++)
+                    {
+                        System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
+                        text = sc.nextLine();
+                        objOut.writeObject(projects.get(i));
+                        objOut.writeObject(text);
+                    }
                 }
-
+                notIO = true;
             } catch (IOException e) {
                 System.err.println("IO exception:" + e);
                 createSocket();
@@ -192,6 +199,7 @@ public class TCPClient {
 
     public static void loginAfterFail(User log)
     {
+        Scanner sc = new Scanner(System.in);
         boolean notIO = false;
         while(!notIO)
         {
@@ -200,7 +208,15 @@ public class TCPClient {
                 objOut.writeObject(log);
                 objOut.flush();
                 objIn.readObject();
-
+                ArrayList<Project> projects = (ArrayList<Project>)objIn.readObject();
+                String text;
+                for (int i = 0;i<projects.size();i++)
+                {
+                    System.out.println("\n" + projects.get(i) + "\n(Required) Project ended with success.\nInsert an extra type of product because you have 5 times more money than the required.\n");
+                    text = sc.nextLine();
+                    objOut.writeObject(projects.get(i));
+                    objOut.writeObject(text);
+                }
                 notIO = true;
             } catch (IOException e) {
                 System.err.println("IO exception:" + e);

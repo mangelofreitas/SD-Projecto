@@ -27,4 +27,6 @@ public interface RMI extends Remote
     public ArrayList<Message> getProjectMessages(Project project) throws RemoteException;
     public ArrayList<Reply> getReplyMessage(Message message) throws RemoteException;
     public ArrayList<Project> getMyProjects(User user) throws RemoteException;
+    public ArrayList<Project> getMyEndedProjects(User user) throws RemoteException;
+    public boolean setFinalProduct(Project project, String text) throws RemoteException;
 }

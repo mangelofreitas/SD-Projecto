@@ -112,11 +112,24 @@ class Connection extends Thread {
             int choose;
             while(log==null) {
                 choose = in.readInt();
-                if (choose == 1) {
+                if (choose == 1)
+                {
                     log = (User) objIn.readObject();
                     log = rmiConnection.makeLogin(log);
                     objOut.writeObject(log);
-                } else if (choose == 2) {
+                    ArrayList<Project> projects = rmiConnection.getMyEndedProjects(log);
+                    Project project;
+                    String text;
+                    objOut.writeObject(projects);
+                    for(int i=0;i<projects.size();i++)
+                    {
+                        project = (Project)objIn.readObject();
+                        text = (String) objIn.readObject();
+                        rmiConnection.setFinalProduct(project,text);
+                    }
+                }
+                else if (choose == 2)
+                {
                     log = (User) objIn.readObject();
                     log = rmiConnection.makeRegist(log);
                     objOut.writeObject(log);
