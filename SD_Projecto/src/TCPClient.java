@@ -43,22 +43,28 @@ public class TCPClient {
 
     public static void createSocket()
     {
-        try {
-            s = new Socket(path.getAddress(), 6000);
-            System.out.println("SOCKET=" + s);
-            in = new DataInputStream(s.getInputStream());
-            out = new DataOutputStream(s.getOutputStream());
-            objOut = new ObjectOutputStream(out);
-            objIn = new ObjectInputStream(in);
+        boolean notIO = false;
+        while(!notIO)
+        {
+            try {
+                s = new Socket(path.getAddress(), 6000);
+                System.out.println("SOCKET=" + s);
+                in = new DataInputStream(s.getInputStream());
+                out = new DataOutputStream(s.getOutputStream());
+                objOut = new ObjectOutputStream(out);
+                objIn = new ObjectInputStream(in);
+                notIO = true;
+            }
+
+            catch (UnknownHostException e) {
+                System.out.println("Sock:" + e.getMessage());
+            } catch (EOFException e) {
+                System.out.println("EOF:" + e.getMessage());
+            } catch (IOException e) {
+                System.out.println("IO:" + e.getMessage());
+            }
         }
 
-        catch (UnknownHostException e) {
-            System.out.println("Sock:" + e.getMessage());
-        } catch (EOFException e) {
-            System.out.println("EOF:" + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("IO:" + e.getMessage());
-        }
     }
 
     public static void main(String args[])
@@ -213,7 +219,7 @@ public class TCPClient {
                 out.writeInt(1);
                 objOut.writeObject(log);
                 objOut.flush();
-                objIn.readObject();
+                log = (User)objIn.readObject();
                 ArrayList<Project> projects = (ArrayList<Project>)objIn.readObject();
                 if(projects!=null)
                 {
@@ -321,13 +327,27 @@ public class TCPClient {
                     System.out.println("\nDescription: ");
                     project.setDescription(sc.nextLine());
 
-                    System.out.println("\nDeadline(Example: 2015 10 11): ");
-                    project.setDateLimit(new Date(sc.nextInt() - 1900, sc.nextInt() - 1, sc.nextInt()));
-                    sc.nextLine();
+                    while(true){
+                        try{
+                            System.out.println("\nDeadline(Example: 2015 10 11): ");
+                            String anoS = sc.nextLine();
+                            String mesS = sc.nextLine();
+                            String diaS = sc.nextLine();
+                            project.setDateLimit(new Date(Integer.parseInt(anoS) - 1900, Integer.parseInt(mesS) - 1, Integer.parseInt(diaS)));
+                            sc.nextLine();
 
-                    System.out.println("\nRequested value: ");
-                    project.setRequestedValue(sc.nextInt());
-                    sc.nextLine();
+                            System.out.println("\nRequested value: ");
+                            String valueS = sc.nextLine();
+                            project.setRequestedValue(Integer.parseInt(valueS));
+                            sc.nextLine();
+                            break;
+                        }
+                        catch(NumberFormatException e)
+                        {
+                            System.out.println("It's not a number, try again.");
+                        }
+
+                    }
 
                     System.out.println("\nTypes of object (ex: azul, vermelho...)");
                     String another="";
@@ -532,7 +552,7 @@ public class TCPClient {
                                 } else {
                                     System.out.println("\nDONATE ACCEPTED!\n");
                                 }
-
+                                log = (User)objIn.readObject();
                             }
                             notIO = true;
                         } catch (IOException e) {
@@ -618,6 +638,7 @@ public class TCPClient {
                                                 System.out.println("\nSelect project to consult details [from 0 to " + (projects1.size() - 1) + "]:");
                                                 String chooseS = sc.nextLine();
                                                 choose = Integer.parseInt(chooseS);
+                                                pass1=true;
                                             }
                                             catch(NumberFormatException e)
                                             {
@@ -665,68 +686,70 @@ public class TCPClient {
                             out.writeInt(5);
 
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-
-                            if(reward==null || choose==-1)
+                            if(projects.size() != 0)
                             {
-                                reward = new Reward();
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
+                                if(reward==null || choose==-1)
+                                {
+                                    reward = new Reward();
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
 
-                                Boolean pass1 = false;
-                                while(pass1==false){
-                                    try {
-                                        System.out.println("\nSelect project to add reward [from 0 to " + (projects.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose = Integer.parseInt(chooseS);
+                                    Boolean pass1 = false;
+                                    while(pass1==false){
+                                        try {
+                                            System.out.println("\nSelect project to add reward [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
 
-                                        if (choose > projects.size() - 1 || choose < 0) {
-                                            pass1 = false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
-                                        } else {
-                                            pass1 = true;
+                                            if (choose > projects.size() - 1 || choose < 0) {
+                                                pass1 = false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            } else {
+                                                pass1 = true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
                                         }
                                     }
-                                    catch(NumberFormatException e)
+                                    pass1=false;
+
+
+                                    System.out.println("\nName: ");
+                                    reward.setName(sc.nextLine());
+
+                                    System.out.println("\nDescription: ");
+                                    reward.setDescription(sc.nextLine());
+                                    int valueInt;
+                                    while(true)
                                     {
-                                        System.out.println("It's not a number, try again.");
+                                        try
+                                        {
+                                            System.out.println("\nValue of reward: ");
+                                            String value = sc.nextLine();
+                                            valueInt = Integer.parseInt(value);
+                                            break;
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
+                                        }
+
                                     }
+                                    reward.setValueOfReward(valueInt);
+                                    sc.nextLine();
                                 }
-                                pass1=false;
+                                objOut.writeObject(projects.get(choose));
+                                objOut.writeObject(reward);
+                                objOut.flush();
 
-
-                                System.out.println("\nName: ");
-                                reward.setName(sc.nextLine());
-
-                                System.out.println("\nDescription: ");
-                                reward.setDescription(sc.nextLine());
-                                int valueInt;
-                                while(true)
-                                {
-                                    try
-                                    {
-                                        System.out.println("\nValue of reward: ");
-                                        String value = sc.nextLine();
-                                        valueInt = Integer.parseInt(value);
-                                        break;
-                                    }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
-
+                                if (!in.readBoolean()) {
+                                    System.out.println("\n ERROR!\n Exiting now...\n");
+                                } else {
+                                    System.out.println("\nREWARD ADDED!\n");
                                 }
-                                reward.setValueOfReward(valueInt);
-                                sc.nextLine();
-                            }
-                            objOut.writeObject(projects.get(choose));
-                            objOut.writeObject(reward);
-                            objOut.flush();
-
-                            if (!in.readBoolean()) {
-                                System.out.println("\n ERROR!\n Exiting now...\n");
-                            } else {
-                                System.out.println("\nREWARD ADDED!\n");
                             }
                             notIO = true;
                         }
@@ -754,73 +777,82 @@ public class TCPClient {
                         try {
                             out.writeInt(6);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            if(rew==-1||choose==-1)
+                            if(projects.size() != 0)
                             {
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
-
-                                Boolean pass1=false;
-                                while(pass1==false){
-                                    try{
-                                        System.out.println("\nSelect project to remove reward [from 0 to " + (projects.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose = Integer.parseInt(chooseS);
-
-                                        if(choose > projects.size()-1 || choose < 0){
-                                            pass1=false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
-                                        }
-                                        else{
-                                            pass1=true;
-                                        }
-                                    }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
-                                }
-                                pass1=false;
-
-
-                                System.out.println("\n\n");
-                                for(int n=0;n<projects.get(choose).getRewards().size();n++)
+                                if(rew==-1||choose==-1)
                                 {
-                                    System.out.println(n+" -> "+projects.get(choose).getRewards().get(n));
-                                }
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
 
-                                while(pass1==false){
-                                    try{
-                                        System.out.println("\nSelect reward to remove [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
-                                        String rewS = sc.nextLine();
-                                        rew = Integer.parseInt(rewS);
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nSelect project to remove reward [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
 
-                                        if(rew > projects.get(choose).getRewards().size() - 1 || rew < 0){
-                                            pass1=false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            if(choose > projects.size()-1 || choose < 0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
                                         }
-                                        else{
-                                            pass1=true;
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
                                         }
                                     }
-                                    catch(NumberFormatException e)
+                                    pass1=false;
+
+
+                                    System.out.println("\n\n");
+                                    for(int n=0;n<projects.get(choose).getRewards().size();n++)
                                     {
-                                        System.out.println("It's not a number, try again.");
+                                        System.out.println(n+" -> "+projects.get(choose).getRewards().get(n));
+                                    }
+                                    if(projects.get(choose).getRewards().size()!=0)
+                                    {
+                                        while(pass1==false){
+                                            try{
+                                                System.out.println("\nSelect reward to remove [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
+                                                String rewS = sc.nextLine();
+                                                rew = Integer.parseInt(rewS);
+
+                                                if(rew > projects.get(choose).getRewards().size() - 1 || rew < 0){
+                                                    pass1=false;
+                                                    System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                                }
+                                                else{
+                                                    pass1=true;
+                                                }
+                                            }
+                                            catch(NumberFormatException e)
+                                            {
+                                                System.out.println("It's not a number, try again.");
+                                            }
+                                        }
+                                        pass1=false;
+                                    }
+
+
+                                }
+                                if(projects.get(choose).getRewards().size()!=0)
+                                {
+                                    objOut.writeObject(projects.get(choose));
+                                    objOut.writeObject(projects.get(choose).getRewards().get(rew));
+                                    objOut.flush();
+
+                                    if (!in.readBoolean()){
+                                        System.out.println("\n ERROR!\n Exiting now...\n");
+                                        menu(log);
+                                    }
+                                    else{
+                                        System.out.println("\nREWARD REMOVED!\n");
                                     }
                                 }
-                                pass1=false;
-
-                            }
-                            objOut.writeObject(projects.get(choose));
-                            objOut.writeObject(projects.get(choose).getRewards().get(rew));
-                            objOut.flush();
-
-                            if (!in.readBoolean()){
-                                System.out.println("\n ERROR!\n Exiting now...\n");
-                                menu(log);
-                            }
-                            else{
-                                System.out.println("\nREWARD REMOVED!\n");
                             }
                             notIO = true;
                         }

@@ -191,6 +191,7 @@ class Connection extends Thread {
                         int money = in.readInt();
                         boolean pass = rmiConnection.donateMoney(log,projectChoosen,typeChoosen,money);
                         out.writeBoolean(pass);
+                        objOut.writeObject(log);
                     }
                     if(choose == 3)
                     {
@@ -219,20 +220,28 @@ class Connection extends Thread {
                         objOut.flush();
                     }
                     if (choose == 5){
-                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        ArrayList<Project> projects = rmiConnection.getMyProjects(log);
+                        objOut.writeObject(projects);
                         objOut.flush();
-                        Project projectChoosen = (Project) objIn.readObject();
-                        Reward newR = (Reward) objIn.readObject();
-                        boolean pass = rmiConnection.addReward(log, projectChoosen, newR );
-                        out.writeBoolean(pass);
+                        if(projects.size()!=0)
+                        {
+                            Project projectChoosen = (Project) objIn.readObject();
+                            Reward newR = (Reward) objIn.readObject();
+                            boolean pass = rmiConnection.addReward(log, projectChoosen, newR );
+                            out.writeBoolean(pass);
+                        }
                     }
                     if(choose == 6){
-                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        ArrayList<Project> projects = rmiConnection.getMyProjects(log);
+                        objOut.writeObject(projects);
                         objOut.flush();
-                        Project projectChoosen = (Project) objIn.readObject();
-                        Reward rewardChoosen = (Reward) objIn.readObject();
-                        boolean pass = rmiConnection.removeReward(log, projectChoosen, rewardChoosen.getRewardID());
-                        out.writeBoolean(pass);
+                        if(projects.size()!=0)
+                        {
+                            Project projectChoosen = (Project) objIn.readObject();
+                            Reward rewardChoosen = (Reward) objIn.readObject();
+                            boolean pass = rmiConnection.removeReward(log, projectChoosen, rewardChoosen.getRewardID());
+                            out.writeBoolean(pass);
+                        }
                     }
                     if(choose == 7){
                         ArrayList<Project> projects = rmiConnection.actualProjects();
@@ -415,6 +424,7 @@ class UDPThread extends Thread
                         buffer = new byte[10];
                         DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
                         aSocket.receive(reply);
+                        tries = 0;
                         aSocket.setSoTimeout(3000);
                     }
                     catch(SocketTimeoutException e)
