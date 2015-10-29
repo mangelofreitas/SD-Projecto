@@ -757,6 +757,28 @@ public class RMIServer implements RMI
         return null;
     }
 
+    public ArrayList<Message> getMySendMessages(User user) throws RemoteException
+    {
+        try
+        {
+            query = "SELECT messageSendID, projectID, message, projectID, usernameID FROM messages_send WHERE usernameID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,user.getUsernameID());
+            ArrayList<Message> messages = new ArrayList<Message>();
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next())
+            {
+                messages.add(new Message(rs.getInt("messageSendID"),rs.getString("message"),new Project(user,rs.getInt("projectId")),user,getReplyMessage(new Message(rs.getInt("messageSendID")))));
+            }
+            return messages;
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+
     public boolean replyMessage(Message message, Reply reply) throws RemoteException
     {
         System.out.println("Reply Message!");

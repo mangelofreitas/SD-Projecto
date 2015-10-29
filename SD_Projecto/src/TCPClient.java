@@ -607,15 +607,16 @@ public class TCPClient {
                 case "4":
                     System.out.println("\n\nCONSULT");
                     System.out.println("\n1 - Consult money;");
-                    System.out.println("2 - Consult project details;");
+                    System.out.println("2 - Consult my projects messages;");
                     System.out.println("3 - Consult rewards.");
+                    System.out.println("4 - Consult my send messages and replies to them.");
                     System.out.println("\nOption: ");
                     String option2 = sc.nextLine();
                     choose = -1;
                     while(!notIO)
                     {
                         try {
-                            ArrayList<Project> projects1;
+                            ArrayList<Project> projects;
                             switch (option2) {
                                 case "1":
                                     System.out.println("\nMoney: " + log.getMoney());
@@ -623,31 +624,42 @@ public class TCPClient {
                                 case "2":
                                     out.writeInt(4);
                                     out.writeInt(2);
-                                    projects1 = (ArrayList<Project>) objIn.readObject();
-                                    if(choose==-1)
+                                    projects = (ArrayList<Project>) objIn.readObject();
+                                    if(projects.size()!=0)
                                     {
-
-                                        for (int i = 0; i < projects1.size(); i++) {
-                                            System.out.println("\n" + projects1.get(i).getProjectName() + "\n");
-                                        }
-
-                                        Boolean pass1 = false;
-                                        while (pass1 == false)
+                                        if(choose==-1)
                                         {
-                                            try{
-                                                System.out.println("\nSelect project to consult details [from 0 to " + (projects1.size() - 1) + "]:");
-                                                String chooseS = sc.nextLine();
-                                                choose = Integer.parseInt(chooseS);
-                                                pass1=true;
+
+                                            for (int i = 0; i < projects.size(); i++) {
+                                                System.out.println("\n" + projects.get(i) + "\n");
                                             }
-                                            catch(NumberFormatException e)
+
+                                            Boolean pass1 = false;
+                                            while (pass1 == false)
                                             {
-                                                System.out.println("It's not a number, try again.");
+                                                try{
+                                                    System.out.println("\nSelect project to consult messages [from 0 to " + (projects.size() - 1) + "]:");
+                                                    String chooseS = sc.nextLine();
+                                                    choose = Integer.parseInt(chooseS);
+                                                    pass1=true;
+                                                }
+                                                catch(NumberFormatException e)
+                                                {
+                                                    System.out.println("It's not a number, try again.");
+                                                }
+                                            }
+                                            pass1=false;
+                                            objOut.writeObject(projects.get(choose));
+                                            ArrayList<Message> messages = (ArrayList<Message>) objIn.readObject();
+                                            for(int i=0;i<messages.size();i++)
+                                            {
+                                                System.out.println("\n" + messages.get(i) + "\n");
                                             }
                                         }
-                                        pass1=false;
-
-                                        System.out.println("\n" + projects1.get(choose) + "\n");
+                                    }
+                                    else
+                                    {
+                                        System.out.println("YOU HAVE NO PROJECTS!");
                                     }
                                     break;
 
@@ -658,6 +670,15 @@ public class TCPClient {
                                         System.out.println(log.getRewards().get(i));
                                     }
                                     System.out.println("\n");
+                                    break;
+                                case "4":
+                                    out.writeInt(4);
+                                    out.writeInt(4);
+                                    ArrayList<Message> messages = (ArrayList<Message>)objIn.readObject();
+                                    for(int i=0;i<messages.size();i++)
+                                    {
+                                        System.out.println("\n" + messages.get(i) + "\n");
+                                    }
                                     break;
                                 default:
                                     System.out.println("\nWRONG OPTION! Try again.");
@@ -750,6 +771,10 @@ public class TCPClient {
                                 } else {
                                     System.out.println("\nREWARD ADDED!\n");
                                 }
+                            }
+                            else
+                            {
+                                System.out.println("\nYOU DON'T HAVE PROJECTS TO ADD REWARDS!\n");
                             }
                             notIO = true;
                         }
@@ -853,6 +878,14 @@ public class TCPClient {
                                         System.out.println("\nREWARD REMOVED!\n");
                                     }
                                 }
+                                else
+                                {
+                                    System.out.println("\nYOU DON'T REWARDS ON THE PROJECT TO REMOVE!\n");
+                                }
+                            }
+                            else
+                            {
+                                System.out.println("\nYOU DON'T HAVE PROJECTS TO REMOVE REWARDS!\n");
                             }
                             notIO = true;
                         }
@@ -879,55 +912,54 @@ public class TCPClient {
                         try{
                             out.writeInt(7);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            for(int i=0;i<projects.size();i++)
+                            if(projects.size()!=0)
                             {
-                                if(projects.get(i).getUser().getUsernameID()==log.getUsernameID())
+                                if(sms == null || choose == -1)
                                 {
-                                    projects.remove(i);
-                                    i--;
-                                }
-                            }
-                            if(sms == null || choose == -1)
-                            {
-                                sms = new Message();
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
+                                    sms = new Message();
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
 
-                                Boolean pass1=false;
-                                while(pass1==false){
-                                    try {
-                                        System.out.println("\nSelect project to send message [from 0 to " + (projects.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose = Integer.parseInt(chooseS);
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try {
+                                            System.out.println("\nSelect project to send message [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
 
-                                        if (choose > projects.size() - 1 || choose < 0) {
-                                            pass1 = false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
-                                        } else {
-                                            pass1 = true;
+                                            if (choose > projects.size() - 1 || choose < 0) {
+                                                pass1 = false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            } else {
+                                                pass1 = true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
                                         }
                                     }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
+                                    pass1=false;
+                                    sms.setProject(projects.get(choose));
+
+                                    System.out.println("\nMessage: ");
+                                    sms.setMessage(sc.nextLine());
+                                    sms.setUser(log);
                                 }
-                                pass1=false;
-                                sms.setProject(projects.get(choose));
+                                objOut.writeObject(sms);
+                                objOut.flush();
 
-                                System.out.println("\nMessage: ");
-                                sms.setMessage(sc.nextLine());
-                                sms.setUser(log);
+                                if (!in.readBoolean()){
+                                    System.out.println("\n ERROR!\n Exiting now...\n");
+                                }
+                                else{
+                                    System.out.println("\nMESSAGE SENT!\n");
+                                }
                             }
-                            objOut.writeObject(sms);
-                            objOut.flush();
-
-                            if (!in.readBoolean()){
-                                System.out.println("\n ERROR!\n Exiting now...\n");
-                            }
-                            else{
-                                System.out.println("\nMESSAGE SENT!\n");
+                            else
+                            {
+                                System.out.println("\nDOESN'T EXIST PROJECTS TO SEND MESSAGE!\n");
                             }
                             notIO = true;
                         }
@@ -955,81 +987,88 @@ public class TCPClient {
                         try{
                             out.writeInt(8);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            if(choose == -1)
+                            if(projects.size()!=0)
                             {
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
+                                if(choose == -1)
+                                {
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
 
-                                Boolean pass1=false;
-                                while(pass1==false){
-                                    try{
-                                        System.out.println("\nSelect project to answer supporters messages [from 0 to " + (projects.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose = Integer.parseInt(chooseS);
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nSelect project to answer supporters messages [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
 
-                                        if(choose > projects.size()-1 || choose < 0){
-                                            pass1=false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            if(choose > projects.size()-1 || choose < 0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
                                         }
-                                        else{
-                                            pass1=true;
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
                                         }
                                     }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
-                                }
-                                pass1=false;
+                                    pass1=false;
 
+                                }
+                                objOut.writeObject(projects.get(choose));
+                                objOut.flush();
+                                ArrayList<Message> messages = (ArrayList<Message>) objIn.readObject();
+                                if(rep == null || choose1 == -1)
+                                {
+                                    rep = new Reply();
+                                    for (int j = 0; j < messages.size(); j++) {
+                                        System.out.println("\n" + messages.get(j) + "\n\n");
+                                    }
+
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nSelect message to answer [from 0 to " + (messages.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose1 = Integer.parseInt(chooseS);
+
+                                            if(choose1 > messages.size()-1 || choose1 < 0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
+                                        }
+                                    }
+                                    pass1=false;
+
+
+                                    System.out.println("\nAnswer: ");
+                                    rep.setMessage(sc.nextLine());
+                                    rep.setUser(log);
+                                }
+                                objOut.writeObject(messages.get(choose1));
+                                objOut.writeObject(rep);
+                                objOut.flush();
+
+                                if (!in.readBoolean()){
+                                    System.out.println("\n ERROR!\n Exiting now...\n");
+                                }
+                                else{
+                                    System.out.println("\nMESSAGE SENT!\n");
+                                }
                             }
-                            objOut.writeObject(projects.get(choose));
-                            objOut.flush();
-                            ArrayList<Message> messages = (ArrayList<Message>) objIn.readObject();
-                            if(rep == null || choose1 == -1)
+                            else
                             {
-                                rep = new Reply();
-                                for (int j = 0; j < messages.size(); j++) {
-                                    System.out.println("\n" + messages.get(j) + "\n\n");
-                                }
-
-                                Boolean pass1=false;
-                                while(pass1==false){
-                                    try{
-                                        System.out.println("\nSelect message to answer [from 0 to " + (messages.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose1 = Integer.parseInt(chooseS);
-
-                                        if(choose1 > messages.size()-1 || choose1 < 0){
-                                            pass1=false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
-                                        }
-                                        else{
-                                            pass1=true;
-                                        }
-                                    }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
-                                }
-                                pass1=false;
-
-
-                                System.out.println("\nAnswer: ");
-                                rep.setMessage(sc.nextLine());
-                                rep.setUser(log);
-                            }
-                            objOut.writeObject(messages.get(choose1));
-                            objOut.writeObject(rep);
-                            objOut.flush();
-
-                            if (!in.readBoolean()){
-                                System.out.println("\n ERROR!\n Exiting now...\n");
-                            }
-                            else{
-                                System.out.println("\nMESSAGE SENT!\n");
+                                System.out.println("\nYOU DON'T HAVE PROJECTS TO ANSWER MESSAGES!\n");
                             }
                             notIO = true;
                         }
@@ -1055,42 +1094,49 @@ public class TCPClient {
                         try{
                             out.writeInt(9);
                             ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
-                            if(choose == -1)
+                            if(projects.size() != 0)
                             {
-                                for (int i = 0; i < projects.size(); i++) {
-                                    System.out.println("\n" + projects.get(i) + "\n\n");
-                                }
+                                if(choose == -1)
+                                {
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
 
-                                Boolean pass1=false;
-                                while(pass1==false){
-                                    try{
-                                        System.out.println("\nSelect project to cancel [from 0 to " + (projects.size() - 1) + "]:");
-                                        String chooseS = sc.nextLine();
-                                        choose = Integer.parseInt(chooseS);
+                                    Boolean pass1=false;
+                                    while(pass1==false){
+                                        try{
+                                            System.out.println("\nSelect project to cancel [from 0 to " + (projects.size() - 1) + "]:");
+                                            String chooseS = sc.nextLine();
+                                            choose = Integer.parseInt(chooseS);
 
-                                        if(choose > projects.size()-1 || choose < 0){
-                                            pass1=false;
-                                            System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            if(choose > projects.size()-1 || choose < 0){
+                                                pass1=false;
+                                                System.out.println("WRONG OPTION... \nPlease insert another option.");
+                                            }
+                                            else{
+                                                pass1=true;
+                                            }
                                         }
-                                        else{
-                                            pass1=true;
+                                        catch(NumberFormatException e)
+                                        {
+                                            System.out.println("It's not a number, try again.");
                                         }
                                     }
-                                    catch(NumberFormatException e)
-                                    {
-                                        System.out.println("It's not a number, try again.");
-                                    }
+                                    pass1=false;
                                 }
-                                pass1=false;
-                            }
-                            objOut.writeObject(projects.get(choose));
-                            objOut.flush();
+                                objOut.writeObject(projects.get(choose));
+                                objOut.flush();
 
-                            if (!in.readBoolean()){
-                                System.out.println("\n ERROR!\n Exiting now...\n");
+                                if (!in.readBoolean()){
+                                    System.out.println("\n ERROR!\n Exiting now...\n");
+                                }
+                                else{
+                                    System.out.println("\nPROJECT CANCELED!\n");
+                                }
                             }
-                            else{
-                                System.out.println("\nPROJECT CANCELED!\n");
+                            else
+                            {
+                                System.out.println("\nYOU HAVE NO PROJECTS!\n");
                             }
                             notIO = true;
                         }

@@ -191,7 +191,7 @@ class Connection extends Thread {
                         int money = in.readInt();
                         boolean pass = rmiConnection.donateMoney(log,projectChoosen,typeChoosen,money);
                         out.writeBoolean(pass);
-                        objOut.writeObject(log);
+                        objOut.writeObject(rmiConnection.makeLogin(log));
                     }
                     if(choose == 3)
                     {
@@ -211,13 +211,22 @@ class Connection extends Thread {
                     if(choose == 4)
                     {
                         int choose2 = in.readInt();
-                        ArrayList<Project> projects = null;
                         if(choose2 == 2)
                         {
-                            projects = rmiConnection.actualProjects();
+                            ArrayList<Project> projects = rmiConnection.getMyProjects(log);
+                            objOut.writeObject(projects);
+                            objOut.flush();
+                            if(projects.size()!=0)
+                            {
+                                Project project = (Project) objIn.readObject();
+                                ArrayList<Message> messages = rmiConnection.getProjectMessages(project);
+                                objOut.writeObject(messages);
+                            }
                         }
-                        objOut.writeObject(projects);
-                        objOut.flush();
+                        else if(choose2 == 4)
+                        {
+                            objOut.writeObject(rmiConnection.getMySendMessages(log));
+                        }
                     }
                     if (choose == 5){
                         ArrayList<Project> projects = rmiConnection.getMyProjects(log);
@@ -245,11 +254,23 @@ class Connection extends Thread {
                     }
                     if(choose == 7){
                         ArrayList<Project> projects = rmiConnection.actualProjects();
+                        for(int i=0;i<projects.size();i++)
+                        {
+                            if(projects.get(i).getUser().getUsernameID()==log.getUsernameID())
+                            {
+                                projects.remove(i);
+                                i--;
+                            }
+                        }
                         objOut.writeObject(projects);
                         objOut.flush();
-                        Message messageChoosen = (Message) objIn.readObject();
-                        boolean pass = rmiConnection.sendMessage(messageChoosen);
-                        out.writeBoolean(pass);
+                        if(projects.size()!=0)
+                        {
+                            Message messageChoosen = (Message) objIn.readObject();
+                            boolean pass = rmiConnection.sendMessage(messageChoosen);
+                            out.writeBoolean(pass);
+                        }
+
                     }
                     if(choose == 8){
                         ArrayList<Project> projects = rmiConnection.getMyProjects(log);
@@ -262,20 +283,27 @@ class Connection extends Thread {
                             }
                         }
                         objOut.writeObject(projects);
-                        Project project = (Project)objIn.readObject();
-                        objOut.writeObject(rmiConnection.getProjectMessages(project));
-                        objOut.flush();
-                        Message message =(Message) objIn.readObject();
-                        Reply reply = (Reply) objIn.readObject();
-                        boolean pass = rmiConnection.replyMessage(message, reply);
-                        out.writeBoolean(pass);
+                        if(projects.size()!=0)
+                        {
+                            Project project = (Project)objIn.readObject();
+                            objOut.writeObject(rmiConnection.getProjectMessages(project));
+                            objOut.flush();
+                            Message message =(Message) objIn.readObject();
+                            Reply reply = (Reply) objIn.readObject();
+                            boolean pass = rmiConnection.replyMessage(message, reply);
+                            out.writeBoolean(pass);
+                        }
                     }
                     if(choose == 9){
-                        objOut.writeObject(rmiConnection.getMyProjects(log));
+                        ArrayList<Project> projects = rmiConnection.getMyProjects(log);
+                        objOut.writeObject(projects);
                         objOut.flush();
-                        Project projectChoosen = (Project) objIn.readObject();
-                        boolean pass = rmiConnection.cancelProject(log, projectChoosen);
-                        out.writeBoolean(pass);
+                        if(projects.size()!=0)
+                        {
+                            Project projectChoosen = (Project) objIn.readObject();
+                            boolean pass = rmiConnection.cancelProject(log, projectChoosen);
+                            out.writeBoolean(pass);
+                        }
                     }
                 }
             }
