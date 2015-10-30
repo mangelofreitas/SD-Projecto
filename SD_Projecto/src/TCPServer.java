@@ -18,7 +18,7 @@ public class TCPServer
     {
         Scanner sc = new Scanner(System.in);
         try {
-            int serverPort = 6000;
+            int serverPort = 6000; //porto=6000
             int serverNumber;
             if(args.length==0)
             {
@@ -386,6 +386,7 @@ class RMIConnection extends Thread
     }
 }
 
+//Ligacao UDP entre servers
 class UDPThread extends Thread
 {
     private int number;

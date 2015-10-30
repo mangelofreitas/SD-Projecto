@@ -4,6 +4,10 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Created by miguel and maria
+ */
+
 class Addresses
 {
     private String addressPrimary;
@@ -33,7 +37,7 @@ class Addresses
 }
 
 public class TCPClient {
-
+    //Inicializacao de streams para comunicar com o server
     private static DataInputStream in;
     private static DataOutputStream out;
     private static ObjectOutputStream objOut;
@@ -47,8 +51,10 @@ public class TCPClient {
         while(!notIO)
         {
             try {
-                s = new Socket(path.getAddress(), 6000);
+                s = new Socket(path.getAddress(), 6000); //porto = 6000
                 System.out.println("SOCKET=" + s);
+
+                //criar de streams para comunicar com o server
                 in = new DataInputStream(s.getInputStream());
                 out = new DataOutputStream(s.getOutputStream());
                 objOut = new ObjectOutputStream(out);
@@ -69,6 +75,7 @@ public class TCPClient {
 
     public static void main(String args[])
     {
+        //Pedir os ips para conexao
         Scanner sc = new Scanner(System.in);
         String address1, address2;
         System.out.print("Address of server 1: ");
@@ -329,9 +336,12 @@ public class TCPClient {
 
                     while(true){
                         try{
-                            System.out.println("\nDeadline(Example: 2015 10 11): ");
+                            System.out.println("\nDeadline: ");
+                            System.out.print("Ano:");
                             String anoS = sc.nextLine();
+                            System.out.print("Mes:");
                             String mesS = sc.nextLine();
+                            System.out.print("Dia:");
                             String diaS = sc.nextLine();
                             project.setDateLimit(new Date(Integer.parseInt(anoS) - 1900, Integer.parseInt(mesS) - 1, Integer.parseInt(diaS)));
                             sc.nextLine();
@@ -772,8 +782,7 @@ public class TCPClient {
                                     System.out.println("\nREWARD ADDED!\n");
                                 }
                             }
-                            else
-                            {
+                            else {
                                 System.out.println("\nYOU DON'T HAVE PROJECTS TO ADD REWARDS!\n");
                             }
                             notIO = true;

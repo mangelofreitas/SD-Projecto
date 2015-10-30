@@ -15,7 +15,6 @@ import java.sql.Date;
  * Created by miguel and maria
  */
 
-
 public class RMIServer implements RMI
 {
     private Connection conn = null;
