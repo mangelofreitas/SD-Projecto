@@ -17,6 +17,7 @@ public class Project implements Serializable
     private int currentAmount;
     private ArrayList<ProductType> productTypes;
     private String finalProduct;
+    private Boolean success;
 
     public Project()
     {
@@ -59,7 +60,7 @@ public class Project implements Serializable
         this.productTypes = productTypes;
     }
 
-    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount)
+    public Project(User user,int projectID, String projectName, String description, Date dateLimit, int requestedValue, int currentAmount, Boolean success)
     {
         this.user = user;
         this.projectID = projectID;
@@ -69,6 +70,7 @@ public class Project implements Serializable
         this.requestedValue = requestedValue;
         this.currentAmount = 0;
         this.currentAmount = currentAmount;
+        this.success = success;
     }
     public User getUser() {
         return user;
@@ -150,9 +152,17 @@ public class Project implements Serializable
         this.finalProduct = finalProduct;
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
     public String toString() {
         String text = "Project ID:" + projectID + "\nUser:"+user.getUsername()+"\nProject Name:"+projectName+"\nDescription:"+description
-                +"\nDate Limit:"+dateLimit+"\nRequested Value:"+requestedValue+"\nCurrent Amount:"+currentAmount+"\nRewards:";
+                +"\nDate Limit:"+dateLimit+"\nRequested Value:"+requestedValue+"\nCurrent Amount:"+currentAmount+"\nAmount required to the final objective:"+(requestedValue-currentAmount)+"\nRewards:";
         for(int i=0;i<rewards.size();i++)
         {
             text = text +"\n->"+ rewards.get(i);

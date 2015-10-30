@@ -307,9 +307,10 @@ public class TCPClient {
 
     public static void menu(User log){
         Scanner sc = new Scanner(System.in);
-        boolean notIO = false;
+        boolean notIO;
         while(true)
         {
+            notIO = false;
             System.out.println("\nChoose an option:\n");
             System.out.println("1  - Create a project;");
             System.out.println("2  - Donate money to the project;");
@@ -344,12 +345,10 @@ public class TCPClient {
                             System.out.print("Dia:");
                             String diaS = sc.nextLine();
                             project.setDateLimit(new Date(Integer.parseInt(anoS) - 1900, Integer.parseInt(mesS) - 1, Integer.parseInt(diaS)));
-                            sc.nextLine();
 
                             System.out.println("\nRequested value: ");
                             String valueS = sc.nextLine();
                             project.setRequestedValue(Integer.parseInt(valueS));
-                            sc.nextLine();
                             break;
                         }
                         catch(NumberFormatException e)
@@ -413,7 +412,6 @@ public class TCPClient {
 
                         }
                         reward.setValueOfReward(valueInt);
-                        sc.nextLine();
 
                         project.getRewards().add(reward);
                         while(pass==false)
@@ -441,7 +439,6 @@ public class TCPClient {
                             out.writeInt(1);
                             objOut.writeObject(project);
                             objOut.flush();
-                            notIO = true;
 
                             if (in.readBoolean() == false) {
                                 System.out.println("\n ERROR!\n Exiting now...\n");
@@ -451,6 +448,7 @@ public class TCPClient {
                             {
                                 System.out.println("\nPROJECT ACCEPTED!\n");
                             }
+                            notIO = true;
                         }
                         catch (IOException e)
                         {
@@ -526,7 +524,10 @@ public class TCPClient {
                                         }
                                     }
                                     pass1=false;
-
+                                    System.out.println("\n\n");
+                                    for (int n = 0; n < projects.get(choose).getRewards().size(); n++) {
+                                        System.out.println(n + " -> " + projects.get(choose).getRewards().get(n));
+                                    }
                                     while (pass1 == false) {
                                         try{
                                             System.out.println("\nChoose the reward according to the money you want to donate [from 0 to " + (projects.get(choose).getRewards().size() - 1) + "]:");
@@ -554,9 +555,9 @@ public class TCPClient {
                                 out.writeInt(projects.get(choose).getRewards().get(money).getValueOfReward());
                                 objOut.flush();
                                 if (!in.readBoolean()) {
-                                    if(money>log.getMoney())
+                                    if(projects.get(choose).getRewards().get(money).getValueOfReward()>log.getMoney())
                                     {
-                                        System.out.println("\nInsufficient Money...\n");
+                                        System.out.println("\nINSUFFICIENT MONEY...\n");
                                     }
                                     System.out.println("\n ERROR!\n Exiting now...\n");
                                 } else {
@@ -587,22 +588,35 @@ public class TCPClient {
                     {
                         try {
                             out.writeInt(3);
+                            ArrayList<Project> projects;
                             switch (option1) {
                                 case "1":
                                     out.writeInt(1);
+                                    projects = (ArrayList<Project>) objIn.readObject();
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        if(projects.get(i).getSuccess()==true)
+                                        {
+                                            System.out.println("\n" + projects.get(i) +"\nSuccess!\n\n");
+                                        }
+                                        else if(projects.get(i).getSuccess()==false)
+                                        {
+                                            System.out.println("\n" + projects.get(i) +"\nNo Success!\n\n");
+                                        }
+                                    }
                                     break;
                                 case "2":
                                     out.writeInt(2);
+                                    projects = (ArrayList<Project>) objIn.readObject();
+
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
                                     break;
                                 default:
                                     System.out.println("\nWRONG OPTION! Try again.");
                                     break;
                             }
-                            ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
                             notIO = true;
-                            for (int i = 0; i < projects.size(); i++) {
-                                System.out.println("\n" + projects.get(i) + "\n\n");
-                            }
                         } catch (IOException e) {
                             System.err.println("IO exception:" + e);
                             createSocket();
@@ -677,7 +691,7 @@ public class TCPClient {
                                     System.out.println("\n");
                                     for (int i=0;i<log.getRewards().size();i++)
                                     {
-                                        System.out.println(log.getRewards().get(i));
+                                        System.out.println(log.getRewards().get(i).getDescription());
                                     }
                                     System.out.println("\n");
                                     break;
@@ -770,7 +784,6 @@ public class TCPClient {
 
                                     }
                                     reward.setValueOfReward(valueInt);
-                                    sc.nextLine();
                                 }
                                 objOut.writeObject(projects.get(choose));
                                 objOut.writeObject(reward);
