@@ -596,11 +596,11 @@ public class TCPClient {
                                     for (int i = 0; i < projects.size(); i++) {
                                         if(projects.get(i).getSuccess()==true)
                                         {
-                                            System.out.println("\n" + projects.get(i) +"\nSuccess!\n\n");
+                                            System.out.println("\n" + projects.get(i) +"\nSUCCESS!"+"\nFinal Product: "+projects.get(i).getFinalProduct()+"\n\n");
                                         }
                                         else if(projects.get(i).getSuccess()==false)
                                         {
-                                            System.out.println("\n" + projects.get(i) +"\nNo Success!\n\n");
+                                            System.out.println("\n" + projects.get(i) +"\nNO SUCCESS!\n\n");
                                         }
                                     }
                                     break;

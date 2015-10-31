@@ -14,6 +14,10 @@ public class TCPServer
 {
     private static RMI rmiConnection;
 
+    /*
+    * Iniciamos sempre o servidor como secundário
+    * **/
+
     public static void main(String args[])
     {
         Scanner sc = new Scanner(System.in);
@@ -26,7 +30,7 @@ public class TCPServer
             }
             else
             {
-                serverNumber = Integer.parseInt(args[0]);
+                serverNumber = Integer.parseInt(args[0]);   //recebe aqui qual o número de servidor, usado quando o secundário passa a primário
             }
             if(serverNumber == 1)
             {
@@ -40,7 +44,7 @@ public class TCPServer
                 }
                 else
                 {
-                    path = args[1];
+                    path = args[1]; //recebe qual o ip do outro servidor, usado quando o secundário passa a primário
                 }
                 new UDPThread(serverNumber,path);
                 System.out.println("A Escuta no Porto 6000");
@@ -65,7 +69,7 @@ public class TCPServer
             {
                 System.out.print("Address of the other server: ");
                 String path = sc.nextLine();
-                new UDPThread(serverNumber,path);
+                new UDPThread(serverNumber,path);   //ver mais abaixo o que é realizado no servidor secundário
             }
 
         } catch (IOException e) {
@@ -191,7 +195,8 @@ class Connection extends Thread {
                         int money = in.readInt();
                         boolean pass = rmiConnection.donateMoney(log,projectChoosen,typeChoosen,money);
                         out.writeBoolean(pass);
-                        objOut.writeObject(rmiConnection.makeLogin(log));
+                        log = rmiConnection.makeLogin(log);
+                        objOut.writeObject(log);
                     }
                     if(choose == 3)
                     {
@@ -439,6 +444,9 @@ class UDPThread extends Thread
             int tries = 0;
             try
             {
+                /*
+                * Cria a socket para comunicação TCP, mete um timeout de 2 segundos inicialmente
+                * **/
                 aSocket = new DatagramSocket(6789);
                 aSocket.setSoTimeout(2000);
                 while(tries<5)
@@ -449,11 +457,15 @@ class UDPThread extends Thread
                         InetAddress aHost = InetAddress.getByName(path);
                         int serverPort = 6788;
                         DatagramPacket request = new DatagramPacket(buffer, buffer.length,aHost,serverPort);
+                        //manda pacotes via UDP
                         aSocket.send(request);
                         buffer = new byte[10];
                         DatagramPacket reply = new DatagramPacket(buffer,buffer.length);
+                        //tenta receber resposta, se este nunca recebeu resposta e demorar 2 segundos, dará timeout, se der mais 5* passará a servidor primário
                         aSocket.receive(reply);
+                        //se recebeu um pacote de um outro servidor primário dá reset ás tentativas
                         tries = 0;
+                        //e redefine o timeout para 3 segundos
                         aSocket.setSoTimeout(3000);
                     }
                     catch(SocketTimeoutException e)
@@ -465,7 +477,7 @@ class UDPThread extends Thread
                 aSocket.close();
                 System.err.println("Going to Primary Server...");
                 String[] strings = {"1",path};
-                new TCPServer().main(strings);
+                new TCPServer().main(strings);  //no caso de ter dado 5* timeout, passa este servidor a primários chamando a main com o argumento 1, para ser o server 1, e o path é o ip do outro servidor
             }
             catch (SocketException e) {
                 System.err.println("Socket Exception:" + e);

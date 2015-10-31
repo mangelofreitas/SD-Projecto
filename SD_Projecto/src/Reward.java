@@ -56,8 +56,7 @@ public class Reward implements Serializable
     }
 
     public String toString() {
-        return "Name = " + name +
-                ", Description = " + description +
+        return "Description = " + description +
                 ", Value Of Reward = " + valueOfReward;
     }
 }

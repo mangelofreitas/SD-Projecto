@@ -15,7 +15,7 @@ public interface RMI extends Remote
     public User makeLogin(User user) throws RemoteException;
     //public int consultMoney(User user) throws RemoteException; -> Na classe User recebe o saldo quando o login
     public ArrayList<Reward> projectRewards(Project project) throws RemoteException;
-    public ArrayList<ProductType> projectTypes(Project project) throws RemoteException;
+    public ArrayList<ProductType> productTypes(Project project) throws RemoteException;
     public boolean donateMoney(User user, Project project, ProductType productType, int moneyGiven) throws RemoteException;
     public boolean sendMessage(Message message) throws RemoteException;
     public boolean createProject(User user, String projectName, String description, Date dateLimit, int requestedValue, ArrayList<Reward> rewards, ArrayList<ProductType> productTypes) throws RemoteException;
