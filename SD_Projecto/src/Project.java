@@ -161,8 +161,17 @@ public class Project implements Serializable
     }
 
     public String toString() {
+        int progress = (requestedValue-currentAmount);
         String text = "Project ID:" + projectID + "\nUser:"+user.getUsername()+"\nProject Name:"+projectName+"\nDescription:"+description
-                +"\nDate Limit:"+dateLimit+"\nRequested Value:"+requestedValue+"\nCurrent Amount:"+currentAmount+"\nAmount required to the final objective:"+(requestedValue-currentAmount)+"\nRewards:";
+                +"\nDate Limit:"+dateLimit+"\nRequested Value:"+requestedValue+"\nCurrent Amount:"+currentAmount+"\nAmount required to the final objective:";
+        if(progress<0)
+        {
+            text = text+"+"+Math.abs(progress)+"\nRewards:";
+        }
+        else
+        {
+            text = text+progress+"\nRewards:";
+        }
         for(int i=0;i<rewards.size();i++)
         {
             text = text +"\n->"+ rewards.get(i);

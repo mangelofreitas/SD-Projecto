@@ -1025,7 +1025,6 @@ public class RMIServer implements RMI
                                 maxVotesIndex = i;
                             }
                         }
-                        System.out.println(maxVotesIndex);
                         if(project.getCurrentAmount()>=project.getRequestedValue()*5)   //caso tenha conseguido 5* mais do que pedia
                         {
                             query = "UPDATE projects SET alive = ?, success = ? WHERE projectID = ?";

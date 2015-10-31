@@ -121,22 +121,37 @@ public class TCPClient {
                     {
                         try {
                             out.writeInt(3);
+                            ArrayList<Project> projects;
                             switch (option1) {
                                 case "1":
                                     out.writeInt(1);
+                                    projects = (ArrayList<Project>) objIn.readObject();
+                                    for (int i = 0; i < projects.size(); i++)
+                                    {
+                                        if(projects.get(i).getSuccess()==true)
+                                        {
+                                            System.out.println("\n" + projects.get(i) +"\nSUCCESS!"+"\nFinal Product: "+projects.get(i).getFinalProduct()+"\n\n");
+                                        }
+                                        else if(projects.get(i).getSuccess()==false)
+                                        {
+                                            System.out.println("\n" + projects.get(i) +"\nNO SUCCESS!\n\n");
+                                        }
+                                    }
                                     break;
                                 case "2":
                                     out.writeInt(2);
+                                    projects = (ArrayList<Project>) objIn.readObject();
+                                    for (int i = 0; i < projects.size(); i++) {
+                                        System.out.println("\n" + projects.get(i) + "\n\n");
+                                    }
                                     break;
                                 default:
                                     System.out.println("\nWRONG OPTION! Try again.");
                                     break;
                             }
-                            ArrayList<Project> projects = (ArrayList<Project>) objIn.readObject();
+
                             notIO = true;
-                            for (int i = 0; i < projects.size(); i++) {
-                                System.out.println("\n" + projects.get(i) + "\n\n");
-                            }
+
                         } catch (IOException e) {
                             System.err.println("IO exception:" + e);
                             createSocket();
