@@ -1,0 +1,7 @@
+#mainNav {
+	background: gray;
+}
+
+.service-box:active {
+	background: white;
+}
