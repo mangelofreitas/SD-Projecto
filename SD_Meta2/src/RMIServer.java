@@ -1,16 +1,17 @@
+import com.mysql.jdbc.*;
+import jdk.nashorn.internal.codegen.CompilerConstants;
 import model.*;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import java.sql.*;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.sql.Date;
 
 /**
  * Created by miguel and maria
@@ -61,14 +62,21 @@ public class RMIServer implements RMI
     {
         try
         {
-            query = "SELECT username, mail FROM users WHERE usernameID=?";  //criamos a query
+            /*query = "SELECT username, mail FROM users WHERE usernameID=?";  //criamos a query
             preparedStatement = conn.prepareStatement(query);   //realiza-mos o prepare statement da query para a conec��o anteriormente realizada � BD
             preparedStatement.setInt(1, user.getUsernameID());  //inserimos os campos respectivos aos ? do prepare statement
-            ResultSet rs = preparedStatement.executeQuery();    //no caso do select fazemos o result set do executeQuery() porque vamos estar � espera de obter informa��o
-            if(rs.next())   //este rs.next() vai dando linha � linha vindo da tabela, neste caso s� temos uma linha fez-se if(), se n�o fazia-se while()
+            ResultSet rs = preparedStatement.executeQuery();    //no caso do select fazemos o result set do executeQuery() porque vamos estar � espera de obter informa��o*/
+            System.out.println("Executei grande procedure!");
+            query = "CALL getUserByID(?,?,?)";
+            CallableStatement cs = conn.prepareCall(query);
+            cs.setInt(1,user.getUsernameID());
+            cs.registerOutParameter(2, Types.VARCHAR);
+            cs.registerOutParameter(3, Types.VARCHAR);
+            int result = cs.executeUpdate();
+            if(result==1)   //este rs.next() vai dando linha � linha vindo da tabela, neste caso s� temos uma linha fez-se if(), se n�o fazia-se while()
             {
-                user.setUsername(rs.getString("username"));     //rs.getString(coluna pretendida), rs.getInt(), rs.getBoolean(), rs.getDate()...
-                user.setMail(rs.getString("mail"));
+                user.setUsername(cs.getString(2));     //rs.getString(coluna pretendida), rs.getInt(), rs.getBoolean(), rs.getDate()...
+                user.setMail(cs.getString(3));
                 return user;
             }
         }
@@ -197,6 +205,7 @@ public class RMIServer implements RMI
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next())
             {
+
                 return new User(-1);
             }
             query = "INSERT INTO users (username, mail, password, money) VALUES (?,?,?,?)";
@@ -571,7 +580,15 @@ public class RMIServer implements RMI
         System.out.println("Retrieve Money to Users of "+project.getProjectName()+"!");
         try
         {
-            query = "SELECT contributeID, usernameID, moneyGiven, typeProductID, rewardID FROM users_contributes WHERE projectID = ?";  //vamos buscar todos os contributos respectivos ao projecto que acabou
+            query = "DELETE FROM users_contributes WHERE projectID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,project.getProjectID());
+            int result = preparedStatement.executeUpdate();
+            if(result!=1)
+            {
+                return false;
+            }
+            /*query = "SELECT contributeID, usernameID, moneyGiven, typeProductID, rewardID FROM users_contributes WHERE projectID = ?";  //vamos buscar todos os contributos respectivos ao projecto que acabou
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, project.getProjectID());
             ResultSet rs = preparedStatement.executeQuery();
@@ -602,7 +619,7 @@ public class RMIServer implements RMI
                     }
                 }
 
-            }
+            }*/
             return true;
         }
         catch(SQLException e)

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Hello World</title>
+<title>Welcome to FundStarter</title>
 </head>
 <body>
 	<s:form action="login" method="post">

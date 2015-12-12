@@ -35,13 +35,13 @@ public class Login extends ActionSupport implements SessionAware{
 	{
 		if(!session.containsKey("model"))
 		{
-			this.setLoginModel(new SessionModel());
+			this.setSessionModel(new SessionModel());
 		}
 		return (SessionModel) session.get("model");
 			
 	}
 	
-	public void setLoginModel(SessionModel model)
+	public void setSessionModel(SessionModel model)
 	{
 		this.session.put("model", model);
 	}
