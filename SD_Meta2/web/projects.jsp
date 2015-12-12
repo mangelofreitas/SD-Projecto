@@ -46,12 +46,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <div class="col-sm-4 col-md-4 pull-center">
-                    <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="q">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
+                    <form class="navbar-form" role="search" style="margin: 0px">
+                        <div class="form-control input-group">
+                            <input type="text" class="form-control" placeholder="Search" style="border: 0px" name="q">
+                            <span class="input-group-btn" style="padding-left: 2px">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -103,7 +103,7 @@
     <div class="container">
         <div class="row">
             <div class="text-left">
-                <c:forEach items="${session.myProjects}" var="project">
+                <c:forEach items="${session.projects}" var="project">
                 <h2 class="section-heading">Administrator: <c:out value="${project.getUser().getUsername()}"/></h2>
                 <br>
                 <br>
@@ -149,10 +149,14 @@
                 </c:forEach>
 
                 <hr>
+                <form action="profile">
+                    <input class="btn btn-primary btn-xl" type="submit" value="Back">
+                </form>
             </div>
         </div>
     </div>
-    <div class="container">
+
+    <%--<div class="container">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-6 col-md-offset-5 col-md-2 text-center">
                 <br><br>
@@ -162,7 +166,7 @@
                 <a href="#" class="btn btn-primary btn-xl">Remove Reward</a>
             </div>
         </div>
-    </div>
+    </div>--%>
 </section>
 
 <section id="Aboutus">

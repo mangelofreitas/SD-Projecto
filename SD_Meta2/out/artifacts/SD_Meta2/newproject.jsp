@@ -26,14 +26,7 @@
 
     <link rel="stylesheet" href="css/Project.css" type="text/css">
 
-    <script>
-        function add(divName)
-        {
-            var newdiv = document.createElement('div');
-            newdiv.innerHTML ="<input id='productType' type='text' name='ProductType'>";
-            document.getElementById(divName).appendChild(newdiv);
-        }
-    </script>
+    <script src="function.js"></script>
 </head>
 
 <body id="page-top">
@@ -55,12 +48,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <div class="col-sm-4 col-md-4 pull-center">
-                    <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search" name="q">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
+                    <form class="navbar-form" role="search" style="margin: 0px">
+                        <div class="form-control input-group">
+                            <input type="text" class="form-control" placeholder="Search" style="border: 0px" name="q">
+                            <span class="input-group-btn" style="padding-left: 2px">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -113,21 +106,28 @@
             <div class="text-left">
                 <form action="create" method="post">
                 <h2 class="section-heading">Name of Project: </h2>
-                <input id="name" type="text" class="form-control" placeholder="Name of Project" name="NameOfProject"/><br>
+                <input id="name" type="text" class="form-control" placeholder="Name of Project" name="NameOfProject" required/><br>
                 <hr>
                 <h2 class="section-heading">Decription: </h2>
-                <input id="description" type="text" class="form-control" placeholder="Description" name="Description"/><br>
+                <input id="description" type="text" class="form-control" placeholder="Description" name="Description" required/><br>
                 <br>
                 <h2 class="section-heading">Date Limit: </h2>
-                <input id="dateLimit" type="date" class="form-control" placeholder="Date Limit" name="DateLimit"/><br>
+                <input id="dateLimit" type="date" class="form-control" placeholder="Date Limit" name="DateLimit" required/><br>
                 <br>
                 <h2 class="section-heading">Requested Value: </h2>
-                <input id="requestedValue" type="text" class="form-control" placeholder="Requested Value" name="RequestedValue"/><br>
+                <input id="requestedValue" type="text" class="form-control" placeholder="Requested Value" name="RequestedValue" required/><br>
 
                 <div id="ptype">
                     <h2 class="section-heading">Product Type(s): </h2>
-                    <input id="productType" type="text" class="form-control" placeholder="Product Type" name="ProductType"/><br>
-                    <input type="button" class="btn" value="+" onclick="add('ptype');">
+                    <input id="productType" type="text" class="form-control" placeholder="Product Type" name="ProductType" required/><br>
+                    <input type="button" class="btn" value="+" onclick="add('ptype','ptypediv','productType','ProductType');">
+                    <input type="button" class="btn" value="-" onclick="remove_div('ptype','ptypediv');">
+                </div><br>
+                <div id="rwrd">
+                    <h2 class="section-heading">Rewards(s): </h2>
+                    <input id="reward" type="text" class="form-control" placeholder="Reward" name="Reward" required><input id="valueReward" class="form-control" placeholder="100" type="number" name="ValueReward" required>
+                    <input type="button" class="btn" value="+" onclick="add('rwrd','rwrddiv','reward','Reward');">
+                    <input type="button" class="btn" value="-" onclick="remove_div('rwrd','rwrddiv');">
                 </div><br>
                 <input style="margin-top: 50px" class="btn btn-primary btn-xl" type="submit">
                 </form>
@@ -138,17 +138,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-offset-3 col-lg-6 col-md-offset-5 col-md-2 text-center">
-                <br><br>
-                <br><br>
-                <a href="#" class="btn btn-primary btn-xl">Cancel Project</a>
-                <a href="#" class="btn btn-primary btn-xl">Add Reward</a>
-                <a href="#" class="btn btn-primary btn-xl">Remove Reward</a>
-            </div>
-        </div>
-    </div>
+
 </section>
 
 

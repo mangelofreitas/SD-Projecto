@@ -12,9 +12,10 @@ import java.util.Map;
 /**
  * Created by mianj on 11/12/2015.
  */
-public class ListMyProjects extends ActionSupport implements SessionAware {
+public class ListProjects extends ActionSupport implements SessionAware {
     private Map<String,Object> session;
     private static final long serialVersionUID = 1L;
+    private String type;
 
     @Override
     public void setSession(Map<String, Object> session) {
@@ -26,15 +27,20 @@ public class ListMyProjects extends ActionSupport implements SessionAware {
         SessionModel user = getModel();
         if(user.getRmiConnection()!=null)
         {
-            try
+            ArrayList <Project> projects = null;
+            if(type.compareTo("myprojects")==0)
             {
-                ArrayList <Project> projects = user.getRmiConnection().getMyProjects(user.getUser());
-                session.put("myProjects", projects);
+                projects = user.getMyProjects();
             }
-            catch (RemoteException e)
+            else if(type.compareTo("actualprojects")==0)
             {
-                e.printStackTrace();
+                projects = user.getActualProjects();
             }
+            else if(type.compareTo("oldprojects")==0)
+            {
+                projects = user.getOldProjects();
+            }
+            session.put("projects", projects);
             return "success";
         }
         return "error";
@@ -53,5 +59,13 @@ public class ListMyProjects extends ActionSupport implements SessionAware {
     public void setSessionModel(SessionModel model)
     {
         this.session.put("model", model);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

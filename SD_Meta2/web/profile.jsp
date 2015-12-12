@@ -48,12 +48,12 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<div class="col-sm-4 col-md-4 pull-center">
-					<form class="navbar-form" role="search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" name="q">
-							<div class="input-group-btn">
-								<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-							</div>
+					<form class="navbar-form" role="search" style="margin: 0px">
+						<div class="form-control input-group">
+							<input type="text" class="form-control" placeholder="Search" style="border: 0px" name="q">
+                            <span class="input-group-btn" style="padding-left: 2px">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                            </span>
 						</div>
 					</form>
 				</div>
@@ -126,10 +126,31 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-3 text-center">
 				<div class="service-box">
-					<form action="myprojects">
+					<form action="projects">
+						<s:hidden key="type" value="myprojects"/>
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>See My Projects</h3>
+					<p class="text-muted">You can see your all projects!</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-3 text-center">
+				<div class="service-box">
+					<form action="projects">
+						<s:hidden key="type" value="actualprojects"/>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
+					</form>
+					<h3>Actual Projects</h3>
+					<p class="text-muted">You can see your all projects!</p>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-3 text-center">
+				<div class="service-box">
+					<form action="projects">
+						<s:hidden key="type" value="oldprojects"/>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
+					</form>
+					<h3>Old Projects</h3>
 					<p class="text-muted">You can see your all projects!</p>
 				</div>
 			</div>

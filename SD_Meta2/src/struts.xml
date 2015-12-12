@@ -23,11 +23,14 @@
             <result name="success">/profile.jsp</result>
             <result name="index">/newproject.jsp</result>
         </action>
-        <action name="newproject" class="action.MenuHandling" method="execute">
+        <action name="newproject" class="action.MenuHandling">
             <result name="success">/newproject.jsp</result>
         </action>
-        <action name="myprojects" class="action.ListMyProjects">
-            <result name="success">/myprojects.jsp</result>
+        <action name="projects" class="action.ListProjects">
+            <result name="success">/projects.jsp</result>
         </action>
+        <!--<action name="viewactualproject" class="action" method="">
+
+        </action>-->
     </package>
 </struts>
