@@ -41,7 +41,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#page-top">FUNDSTARTER</a>
+			<a class="navbar-brand page-scroll" href="#page-top">FUNDSTARTER</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -79,17 +79,16 @@
 					<h4 class="modal-title">User Profile:</h4>
 				</div>
 				<div class="modal-body">
-					<br>
-					<p>${user.getUser().getUsername()}</p>
-					<br>
-					<p>Available Money: ${user.getUser().getMoney()}<p/>
-					<br>
-					<div class="modal-footer">
-						<form action="logout" method="post">
-							<button type="submit" class="btn btn-primary" method="execute">Log Out</button>
-						</form>
-						<a href="#" data-dismiss="modal" class="btn">Close</a>
-					</div>
+					<form style="text-align:left" class="login-block" method="post">
+						<h3>${user.getUser().getUsername()}</h3>
+						<br>
+						<p>${user.getUser().getMail()}</p>
+						<br>
+						<p>Available Money: ${user.getUser().getMoney()}<p/>
+					</form>
+					<form action="logout" method="post">
+						<button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -123,44 +122,44 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6 col-md-3 text-center">
+			<div class="col-lg-3 col-md-6 text-center">
 				<div class="service-box">
-					<form action="projects" method="post">
+					<form action="projects">
 						<s:hidden key="type" value="myprojects"/>
-						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-heart wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>See My Projects</h3>
 					<p class="text-muted">You can see your all projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-3 text-center">
+			<div class="col-lg-3 col-md-6 text-center">
 				<div class="service-box">
-					<form action="projects" method="post">
+					<form action="projects">
 						<s:hidden key="type" value="actualprojects"/>
-						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-diamond wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>Actual Projects</h3>
-					<p class="text-muted">You can see your all projects!</p>
+					<p class="text-muted">You can see all actual projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-3 text-center">
+			<div class="col-lg-3 col-md-6 text-center">
 				<div class="service-box">
-					<form action="projects" method="post">
+					<form action="projects">
 						<s:hidden key="type" value="oldprojects"/>
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>Old Projects</h3>
-					<p class="text-muted">You can see your all projects!</p>
+					<p class="text-muted">You can see all old projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-6 col-md-3 text-center">
+			<div class="col-lg-3 col-md-6 text-center">
 				<div class="service-box">
 					<!--<a href="index.html">-->
-					<form action="newproject" method="post">
+					<form action="newproject">
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-newspaper-o wow bounceIn" data-wow-delay=".2s"></i></button>
 					</form>
 					<h3>Start a Project</h3>
-					<p class="text-muted">You can start a project and </p>
+					<p class="text-muted">You can start a project </p>
 				</div>
 			</div>
 		</div>

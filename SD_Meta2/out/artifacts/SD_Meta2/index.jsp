@@ -49,7 +49,7 @@
 					<a class="page-scroll" href="#Aboutus">About us</a>
 				</li>
 				<li>
-					<a data-toggle="modal" href="#Signup" style="margin-left: 10px; margin-right: 10px; height:50px">Sign up</a>
+					<a data-toggle="modal" href="#Signup" style="margin-left: 10px; margin-right: 10px; height:50px">Sign in</a>
 				</li>
 				<li>
 					<a data-toggle="modal" href="#Login" style="margin-left: 10px; margin-right: 10px; height:50px">Log in</a>
@@ -60,16 +60,16 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Please Sign In</h4>
+						<h4 class="modal-title">Sign In</h4>
 					</div>
 					<div class="modal-body">
 						</a>
 						<br>
 						<form action="regist" style="text-align:center" class="login-block" method="POST">
 							<input id="username" type="text" class="form-control" placeholder="Username" name="Username"/><br>
-							<input id="mail" type="text" class="form-control" placeholder="Mail" name="Mail"/><br>
+							<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
 							<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
-							<a class="btn btn-block" method="execute">Submit</a>
+							<input type="submit" class="btn btn-primary" method="execute" value="Sign in">
 						</form>
 						<div class="modal-footer">
 							<a href="#" data-dismiss="modal" class="btn">Close</a>
@@ -84,7 +84,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title">Please Log in</h4>
+						<h4 class="modal-title">Log in</h4>
 					</div>
 					<div class="modal-body">
 						</a>
@@ -93,9 +93,9 @@
 						</a>
 						<br>
 						<form action="login" style="text-align:center" class="login-block" method="post">
-							<input id="mail" type="text" class="form-control" placeholder="Mail" name="Mail"/><br>
+							<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
 							<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
-							<input type="submit" class="btn btn-primary" method="execute">
+							<input type="submit" class="btn btn-primary" method="execute" value="Log in">
 						</form>
 						<div class="modal-footer">
 							<a href="#" data-dismiss="modal" class="btn">Close</a>
@@ -113,12 +113,17 @@
 		<div class="header-content-inner">
 			<h1>It makes small ideas are turned into reality</h1>
 			<hr>
-			<br><br>
-			<a href="#new" class="btn btn-primary btn-xl">See all new projects</a>
-			<br><br>
-			<a href="#new" class="btn btn-primary btn-xl">See old projects</a>
+			<form action="projects">
+				<s:hidden key="type" value="actualprojects"/>
+				<br><br>
+				<button type="submit" class="btn btn-primary btn-xl">See all new projects</button>
+			</form>
+			<form action="projects">
+				<s:hidden key="type" value="oldprojects"/>
+				<br><br>
+				<button type="submit" class="btn btn-primary btn-xl">See old projects</button>
+			</form>
 		</div>
-
 	</div>
 </header>
 
