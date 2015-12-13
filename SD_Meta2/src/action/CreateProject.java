@@ -32,14 +32,13 @@ public class CreateProject extends ActionSupport implements SessionAware
     public String execute()
     {
         SessionModel user = getModel();
-
+        session.remove("tipo");
         if(user.getRmiConnection()!=null && user.createProject(name,description,dateLimit,requestedValue,productType,reward,valueReward))
         {
             return "success";
         }
         else
         {
-            System.out.println("index");
             return "index";
         }
 

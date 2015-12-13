@@ -29,8 +29,9 @@
         <action name="projects" class="action.ListProjects">
             <result name="success">/projects.jsp</result>
         </action>
-        <!--<action name="viewactualproject" class="action" method="">
-
-        </action>-->
+        <action name="editreward" class="action.EditReward">
+            <result name="success">/projects.jsp</result>
+            <result name="index">/projects.jsp</result>
+        </action>
     </package>
 </struts>

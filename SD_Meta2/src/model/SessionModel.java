@@ -44,6 +44,62 @@ public class SessionModel implements Serializable
 			connection = false;
         }
 	}
+
+	public boolean addReward(String description, int valueOfReward, int projectID)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				Reward reward = new Reward();
+				reward.setName(description);
+				reward.setDescription(description);
+				reward.setValueOfReward(valueOfReward);
+				if (rmiConnection.addReward(user, project, reward) == false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch (RemoteException ex) {
+				System.err.println("Error on Login, Remote Exeption: " + ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
+
+	public boolean removeReward(int rewardID, int projectID)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				if (rmiConnection.removeReward(user, project, rewardID) == false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch (RemoteException ex) {
+				System.err.println("Error on Login, Remote Exeption: " + ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
 	
 	public boolean login(String mail, String password)
 	{

@@ -21,6 +21,7 @@ public class MenuHandling extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
+        session.remove("tipo");
         return "success";
     }
 

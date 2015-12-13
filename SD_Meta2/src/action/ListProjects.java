@@ -25,9 +25,11 @@ public class ListProjects extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
+        session.remove("tipo");
         if(user.getRmiConnection()!=null)
         {
             ArrayList <Project> projects = null;
+            session.put("projectstype",type);
             if(type.compareTo("myprojects")==0)
             {
                 projects = user.getMyProjects();
