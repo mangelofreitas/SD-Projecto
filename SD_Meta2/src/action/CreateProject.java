@@ -1,12 +1,16 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import model.ProductType;
+import model.Reward;
 import model.SessionModel;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 
+import java.rmi.RemoteException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -16,9 +20,9 @@ public class CreateProject extends ActionSupport implements SessionAware
 {
     private static final long serialVersionUID = 1L;
     private Map<String,Object> session;
-    private String name, description, productType[];
+    private String name, description, productType[],reward[];
     private Date dateLimit;
-    private int requestedValue;
+    private int requestedValue, valueReward[];
 
     public void setSession(Map<String, Object> session)
     {
@@ -28,20 +32,17 @@ public class CreateProject extends ActionSupport implements SessionAware
     public String execute()
     {
         SessionModel user = getModel();
-        System.out.println(name+" "+description+" "+dateLimit+" "+requestedValue+"\n");
-        for(int i=0;i<productType.length;i++)
-        {
-            System.out.println(productType[i]);
-        }
-        if(user.getRmiConnection()!=null)
-        {
 
+        if(user.getRmiConnection()!=null && user.createProject(name,description,dateLimit,requestedValue,productType,reward,valueReward))
+        {
             return "success";
         }
         else
         {
+            System.out.println("index");
             return "index";
         }
+
     }
 
     public SessionModel getModel()
@@ -97,5 +98,21 @@ public class CreateProject extends ActionSupport implements SessionAware
 
     public void setProductType(String productType[]) {
         this.productType = productType;
+    }
+
+    public String[] getReward() {
+        return reward;
+    }
+
+    public void setReward(String[] reward) {
+        this.reward = reward;
+    }
+
+    public int[] getValueReward() {
+        return valueReward;
+    }
+
+    public void setValueReward(int[] valueReward) {
+        this.valueReward = valueReward;
     }
 }
