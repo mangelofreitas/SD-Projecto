@@ -70,6 +70,7 @@
             </ul>
         </div>
     </div>
+
     <div class="modal" id="Logout">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -78,22 +79,18 @@
                 </div>
                 <div class="modal-body">
                     </a>
-                    <br>
-                    <form style="text-align:center" class="login-block" method="post">
-
-                        <input type="text" value="" class="form-control" placeholder="Name" id="name">
+                    <form style="text-align:left" class="login-block" method="post">
+                        <h3>${user.getUser().getUsername()}</h3>
                         <br>
-                        <input type="text" value="" class="form-control" placeholder="Email" id="mail">
+                        <p>${user.getUser().getMail()}</p>
                         <br>
-                        <input type="text" value="" class="form-control" placeholder="Available Money" id="money">
-                        <br>
+                        <p>Available Money: ${user.getUser().getMoney()}<p/>
                     </form>
                     <div class="modal-footer">
                         <a href="#logout" data-dismiss="modal" class="btn">Log out</a>
                         <a href="#" data-dismiss="modal" class="btn">Close</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -104,51 +101,47 @@
         <div class="row">
             <div class="text-left">
                 <c:forEach items="${session.projects}" var="project">
-                <h2 class="section-heading">Administrator: <c:out value="${project.getUser().getUsername()}"/></h2>
+                <h2 class="section-heading"><b>Administrator:</b><c:out value="${project.getUser().getUsername()}"/></h2>
                 <br>
+                <h2 class="section-heading"><b>Project:</b><c:out value="${project.getProjectName()}"/></h2>
                 <br>
-                <h2 class="section-heading">Project: <c:out value="${project.getProjectName()}"/></h2>
+                <h2 class="section-heading"><b>Decription:</b><c:out value="${project.getDescription()}"/></h2>
                 <br>
-                <hr>
-                <br><br>
-                <h2 class="section-heading">Decription: <c:out value="${project.getDescription()}"/></h2>
+                <h2 class="section-heading"><b>Date Limit:</b><c:out value="${project.getDateLimit()}"/></h2>
                 <br>
-                <h2 class="section-heading">Date Limit: <c:out value="${project.getDateLimit()}"/></h2>
+                <h2 class="section-heading"><b>Requested Value:</b><c:out value="${project.getRequestedValue()}"/></h2>
                 <br>
-                <h2 class="section-heading">Requested Value:  <c:out value="${project.getRequestedValue()}"/></h2>
-                <br>
-                <h2 class="section-heading">Current Amount: <c:out value="${project.getCurrentAmount()}"/></h2>
+                <h2 class="section-heading"><b>Current Amount:</b><c:out value="${project.getCurrentAmount()}"/></h2>
                 <br>
 
-                <h2 class="section-heading">Rewards: </h2>
+                <h2 class="section-heading"><b>Rewards:</b></h2>
                     <c:forEach items="${project.getRewards()}" var="rewards">
                         <div style="padding-left: 60px">
-                        <h3 class="section-heading">Description:  <c:out value="${rewards.getDescription()}"/></h3>
+                        <h2 class="section-heading"><b>Description:</b> <c:out value="${rewards.getDescription()}"/></h2>
                         <br>
-                        <h3 class="section-heading">Value Of Reward:  <c:out value="${rewards.getValueOfReward()}"/></h3>
+                        <h2 class="section-heading"><b>Value Of Reward:</b> <c:out value="${rewards.getValueOfReward()}"/></h2>
                         <br>
                         </div>
                     </c:forEach>
                 <br>
-                <h2 class="section-heading">Product Types: </h2>
+                <h2 class="section-heading"> <b>Product Types:  </b></h2>
                     <c:forEach items="${project.getProductTypes()}" var="productTypes">
                         <div style="padding-left: 60px">
-                        <h3 class="section-heading">Type:   <c:out value="${productTypes.getType()}"/></h3>
+                        <h2 class="section-heading"><b>Type:</b><c:out value="${productTypes.getType()}"/></h2>
                         <br>
-                        <h3 class="section-heading">Vote:   <c:out value="${productTypes.getVote()}"/></h3>
+                        <h2 class="section-heading"><b>Vote:</b><c:out value="${productTypes.getVote()}"/></h2>
                         <br>
                         </div>
                     </c:forEach>
-                <h2 class="section-heading">Messages: </h2>
+                <h2 class="section-heading"><b>Messages:</b></h2>
                 <div class="form-group">
                     <input class="form-control input-lg" placeholder="Messages" id="inputlg" type="text">
                 </div>
                 <input type="text" value="" class="form-control" placeholder="Send a message" id="mess">
                 <br><br>
+                <hr>
                 <br><br>
                 </c:forEach>
-
-                <hr>
                 <form action="profile">
                     <input class="btn btn-primary btn-xl" type="submit" value="Back">
                 </form>

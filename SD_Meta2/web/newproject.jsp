@@ -72,6 +72,7 @@
             </ul>
         </div>
     </div>
+
     <div class="modal" id="Logout">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,21 +81,18 @@
                 </div>
                 <div class="modal-body">
                     </a>
-                    <br>
-                    <form style="text-align:center" class="login-block" method="post">
-                        <input type="text" value="" class="form-control" placeholder="Name" id="name">
+                    <form style="text-align:left" class="login-block" method="post">
+                        <h3>${user.getUser().getUsername()}</h3>
                         <br>
-                        <input type="text" value="" class="form-control" placeholder="Email" id="mail">
+                        <p>${user.getUser().getMail()}</p>
                         <br>
-                        <input type="text" value="" class="form-control" placeholder="Available Money" id="money">
-                        <br>
+                        <p>Available Money: ${user.getUser().getMoney()}<p/>
                     </form>
                     <div class="modal-footer">
                         <a href="#logout" data-dismiss="modal" class="btn">Log out</a>
                         <a href="#" data-dismiss="modal" class="btn">Close</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -105,9 +103,9 @@
         <div class="row">
             <div class="text-left">
                 <form action="create" method="post">
-                <h2 class="section-heading">Name of Project: </h2>
+                <h2 class="section-heading">Name of Project:* </h2>
                 <input id="name" type="text" class="form-control" placeholder="Name of Project" name="NameOfProject" required/><br>
-                <hr>
+                <br>
                 <h2 class="section-heading">Decription: </h2>
                 <input id="description" type="text" class="form-control" placeholder="Description" name="Description" required/><br>
                 <br>
@@ -128,20 +126,26 @@
                     <input id="reward" type="text" class="form-control" placeholder="Reward" name="Reward" required><input id="valueReward" class="form-control" placeholder="100" type="number" name="ValueReward" required>
                     <input type="button" class="btn" value="+" onclick="add('rwrd','rwrddiv','reward','Reward');">
                     <input type="button" class="btn" value="-" onclick="remove_div('rwrd','rwrddiv');">
-                </div><br>
-                <input style="margin-top: 50px" class="btn btn-primary btn-xl" type="submit">
-                </form>
-                <form action="profile">
-                    <input class="btn btn-primary btn-xl" type="submit" value="Back">
-                </form>
+                </div><br><br>
                 <hr>
+                <br><br><br>
+                <div class="col-lg-2 col-md-2 text-center" style="padding-top: 14px">
+                    <div class="service-box">
+                        <input class="btn btn-primary btn-xl" type="submit" value="Submit">
+                    </div>
+                </div>
+                </form>
+                <div class="col-lg-2 col-md-2 text-center">
+                    <div class="service-box">
+                        <form action="profile">
+                            <input class="btn btn-primary btn-xl" type="submit" value="Back">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </section>
-
-
 
 <section id="Aboutus">
     <div class="container">
@@ -155,7 +159,6 @@
                 <p>Sistemas Distribuídos</p>
                 <p>Licenciatura em Engenharia Informática</p>
             </div>
-
         </div>
     </div>
 </section>
@@ -170,9 +173,6 @@
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/jquery.fittext.js"></script>
 <script src="js/wow.min.js"></script>
-
-
-
 
 </body>
 </html>
