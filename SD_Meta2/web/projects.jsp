@@ -80,19 +80,15 @@
                     <h4 class="modal-title">User Profile:</h4>
                 </div>
                 <div class="modal-body">
-                    </a>
                     <br>
-                    <form style="text-align:center" class="login-block" method="post">
-
-                        <input type="text" value="" class="form-control" placeholder="Name" id="name">
-                        <br>
-                        <input type="text" value="" class="form-control" placeholder="Email" id="mail">
-                        <br>
-                        <input type="text" value="" class="form-control" placeholder="Available Money" id="money">
-                        <br>
-                    </form>
+                    <p>${user.getUser().getUsername()}</p>
+                    <br>
+                    <p>Available Money: ${user.getUser().getMoney()}<p/>
+                    <br>
                     <div class="modal-footer">
-                        <a href="#logout" data-dismiss="modal" class="btn">Log out</a>
+                        <form action="logout" method="post">
+                            <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+                        </form>
                         <a href="#" data-dismiss="modal" class="btn">Close</a>
                     </div>
                 </div>
@@ -128,7 +124,7 @@
                         <div class="thumbnail" style="padding-left: 60px">
                         <c:choose>
                             <c:when test="${session.projectstype == 'myprojects'}">
-                                <form action="editreward">
+                                <form action="editreward" method="post">
                                 <button class="btn btn-default thumb_reward" type="submit">
                                     <s:hidden key="type" value="remove"/>
                                     <input id="id" type="number" name="Id"  value="${rewards.getRewardID()}" hidden>
@@ -170,17 +166,32 @@
                     <c:choose>
                         <c:when test="${session.projectstype == 'myprojects'}">
                             <h2 class="section-heading">Messages: </h2>
+                            <c:forEach items="${project.getMessages()}" var="message">
                             <div class="form-group">
-                                <h4 class="form-control input-lg" placeholder="Messages" id="inputlg" type="text"></h4>
+                                <h4 class="form-control input-lg" type="text">${message.getUser().getUsernameID()}:${message.getMessage()}</h4>
                             </div>
-                            <input type="text" value="" class="form-control" placeholder="Send a message" id="mess">
+                                <c:forEach items="${message.getReplies()}" var="replie">
+                                    <h5 class="form-control input-lg" type="text">${replie.getUser().getUsernameID()}:${replie.getMessage()}</h5>
+                                </c:forEach>
+                            <input type="text" value="" class="form-control" placeholder="Reply this message" id="mess">
+                            </c:forEach>
                         </c:when>
                         <c:when test="${session.projectstype == 'actualprojects'}">
                             <h2 class="section-heading">Messages: </h2>
-                            <div class="form-group">
-                                <h4 class="form-control input-lg" placeholder="Messages" id="inputlg" type="text"></h4>
-                            </div>
-                            <h4 type="text" value="" class="form-control" placeholder="Send a message" id="mess"></h4>
+                            <c:forEach items="${project.getMessages()}" var="message">
+                                <div class="form-group">
+                                    <h4 class="form-control input-lg" type="text">${message.getUser().getUsernameID()}:${message.getMessage()}</h4>
+                                </div>
+                                <c:forEach items="${message.getReplies()}" var="replie">
+                                    <h5 class="form-control input-lg" type="text">${replie.getUser().getUsernameID()}:${replie.getMessage()}</h5>
+                                </c:forEach>
+                            </c:forEach>
+                            <form action="sendmessage" method="post">
+                                <input id="projectID" type="number" name="projectID"  value="${project.getProjectID()}" hidden>
+                                <input type="text" id="message" name="Message" class="form-control" placeholder="Send a message" required>
+                                <input class="btn btn-primary btn-xl" value="Send" type="submit">
+                            </form>
+
                         </c:when>
                         <c:otherwise>
                             <c:choose>
@@ -198,7 +209,7 @@
                 </c:forEach>
 
                 <hr>
-                <form action="profile">
+                <form action="profile" method="post">
                     <input class="btn btn-primary btn-xl" type="submit" value="Back">
                 </form>
             </div>

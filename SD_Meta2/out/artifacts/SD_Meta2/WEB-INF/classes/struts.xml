@@ -5,7 +5,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.devMode" value="true" />
 
     <package name="default" extends="struts-default">
         <action name="profile">
@@ -30,6 +30,13 @@
             <result name="success">/projects.jsp</result>
         </action>
         <action name="editreward" class="action.EditReward">
+            <result name="success">/projects.jsp</result>
+            <result name="index">/projects.jsp</result>
+        </action>
+        <action name="logout" class="action.LogOut">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="sendmessage" class="action.SendMessage">
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
         </action>

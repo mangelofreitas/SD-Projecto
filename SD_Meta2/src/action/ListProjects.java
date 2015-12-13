@@ -1,6 +1,7 @@
 package action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import model.Message;
 import model.Project;
 import model.SessionModel;
 import org.apache.struts2.interceptor.SessionAware;
@@ -33,10 +34,20 @@ public class ListProjects extends ActionSupport implements SessionAware {
             if(type.compareTo("myprojects")==0)
             {
                 projects = user.getMyProjects();
+                for(int i=0;i<projects.size();i++)
+                {
+                    ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
+                    projects.get(i).setMessages(messages);
+                }
             }
             else if(type.compareTo("actualprojects")==0)
             {
                 projects = user.getActualProjects();
+                for(int i=0;i<projects.size();i++)
+                {
+                    ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
+                    projects.get(i).setMessages(messages);
+                }
             }
             else if(type.compareTo("oldprojects")==0)
             {

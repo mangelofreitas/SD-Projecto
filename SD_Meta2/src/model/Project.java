@@ -21,6 +21,7 @@ public class Project implements Serializable
     private ArrayList<ProductType> productTypes;
     private String finalProduct;
     private Boolean success;
+    private ArrayList<Message> messages;
 
     public Project()
     {
@@ -161,6 +162,14 @@ public class Project implements Serializable
 
     public void setSuccess(Boolean success) {
         this.success = success;
+    }
+
+    public ArrayList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(ArrayList<Message> messages) {
+        this.messages = messages;
     }
 
     public String toString() {

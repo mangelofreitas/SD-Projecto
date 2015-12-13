@@ -79,16 +79,15 @@
 					<h4 class="modal-title">User Profile:</h4>
 				</div>
 				<div class="modal-body">
-					</a>
 					<br>
-					<form style="text-align:center" class="login-block" method="post">
-						<p>${user.getUser().getUsername()}</p>
-						<br>
-						<p>Available Money: ${user.getUser().getMoney()}<p/>
-						<br>
-					</form>
+					<p>${user.getUser().getUsername()}</p>
+					<br>
+					<p>Available Money: ${user.getUser().getMoney()}<p/>
+					<br>
 					<div class="modal-footer">
-						<a href="#logout" data-dismiss="modal" class="btn">Log out</a>
+						<form action="logout" method="post">
+							<button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+						</form>
 						<a href="#" data-dismiss="modal" class="btn">Close</a>
 					</div>
 				</div>
@@ -126,7 +125,7 @@
 		<div class="row">
 			<div class="col-lg-6 col-md-3 text-center">
 				<div class="service-box">
-					<form action="projects">
+					<form action="projects" method="post">
 						<s:hidden key="type" value="myprojects"/>
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
@@ -136,7 +135,7 @@
 			</div>
 			<div class="col-lg-6 col-md-3 text-center">
 				<div class="service-box">
-					<form action="projects">
+					<form action="projects" method="post">
 						<s:hidden key="type" value="actualprojects"/>
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
@@ -146,7 +145,7 @@
 			</div>
 			<div class="col-lg-6 col-md-3 text-center">
 				<div class="service-box">
-					<form action="projects">
+					<form action="projects" method="post">
 						<s:hidden key="type" value="oldprojects"/>
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
@@ -157,7 +156,7 @@
 			<div class="col-lg-6 col-md-3 text-center">
 				<div class="service-box">
 					<!--<a href="index.html">-->
-					<form action="newproject">
+					<form action="newproject" method="post">
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-newspaper-o wow bounceIn" data-wow-delay=".2s"></i></button>
 					</form>
 					<h3>Start a Project</h3>

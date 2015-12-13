@@ -45,6 +45,26 @@ public class SessionModel implements Serializable
         }
 	}
 
+	public ArrayList<Message> getMessagesProject(int projectid)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectid);
+				return rmiConnection.getProjectMessages(project);
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				connection = false;
+				return null;
+			}
+		}
+		return null;
+	}
+
 	public boolean addReward(String description, int valueOfReward, int projectID)
 	{
 		if(connection)
@@ -100,7 +120,34 @@ public class SessionModel implements Serializable
 		}
 		return false;
 	}
-	
+
+	public boolean sendMessage(String message, int projectID)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				if(rmiConnection.sendMessage(new Message(message,project,user))==false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
+
 	public boolean login(String mail, String password)
 	{
 		if(connection)
@@ -156,44 +203,56 @@ public class SessionModel implements Serializable
 
 	public ArrayList<Project> getMyProjects()
 	{
-		try
+		if(connection)
 		{
-			return rmiConnection.getMyProjects(user);
+			try
+			{
+				return rmiConnection.getMyProjects(user);
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				connection = false;
+				return null;
+			}
 		}
-		catch (RemoteException ex)
-		{
-			System.err.println("Error Get My Projects, Remote Exception: "+ex);
-			connection = false;
-			return null;
-		}
+		return null;
 	}
 
 	public ArrayList<Project> getActualProjects()
 	{
-		try
+		if(connection)
 		{
-			return rmiConnection.actualProjects();
+			try
+			{
+				return rmiConnection.actualProjects();
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Actual Projects, Remote Exception: "+ex);
+				connection = false;
+				return null;
+			}
 		}
-		catch (RemoteException ex)
-		{
-			System.err.println("Error Get Actual Projects, Remote Exception: "+ex);
-			connection = false;
-			return null;
-		}
+		return null;
 	}
 
 	public ArrayList<Project> getOldProjects()
 	{
-		try
+		if(connection)
 		{
-			return rmiConnection.oldProjects();
+			try
+			{
+				return rmiConnection.oldProjects();
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				connection = false;
+				return null;
+			}
 		}
-		catch (RemoteException ex)
-		{
-			System.err.println("Error Get Old Projects, Remote Exception: "+ex);
-			connection = false;
-			return null;
-		}
+		return null;
 	}
 
 	public boolean createProject(String name, String description, Date dateLimit, int requestedValue, String productType[], String reward[], int valueReward[])

@@ -79,18 +79,15 @@
                     <h4 class="modal-title">User Profile:</h4>
                 </div>
                 <div class="modal-body">
-                    </a>
                     <br>
-                    <form style="text-align:center" class="login-block" method="post">
-                        <input type="text" value="" class="form-control" placeholder="Name" id="name">
-                        <br>
-                        <input type="text" value="" class="form-control" placeholder="Email" id="mail">
-                        <br>
-                        <input type="text" value="" class="form-control" placeholder="Available Money" id="money">
-                        <br>
-                    </form>
+                    <p>${user.getUser().getUsername()}</p>
+                    <br>
+                    <p>Available Money: ${user.getUser().getMoney()}<p/>
+                    <br>
                     <div class="modal-footer">
-                        <a href="#logout" data-dismiss="modal" class="btn">Log out</a>
+                        <form action="logout" method="post">
+                            <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+                        </form>
                         <a href="#" data-dismiss="modal" class="btn">Close</a>
                     </div>
                 </div>
@@ -131,7 +128,7 @@
                 </div><br>
                 <input style="margin-top: 50px" class="btn btn-primary btn-xl" type="submit">
                 </form>
-                <form action="profile">
+                <form action="profile" method="post">
                     <input class="btn btn-primary btn-xl" type="submit" value="Back">
                 </form>
                 <hr>
