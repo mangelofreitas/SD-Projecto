@@ -50,7 +50,7 @@ public class ProductType implements Serializable
 
     @Override
     public String toString() {
-        return  "Type = " + type +
-                ", Vote = " + vote;
+        return  "ID : "+productTypeID+" Type = " + type +
+                " , Vote = " + vote+" ";
     }
 }

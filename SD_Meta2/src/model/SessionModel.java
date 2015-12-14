@@ -121,6 +121,33 @@ public class SessionModel implements Serializable
 		return false;
 	}
 
+	public boolean cancelProject(int projectID)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				if((rmiConnection.cancelProject(user,project))==false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
+
 	public boolean sendMessage(String message, int projectID)
 	{
 		if(connection)
@@ -130,6 +157,37 @@ public class SessionModel implements Serializable
 				Project project = new Project();
 				project.setProjectID(projectID);
 				if(rmiConnection.sendMessage(new Message(message,project,user))==false)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
+
+	public boolean sendReply(String message, int projectID, int messageID)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				Message message1 = new Message();
+				message1.setProject(project);
+				message1.setMessageID(messageID);
+				Reply reply = new Reply(message,user);
+				if(rmiConnection.replyMessage(message1,reply)==false)
 				{
 					return false;
 				}
@@ -255,6 +313,43 @@ public class SessionModel implements Serializable
 		return null;
 	}
 
+	public boolean donate(int productTypeID, int projectID, int value)
+	{
+		if(connection)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectID);
+				project = rmiConnection.projectDetail(project);
+				ProductType productType = null;
+				for(int i=0;i<project.getProductTypes().size();i++)
+				{
+					if(project.getProductTypes().get(i).getProductTypeID() == productTypeID)
+					{
+						productType = project.getProductTypes().get(i);
+					}
+				}
+				if(rmiConnection.donateMoney(user,project,productType,value) && productType!=null)
+				{
+					int money;
+					if((money=rmiConnection.renewMoney(user))!=-1)
+					{
+						user.setMoney(money);
+						return true;
+					}
+				}
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				connection = false;
+				return false;
+			}
+		}
+		return false;
+	}
+
 	public boolean createProject(String name, String description, Date dateLimit, int requestedValue, String productType[], String reward[], int valueReward[])
 	{
 		if(connection)
@@ -277,6 +372,7 @@ public class SessionModel implements Serializable
 					rwrd.setName(reward[i]);
 					rwrd.setDescription(reward[i]);
 					rwrd.setValueOfReward(valueReward[i]);
+					rewards.add(rwrd);
 				}
 				if(rmiConnection.createProject(user,name,description,dateLimit,requestedValue,rewards,productTypes)==true)
 				{

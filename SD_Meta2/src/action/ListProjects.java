@@ -45,6 +45,14 @@ public class ListProjects extends ActionSupport implements SessionAware {
                 projects = user.getActualProjects();
                 for(int i=0;i<projects.size();i++)
                 {
+                    if(projects.get(i).getUser().getUsernameID()==user.getUser().getUsernameID())
+                    {
+                        projects.remove(projects.get(i));
+                        i--;
+                    }
+                }
+                for(int i=0;i<projects.size();i++)
+                {
                     ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
                     projects.get(i).setMessages(messages);
                 }

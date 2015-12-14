@@ -79,17 +79,19 @@
                     <h4 class="modal-title">User Profile:</h4>
                 </div>
                 <div class="modal-body">
-                    <form style="text-align:left" class="login-block" method="post">
-                        <h3>${user.getUser().getUsername()}</h3>
-                        <br>
-                        <p>${user.getUser().getMail()}</p>
-                        <br>
-                        <p>Available Money: ${user.getUser().getMoney()}<p/>
-                    </form>
-                    <form action="logout" method="post">
-                        <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
-                    </form>
+                    <br>
+                    <p>${user.getUser().getUsername()}</p>
+                    <br>
+                    <p>Available Money: ${user.getUser().getMoney()}<p/>
+                    <br>
+                    <div class="modal-footer">
+                        <form action="logout" method="post">
+                            <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+                        </form>
+                        <a href="#" data-dismiss="modal" class="btn">Close</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -101,8 +103,8 @@
             <div class="text-left">
                 <form action="create" method="post">
                 <h2 class="section-heading">Name of Project: </h2>
-                <input id="name" type="text" class="form-control" placeholder="Name of Project" name="NameOfProject" required/><br>
-                <br>
+                <input id="name" type="text" class="form-control" placeholder="Name of Project" name="Name" required/><br>
+                <hr>
                 <h2 class="section-heading">Decription: </h2>
                 <input id="description" type="text" class="form-control" placeholder="Description" name="Description" required/><br>
                 <br>
@@ -119,30 +121,24 @@
                     <input type="button" class="btn" value="-" onclick="remove_div('ptype','ptypediv');">
                 </div><br>
                 <div id="rwrd">
-                    <h2 class="section-heading">Reward(s): </h2>
+                    <h2 class="section-heading">Rewards(s): </h2>
                     <input id="reward" type="text" class="form-control" placeholder="Reward" name="Reward" required><input id="valueReward" class="form-control" placeholder="100" type="number" name="ValueReward" required>
                     <input type="button" class="btn" value="+" onclick="add('rwrd','rwrddiv','reward','Reward');">
                     <input type="button" class="btn" value="-" onclick="remove_div('rwrd','rwrddiv');">
                 </div><br>
-                <hr>
-                <br><br><br>
-                <div class="col-lg-2 col-md-2 text-center" style="padding-top: 14px">
-                    <div class="service-box">
-                        <input class="btn btn-primary btn-xl" type="submit" value="Submit">
-                    </div>
-                </div>
+                <input style="margin-top: 50px" class="btn btn-primary btn-xl" type="submit">
                 </form>
-                <div class="col-lg-2 col-md-2 text-center">
-                    <div class="service-box">
-                        <form action="profile">
-                            <input class="btn btn-primary btn-xl" type="submit" value="Back">
-                        </form>
-                    </div>
-                </div>
+                <form action="profile" method="post">
+                    <input class="btn btn-primary btn-xl" type="submit" value="Back">
+                </form>
+                <hr>
             </div>
         </div>
     </div>
+
 </section>
+
+
 
 <section id="Aboutus">
     <div class="container">

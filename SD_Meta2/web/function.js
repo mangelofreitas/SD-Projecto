@@ -38,3 +38,28 @@ function add_reward(divName,buttonID,projectID)
     var button = document.getElementById(buttonID);
     div.removeChild(button);
 }
+
+function donateMoney(rewardName,rewardvalue,producttypes,projectID)
+{
+    while(document.getElementById('types')!=null)
+    {
+        document.getElementById('donateptypes').removeChild(document.getElementById('types'));
+    }
+    document.getElementById('descriptiondonate').innerHTML ='Description: '+rewardName;
+    document.getElementById('valuedonate').innerHTML = 'Value of Reward: '+rewardvalue;
+    var newDiv = document.createElement('div');
+    newDiv.id = 'types';
+    var discard = producttypes.split("]");
+    var split = discard[0].split(" ");
+    console.log(split);
+    for(i=2;i<split.length;i=i+11)
+    {
+        newDiv.innerHTML += "<form action='donate' method='post'><button type='submit' class='btn btn-primary' methdod='execute'>" +
+            "Product Type:"+split[i+3]+"<br> Votes:"+split[i+7]+"" +
+            "<input id='producttypechoose' name='Producttypechoose' type='text' value='"+split[i]+"' hidden>" +
+            "<input id='projectID' name='ProjectID' type='text' value='"+projectID+"' hidden>" +
+            "<input id='valuedonate' name='Valuedonate' type='text' value='"+rewardvalue+"' hidden>" +
+            "</button><br><br></form>";
+    }
+    document.getElementById('donateptypes').appendChild(newDiv);
+}

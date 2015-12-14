@@ -63,3 +63,37 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.thumbnail .donatemoney:after{
+    color:#fff;
+    /*content:"<?php echo $row['hint_title']?>";*/
+    text-align: center;
+    text-shadow: 0 0 3px black;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 400px;
+    margin: 0 auto;
+    /*font-size: 26px;*/
+    line-height: 2;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.thumbnail:hover .donatemoney:after{
+    color:#000;
+    /*font-size:26px;*/
+    content:'Donate Money to this project';
+    text-align: center;
+    text-shadow: 0 0 3px white;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.5;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -9,11 +9,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SendMessage extends ActionSupport implements SessionAware {
+public class SendReply extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
     private Map<String,Object> session;
     private String message;
-    private int projectID;
+    private int projectID,messageID;
 
     public void setSession(Map<String, Object> session)
     {
@@ -23,7 +23,7 @@ public class SendMessage extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
-        if(user.sendMessage(message,projectID)==false && message!=null)
+        if(user.sendReply(message,projectID,messageID)==false && message!=null)
         {
             return "index";
         }
@@ -32,19 +32,11 @@ public class SendMessage extends ActionSupport implements SessionAware {
             ArrayList<Project> projects = user.getActualProjects();
             for(int i=0;i<projects.size();i++)
             {
-                for(int j=0;j<projects.size();j++)
-                {
-                    if(projects.get(j).getUser().getUsernameID()==user.getUser().getUsernameID())
-                    {
-                        projects.remove(projects.get(j));
-                        j--;
-                    }
-                }
                 ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
                 projects.get(i).setMessages(messages);
             }
-            message=null;
             session.put("projects",projects);
+            message = null;
             return "success";
         }
     }
@@ -77,5 +69,13 @@ public class SendMessage extends ActionSupport implements SessionAware {
 
     public void setProjectID(int projectID) {
         this.projectID = projectID;
+    }
+
+    public int getMessageID() {
+        return messageID;
+    }
+
+    public void setMessageID(int messageID) {
+        this.messageID = messageID;
     }
 }

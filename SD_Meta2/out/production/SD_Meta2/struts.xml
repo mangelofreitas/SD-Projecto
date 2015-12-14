@@ -40,5 +40,16 @@
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
         </action>
+        <action name="sendreply" class="action.SendReply">
+            <result name="success">/projects.jsp</result>
+            <result name="index">/projects.jsp</result>
+        </action>
+        <action name="cancel" class="action.CancelProject">
+            <result name="success">/projects.jsp</result>
+            <result name="index">/projects.jsp</result>
+        </action>
+        <action name="donate" class="action.Donate">
+            <result name="success">/projects.jsp</result>
+        </action>
     </package>
 </struts>

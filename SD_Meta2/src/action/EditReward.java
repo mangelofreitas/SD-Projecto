@@ -31,6 +31,7 @@ public class EditReward extends ActionSupport implements SessionAware
         {
             if((user.removeReward(id,projectid))==false)
             {
+                type = null;
                 return "index";
             }
             else
@@ -44,6 +45,7 @@ public class EditReward extends ActionSupport implements SessionAware
         {
             if((user.addReward(reward,valueReward,projectid))==false)
             {
+                type = null;
                 return "index";
             }
             else

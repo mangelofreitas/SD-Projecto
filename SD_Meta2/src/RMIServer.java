@@ -54,6 +54,26 @@ public class RMIServer implements RMI
         }
     }
 
+    public int renewMoney(User user) throws RemoteException
+    {
+        try
+        {
+            query = "SELECT money FROM users WHERE usernameID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, user.getUsernameID());
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("money");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return -1;
+    }
+
     /*
     * Esta classe � apenas usada para obter o nome de um utilizador no qual s� temos o ID dele,
     * como por exemplo Send Message, s� temos o ID mas ao imprimir para o cliente aparece o Nome dele.
@@ -933,7 +953,7 @@ public class RMIServer implements RMI
                 preparedStatement.setString(1, reply.getMessage());
                 preparedStatement.setInt(2,message.getMessageID());
                 preparedStatement.setInt(3,reply.getUser().getUsernameID());
-                message.getReplies().add(reply);
+                //message.getReplies().add(reply);
                 int result = preparedStatement.executeUpdate();
                 if(result!=1)
                 {
