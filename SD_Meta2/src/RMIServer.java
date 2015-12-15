@@ -276,6 +276,32 @@ public class RMIServer implements RMI
         return null;
     }
 
+    public ArrayList<Reward> getUserRewardsFuture(User user) throws RemoteException
+    {
+        System.out.println("Get User Rewards");
+        try
+        {
+            query = "SELECT rewards.rewardID, rewards.name, rewards.description, rewards.valueOfReward FROM users_contributes,rewards, projects, users WHERE users_contributes.rewardID = rewards.rewardID AND users.usernameID = users_contributes.usernameID AND projects.projectID = users_contributes.projectID AND projects.alive = ? AND projects.success = ? AND users_contributes.usernameID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setBoolean(2, false);
+            preparedStatement.setInt(3, user.getUsernameID());
+            ArrayList<Reward> rewards = new ArrayList<Reward>();
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next())
+            {
+                rewards.add(new Reward(rs.getString("name"),rs.getString("description"),rs.getInt("valueOfReward"),rs.getInt("rewardID")));
+            }
+            return rewards;
+        }
+        catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+
+
     /*
     * Fun��o que realiza o login, isto �, faz um SELECT do utilizador pelo mail e password que no TCPClient foi dado
     * se existir retorna o utilizador com o username e usernameID na classe user, caso contr�rio retorna null, informando

@@ -122,27 +122,27 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-3 col-md-6 text-center">
+			<div class="col-lg-3 col-md-3 text-center">
 				<div class="service-box">
 					<form action="projects">
 						<s:hidden key="type" value="myprojects"/>
-						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-heart wow bounceIn" data-wow-delay=".1s"></i></button>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-unlock wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>See My Projects</h3>
 					<p class="text-muted">You can see your all projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6 text-center">
+			<div class="col-lg-3 col-md-3 text-center">
 				<div class="service-box">
 					<form action="projects">
 						<s:hidden key="type" value="actualprojects"/>
-						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-diamond wow bounceIn" data-wow-delay=".1s"></i></button>
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-search wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>Actual Projects</h3>
 					<p class="text-muted">You can see all actual projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6 text-center">
+			<div class="col-lg-3 col-md-3 text-center">
 				<div class="service-box">
 					<form action="projects">
 						<s:hidden key="type" value="oldprojects"/>
@@ -152,7 +152,7 @@
 					<p class="text-muted">You can see all old projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-6 text-center">
+			<div class="col-lg-3 col-md-3 text-center">
 				<div class="service-box">
 					<!--<a href="index.html">-->
 					<form action="newproject">
@@ -160,6 +160,17 @@
 					</form>
 					<h3>Start a Project</h3>
 					<p class="text-muted">You can start a project </p>
+				</div>
+			</div>
+			<br><br>
+			<div class="col-lg-3 col-md-3 text-center">
+				<div class="service-box">
+					<!--<a href="index.html">-->
+					<form action="rewards">
+						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-plus wow bounceIn" data-wow-delay=".2s"></i></button>
+					</form>
+					<h3>See your rewards</h3>
+					<p class="text-muted">You can see your rewards </p>
 				</div>
 			</div>
 		</div>

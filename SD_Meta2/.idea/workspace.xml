@@ -28,67 +28,14 @@
     <favorites_list name="SD_Meta2" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.40352422">
+    <splitter split-orientation="horizontal" split-proportion="0.5797619">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/struts.xml">
-              <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="CancelProject.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/action/CancelProject.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="projects.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/projects.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web/index.jsp">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-19.692308">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="242" column="7" selection-start-line="242" selection-start-column="7" selection-end-line="242" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="creative.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/css/creative.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8697318">
-                  <caret line="475" column="1" selection-start-line="475" selection-start-column="1" selection-end-line="475" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -98,65 +45,64 @@
             <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="368" column="26" selection-start-line="368" selection-start-column="19" selection-end-line="368" selection-end-column="26" />
+                  <caret line="278" column="4" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="83" />
                   <folding>
-                    <marker date="1450049567951" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
-                    <marker date="1450049567951" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
-                    <marker date="1450049567951" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
-                    <marker date="1450049567951" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
-                    <marker date="1450049567951" expanded="true" signature="11701:11774" placeholder="SELECT usern..users..." />
-                    <marker date="1450049567951" expanded="true" signature="12964:13035" placeholder="SELECT votes..types_products..." />
-                    <marker date="1450049567951" expanded="true" signature="13981:14061" placeholder="SELECT rewar..rewards..." />
-                    <marker date="1450049567951" expanded="true" signature="15202:15311" placeholder="INSERT INTO users_contributes..." />
-                    <marker date="1450049567951" expanded="true" signature="16264:16311" placeholder="UPDATE users..." />
-                    <marker date="1450049567951" expanded="true" signature="16741:16800" placeholder="UPDATE types..." />
-                    <marker date="1450049567951" expanded="true" signature="17290:17347" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="18270:18343" placeholder="INSERT INTO messages_send..." />
-                    <marker date="1450049567951" expanded="true" signature="19487:19629" placeholder="INSERT INTO projects..." />
-                    <marker date="1450049567951" expanded="true" signature="20359:20441" placeholder="INSERT INTO rewards..." />
-                    <marker date="1450049567951" expanded="true" signature="21099:21165" placeholder="INSERT INTO types_products..." />
-                    <marker date="1450049567951" expanded="true" signature="22135:22280" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="22745:22827" placeholder="INSERT INTO rewards..." />
-                    <marker date="1450049567951" expanded="true" signature="23843:23988" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="24336:24374" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="25153:25202" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="27830:27889" placeholder="SELECT messa..messages_send..." />
-                    <marker date="1450049567951" expanded="true" signature="28664:28709" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="29368:29418" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="30145:30184" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="30848:30894" placeholder="DELETE FROM ..." />
-                    <marker date="1450049567951" expanded="true" signature="31504:31585" placeholder="SELECT usern..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="32070:32119" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="34552:34608" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="35590:35784" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="37161:37301" placeholder="SELECT proje..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="38525:38628" placeholder="SELECT messa..messages_send..." />
-                    <marker date="1450049567951" expanded="true" signature="39557:39638" placeholder="SELECT usern..projects..." />
-                    <marker date="1450049567951" expanded="true" signature="39980:40058" placeholder="INSERT INTO messages_reply..." />
-                    <marker date="1450049567951" expanded="true" signature="41027:41113" placeholder="SELECT messa..messages_reply..." />
-                    <marker date="1450049567951" expanded="true" signature="42058:42160" placeholder="SELECT messa..messages_send..." />
-                    <marker date="1450049567951" expanded="true" signature="43575:43619" placeholder="SELECT money..users..." />
-                    <marker date="1450049567951" expanded="true" signature="43993:44040" placeholder="UPDATE users..." />
-                    <marker date="1450049567951" expanded="true" signature="45251:45313" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="47124:47204" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="48174:48254" placeholder="UPDATE proje..." />
-                    <marker date="1450049567951" expanded="true" signature="49501:49568" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
+                    <marker date="1450144657335" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
+                    <marker date="1450144657335" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
+                    <marker date="1450144657335" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
+                    <marker date="1450144657335" expanded="true" signature="11412:11783" placeholder="SELECT rewar..users_contributes..." />
+                    <marker date="1450144657335" expanded="true" signature="12978:13051" placeholder="SELECT usern..users..." />
+                    <marker date="1450144657335" expanded="true" signature="14241:14312" placeholder="SELECT votes..types_products..." />
+                    <marker date="1450144657335" expanded="true" signature="15258:15338" placeholder="SELECT rewar..rewards..." />
+                    <marker date="1450144657335" expanded="true" signature="16479:16588" placeholder="INSERT INTO users_contributes..." />
+                    <marker date="1450144657335" expanded="true" signature="17541:17588" placeholder="UPDATE users..." />
+                    <marker date="1450144657335" expanded="true" signature="18018:18077" placeholder="UPDATE types..." />
+                    <marker date="1450144657335" expanded="true" signature="18567:18624" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="19547:19620" placeholder="INSERT INTO messages_send..." />
+                    <marker date="1450144657335" expanded="true" signature="20764:20906" placeholder="INSERT INTO projects..." />
+                    <marker date="1450144657335" expanded="true" signature="21636:21718" placeholder="INSERT INTO rewards..." />
+                    <marker date="1450144657335" expanded="true" signature="22376:22442" placeholder="INSERT INTO types_products..." />
+                    <marker date="1450144657335" expanded="true" signature="23412:23557" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="24022:24104" placeholder="INSERT INTO rewards..." />
+                    <marker date="1450144657335" expanded="true" signature="25120:25265" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="25613:25651" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="26430:26479" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="29107:29166" placeholder="SELECT messa..messages_send..." />
+                    <marker date="1450144657335" expanded="true" signature="29941:29986" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="30645:30695" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="31422:31461" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="32125:32171" placeholder="DELETE FROM ..." />
+                    <marker date="1450144657335" expanded="true" signature="32781:32862" placeholder="SELECT usern..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="33347:33396" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="35829:35885" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="36867:37061" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="38438:38578" placeholder="SELECT proje..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="39802:39905" placeholder="SELECT messa..messages_send..." />
+                    <marker date="1450144657335" expanded="true" signature="40834:40915" placeholder="SELECT usern..projects..." />
+                    <marker date="1450144657335" expanded="true" signature="41257:41335" placeholder="INSERT INTO messages_reply..." />
+                    <marker date="1450144657335" expanded="true" signature="42304:42390" placeholder="SELECT messa..messages_reply..." />
+                    <marker date="1450144657335" expanded="true" signature="43335:43437" placeholder="SELECT messa..messages_send..." />
+                    <marker date="1450144657335" expanded="true" signature="44852:44896" placeholder="SELECT money..users..." />
+                    <marker date="1450144657335" expanded="true" signature="45270:45317" placeholder="UPDATE users..." />
+                    <marker date="1450144657335" expanded="true" signature="46528:46590" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="48401:48481" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="49451:49531" placeholder="UPDATE proje..." />
+                    <marker date="1450144657335" expanded="true" signature="50778:50845" placeholder="SELECT proje..projects..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CreateProject.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
+          <file leaf-file-name="rewards.jsp" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/web/rewards.jsp">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-                  <folding>
-                    <element signature="method#setDateLimit#0;class#CreateProject#0" expanded="false" />
-                  </folding>
+                <state vertical-scroll-proportion="0.51724136">
+                  <caret line="103" column="67" selection-start-line="103" selection-start-column="67" selection-end-line="103" selection-end-column="67" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -165,18 +111,20 @@
             <entry file="file://$PROJECT_DIR$/src/model/SessionModel.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="332" column="97" selection-start-line="332" selection-start-column="97" selection-end-line="332" selection-end-column="97" />
+                  <caret line="323" column="38" selection-start-line="323" selection-start-column="38" selection-end-line="323" selection-end-column="38" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RMI.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
+          <file leaf-file-name="ConsultRewards.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/action/ConsultRewards.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
-                  <folding />
+                  <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -185,31 +133,24 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Project.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/model/Project.java">
+          <file leaf-file-name="struts.xml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/struts.xml">
+              <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
+                <state />
+              </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+                <state vertical-scroll-proportion="0.9292196">
+                  <caret line="55" column="44" selection-start-line="55" selection-start-column="44" selection-end-line="55" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ProductType.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/model/ProductType.java">
+          <file leaf-file-name="projects.jsp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/web/projects.jsp">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="newproject.jsp" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/newproject.jsp">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="104" column="66" selection-start-line="104" selection-start-column="66" selection-end-line="104" selection-end-column="66" />
+                  <caret line="160" column="61" selection-start-line="154" selection-start-column="19" selection-end-line="172" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -219,52 +160,18 @@
             <entry file="file://$PROJECT_DIR$/src/action/ListProjects.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+                  <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SendMessage.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/action/SendMessage.java">
+          <file leaf-file-name="Reward.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/model/Reward.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="45" />
+                  <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="5" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/action/Login.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="function.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/function.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
-                  <folding>
-                    <marker date="1450048718099" expanded="true" signature="1542:1558" placeholder="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Donate.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-                  <folding>
-                    <element signature="method#setProducttypechoose#0;class#Donate#0" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -273,17 +180,7 @@
             <entry file="file://$PROJECT_DIR$/web/profile.jsp">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="199" column="7" selection-start-line="199" selection-start-column="7" selection-end-line="199" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/css/bootstrap.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.0034482">
-                  <caret line="6743" column="6" selection-start-line="6743" selection-start-column="6" selection-end-line="6743" selection-end-column="6" />
+                  <caret line="168" column="43" selection-start-line="168" selection-start-column="43" selection-end-line="168" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -298,9 +195,9 @@
       <list>
         <option value="struts_2_3" />
         <option value="JavaScript File" />
-        <option value="Jsp File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -328,19 +225,21 @@
         <option value="$PROJECT_DIR$/src/action/CreateProject.java" />
         <option value="$PROJECT_DIR$/web/css/bootstrap_overwrite.css" />
         <option value="$PROJECT_DIR$/src/action/ListProjects.java" />
-        <option value="$PROJECT_DIR$/src/action/SendMessage.java" />
         <option value="$PROJECT_DIR$/src/model/ProductType.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
         <option value="$PROJECT_DIR$/web/projects.jsp" />
         <option value="$PROJECT_DIR$/web/function.js" />
+        <option value="$PROJECT_DIR$/src/action/Donate.java" />
+        <option value="$PROJECT_DIR$/web/index.jsp" />
+        <option value="$PROJECT_DIR$/web/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/web/css/creative.css" />
+        <option value="$PROJECT_DIR$/src/action/SendMessage.java" />
         <option value="$PROJECT_DIR$/src/RMIServer.java" />
         <option value="$PROJECT_DIR$/src/model/RMI.java" />
         <option value="$PROJECT_DIR$/src/model/SessionModel.java" />
-        <option value="$PROJECT_DIR$/src/action/Donate.java" />
-        <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/profile.jsp" />
-        <option value="$PROJECT_DIR$/web/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/web/css/creative.css" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/src/action/ConsultRewards.java" />
+        <option value="$PROJECT_DIR$/web/rewards.jsp" />
       </list>
     </option>
   </component>
@@ -406,7 +305,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -529,6 +427,7 @@
       </pane>
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1081,41 +980,45 @@
       <workItem from="1449951268554" duration="18819000" />
       <workItem from="1450024344061" duration="21267000" />
       <workItem from="1450058088128" duration="249000" />
+      <workItem from="1450058649385" duration="595000" />
+      <workItem from="1450115634993" duration="1970000" />
+      <workItem from="1450140821655" duration="8226000" />
+      <workItem from="1450197302033" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89910000" />
+    <option name="totallyTimeSpent" value="100738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45741326" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16910689" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19692533" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1139,9 +1042,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36750787" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16910689" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19702381" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1169,22 +1072,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/projects.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="5" selection-start-line="17" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1198,50 +1085,51 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1033" column="27" selection-start-line="1033" selection-start-column="27" selection-end-line="1033" selection-end-column="41" />
           <folding>
-            <marker date="1450049567951" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
-            <marker date="1450049567951" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
-            <marker date="1450049567951" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="11701:11774" placeholder="SELECT usern..users..." />
-            <marker date="1450049567951" expanded="true" signature="12964:13035" placeholder="SELECT votes..types_products..." />
-            <marker date="1450049567951" expanded="true" signature="13981:14061" placeholder="SELECT rewar..rewards..." />
-            <marker date="1450049567951" expanded="true" signature="15202:15311" placeholder="INSERT INTO users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="16264:16311" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="16741:16800" placeholder="UPDATE types..." />
-            <marker date="1450049567951" expanded="true" signature="17290:17347" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="18270:18343" placeholder="INSERT INTO messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="19487:19629" placeholder="INSERT INTO projects..." />
-            <marker date="1450049567951" expanded="true" signature="20359:20441" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="21099:21165" placeholder="INSERT INTO types_products..." />
-            <marker date="1450049567951" expanded="true" signature="22135:22280" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="22745:22827" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="23843:23988" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="24336:24374" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="25153:25202" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="27830:27889" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="28664:28709" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="29368:29418" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30145:30184" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30848:30894" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="31504:31585" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="32070:32119" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="34552:34608" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="35590:35784" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="37161:37301" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="38525:38628" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="39557:39638" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="39980:40058" placeholder="INSERT INTO messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="41027:41113" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="42058:42160" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="43575:43619" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="43993:44040" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="45251:45313" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="47124:47204" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="48174:48254" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="49501:49568" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
+            <marker date="1450144657335" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
+            <marker date="1450144657335" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="11412:11783" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="12978:13051" placeholder="SELECT usern..users..." />
+            <marker date="1450144657335" expanded="true" signature="14241:14312" placeholder="SELECT votes..types_products..." />
+            <marker date="1450144657335" expanded="true" signature="15258:15338" placeholder="SELECT rewar..rewards..." />
+            <marker date="1450144657335" expanded="true" signature="16479:16588" placeholder="INSERT INTO users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="17541:17588" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="18018:18077" placeholder="UPDATE types..." />
+            <marker date="1450144657335" expanded="true" signature="18567:18624" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="19547:19620" placeholder="INSERT INTO messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="20764:20906" placeholder="INSERT INTO projects..." />
+            <marker date="1450144657335" expanded="true" signature="21636:21718" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="22376:22442" placeholder="INSERT INTO types_products..." />
+            <marker date="1450144657335" expanded="true" signature="23412:23557" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="24022:24104" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="25120:25265" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="25613:25651" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="26430:26479" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="29107:29166" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="29941:29986" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="30645:30695" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="31422:31461" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32125:32171" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32781:32862" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="33347:33396" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="35829:35885" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="36867:37061" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="38438:38578" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="39802:39905" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="40834:40915" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="41257:41335" placeholder="INSERT INTO messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="42304:42390" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="43335:43437" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="44852:44896" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="45270:45317" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="46528:46590" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="48401:48481" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="49451:49531" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="50778:50845" placeholder="SELECT proje..projects..." />
           </folding>
         </state>
       </provider>
@@ -1258,7 +1146,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="178" column="9" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2647#2648#0" expanded="false" />
+            <element signature="e#2674#2675#0" expanded="false" />
+            <element signature="e#2712#2713#0" expanded="false" />
+            <element signature="e#2744#2745#0" expanded="false" />
+            <element signature="e#2777#2778#0" expanded="false" />
+            <element signature="e#2809#2810#0" expanded="false" />
+            <element signature="e#2856#2857#0" expanded="false" />
+            <element signature="e#2898#2899#0" expanded="false" />
+            <element signature="e#2936#2937#0" expanded="false" />
+            <element signature="e#2970#2971#0" expanded="false" />
+            <element signature="e#3024#3025#0" expanded="false" />
+            <element signature="e#3070#3071#0" expanded="false" />
+            <element signature="e#3108#3109#0" expanded="false" />
+            <element signature="e#3142#3143#0" expanded="false" />
+            <element signature="e#3196#3197#0" expanded="false" />
+            <element signature="e#3242#3243#0" expanded="false" />
+            <element signature="e#3276#3277#0" expanded="false" />
+            <element signature="e#3308#3309#0" expanded="false" />
+            <element signature="e#3356#3357#0" expanded="false" />
+            <element signature="e#3398#3399#0" expanded="false" />
+            <element signature="e#3436#3437#0" expanded="false" />
+            <element signature="e#3473#3474#0" expanded="false" />
+            <element signature="e#3530#3531#0" expanded="false" />
+            <element signature="e#3582#3583#0" expanded="false" />
+            <element signature="e#3627#3628#0" expanded="false" />
+            <element signature="e#3657#3658#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
+            <element signature="e#3752#3753#0" expanded="false" />
+            <element signature="e#3789#3790#0" expanded="false" />
+            <element signature="e#3825#3826#0" expanded="false" />
+            <element signature="e#3880#3881#0" expanded="false" />
+            <element signature="e#3930#3931#0" expanded="false" />
+            <element signature="e#3985#3986#0" expanded="false" />
+            <element signature="e#4020#4021#0" expanded="false" />
+            <element signature="e#4092#4093#0" expanded="false" />
+            <element signature="e#4140#4141#0" expanded="false" />
+            <element signature="e#4179#4180#0" expanded="false" />
+            <element signature="e#4214#4215#0" expanded="false" />
+            <element signature="e#4270#4271#0" expanded="false" />
+            <element signature="e#4318#4319#0" expanded="false" />
+            <element signature="e#4353#4354#0" expanded="false" />
+            <element signature="e#4383#4384#0" expanded="false" />
+            <element signature="e#4430#4431#0" expanded="false" />
+            <element signature="e#4468#4469#0" expanded="false" />
+            <element signature="e#4515#4516#0" expanded="false" />
+            <element signature="e#4546#4547#0" expanded="false" />
+            <element signature="e#4606#4607#0" expanded="false" />
+            <element signature="e#4646#4647#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1273,7 +1211,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#506#507#0" expanded="false" />
+            <element signature="e#533#534#0" expanded="false" />
+            <element signature="e#573#574#0" expanded="false" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#633#634#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="false" />
+            <element signature="e#697#698#0" expanded="false" />
+            <element signature="e#729#730#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#802#803#0" expanded="false" />
+            <element signature="e#857#858#0" expanded="false" />
+            <element signature="e#907#908#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1289,7 +1240,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#430#431#0" expanded="false" />
+            <element signature="e#459#460#0" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1022#1023#0" expanded="false" />
+            <element signature="e#1061#1062#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1131#1132#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
+            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="e#1210#1211#0" expanded="false" />
+            <element signature="e#1244#1245#0" expanded="false" />
+            <element signature="e#1266#1267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1321,50 +1286,51 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="1168" column="0" selection-start-line="1168" selection-start-column="0" selection-end-line="1168" selection-end-column="0" />
           <folding>
-            <marker date="1450049567951" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
-            <marker date="1450049567951" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
-            <marker date="1450049567951" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="11701:11774" placeholder="SELECT usern..users..." />
-            <marker date="1450049567951" expanded="true" signature="12964:13035" placeholder="SELECT votes..types_products..." />
-            <marker date="1450049567951" expanded="true" signature="13981:14061" placeholder="SELECT rewar..rewards..." />
-            <marker date="1450049567951" expanded="true" signature="15202:15311" placeholder="INSERT INTO users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="16264:16311" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="16741:16800" placeholder="UPDATE types..." />
-            <marker date="1450049567951" expanded="true" signature="17290:17347" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="18270:18343" placeholder="INSERT INTO messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="19487:19629" placeholder="INSERT INTO projects..." />
-            <marker date="1450049567951" expanded="true" signature="20359:20441" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="21099:21165" placeholder="INSERT INTO types_products..." />
-            <marker date="1450049567951" expanded="true" signature="22135:22280" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="22745:22827" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="23843:23988" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="24336:24374" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="25153:25202" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="27830:27889" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="28664:28709" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="29368:29418" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30145:30184" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30848:30894" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="31504:31585" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="32070:32119" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="34552:34608" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="35590:35784" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="37161:37301" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="38525:38628" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="39557:39638" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="39980:40058" placeholder="INSERT INTO messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="41027:41113" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="42058:42160" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="43575:43619" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="43993:44040" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="45251:45313" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="47124:47204" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="48174:48254" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="49501:49568" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
+            <marker date="1450144657335" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
+            <marker date="1450144657335" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="11412:11783" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="12978:13051" placeholder="SELECT usern..users..." />
+            <marker date="1450144657335" expanded="true" signature="14241:14312" placeholder="SELECT votes..types_products..." />
+            <marker date="1450144657335" expanded="true" signature="15258:15338" placeholder="SELECT rewar..rewards..." />
+            <marker date="1450144657335" expanded="true" signature="16479:16588" placeholder="INSERT INTO users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="17541:17588" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="18018:18077" placeholder="UPDATE types..." />
+            <marker date="1450144657335" expanded="true" signature="18567:18624" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="19547:19620" placeholder="INSERT INTO messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="20764:20906" placeholder="INSERT INTO projects..." />
+            <marker date="1450144657335" expanded="true" signature="21636:21718" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="22376:22442" placeholder="INSERT INTO types_products..." />
+            <marker date="1450144657335" expanded="true" signature="23412:23557" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="24022:24104" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="25120:25265" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="25613:25651" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="26430:26479" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="29107:29166" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="29941:29986" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="30645:30695" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="31422:31461" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32125:32171" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32781:32862" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="33347:33396" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="35829:35885" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="36867:37061" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="38438:38578" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="39802:39905" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="40834:40915" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="41257:41335" placeholder="INSERT INTO messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="42304:42390" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="43335:43437" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="44852:44896" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="45270:45317" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="46528:46590" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="48401:48481" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="49451:49531" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="50778:50845" placeholder="SELECT proje..projects..." />
           </folding>
         </state>
       </provider>
@@ -1381,7 +1347,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#430#431#0" expanded="false" />
+            <element signature="e#459#460#0" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1022#1023#0" expanded="false" />
+            <element signature="e#1061#1062#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1131#1132#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
+            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="e#1210#1211#0" expanded="false" />
+            <element signature="e#1244#1245#0" expanded="false" />
+            <element signature="e#1266#1267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1413,50 +1393,51 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
           <folding>
-            <marker date="1450049567951" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
-            <marker date="1450049567951" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
-            <marker date="1450049567951" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="11701:11774" placeholder="SELECT usern..users..." />
-            <marker date="1450049567951" expanded="true" signature="12964:13035" placeholder="SELECT votes..types_products..." />
-            <marker date="1450049567951" expanded="true" signature="13981:14061" placeholder="SELECT rewar..rewards..." />
-            <marker date="1450049567951" expanded="true" signature="15202:15311" placeholder="INSERT INTO users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="16264:16311" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="16741:16800" placeholder="UPDATE types..." />
-            <marker date="1450049567951" expanded="true" signature="17290:17347" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="18270:18343" placeholder="INSERT INTO messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="19487:19629" placeholder="INSERT INTO projects..." />
-            <marker date="1450049567951" expanded="true" signature="20359:20441" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="21099:21165" placeholder="INSERT INTO types_products..." />
-            <marker date="1450049567951" expanded="true" signature="22135:22280" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="22745:22827" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="23843:23988" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="24336:24374" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="25153:25202" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="27830:27889" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="28664:28709" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="29368:29418" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30145:30184" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30848:30894" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="31504:31585" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="32070:32119" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="34552:34608" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="35590:35784" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="37161:37301" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="38525:38628" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="39557:39638" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="39980:40058" placeholder="INSERT INTO messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="41027:41113" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="42058:42160" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="43575:43619" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="43993:44040" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="45251:45313" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="47124:47204" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="48174:48254" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="49501:49568" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
+            <marker date="1450144657335" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
+            <marker date="1450144657335" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="11412:11783" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="12978:13051" placeholder="SELECT usern..users..." />
+            <marker date="1450144657335" expanded="true" signature="14241:14312" placeholder="SELECT votes..types_products..." />
+            <marker date="1450144657335" expanded="true" signature="15258:15338" placeholder="SELECT rewar..rewards..." />
+            <marker date="1450144657335" expanded="true" signature="16479:16588" placeholder="INSERT INTO users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="17541:17588" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="18018:18077" placeholder="UPDATE types..." />
+            <marker date="1450144657335" expanded="true" signature="18567:18624" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="19547:19620" placeholder="INSERT INTO messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="20764:20906" placeholder="INSERT INTO projects..." />
+            <marker date="1450144657335" expanded="true" signature="21636:21718" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="22376:22442" placeholder="INSERT INTO types_products..." />
+            <marker date="1450144657335" expanded="true" signature="23412:23557" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="24022:24104" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="25120:25265" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="25613:25651" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="26430:26479" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="29107:29166" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="29941:29986" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="30645:30695" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="31422:31461" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32125:32171" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32781:32862" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="33347:33396" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="35829:35885" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="36867:37061" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="38438:38578" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="39802:39905" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="40834:40915" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="41257:41335" placeholder="INSERT INTO messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="42304:42390" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="43335:43437" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="44852:44896" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="45270:45317" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="46528:46590" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="48401:48481" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="49451:49531" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="50778:50845" placeholder="SELECT proje..projects..." />
           </folding>
         </state>
       </provider>
@@ -1490,13 +1471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Reward.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/LogOut.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1522,27 +1496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/CancelProject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding>
-            <element signature="method#setDateLimit#0;class#CreateProject#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1550,15 +1503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44485295">
           <caret line="71" column="33" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/MenuHandling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1566,7 +1510,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/creative.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="475" column="1" selection-start-line="475" selection-start-column="1" selection-end-line="475" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1574,7 +1524,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2647#2648#0" expanded="false" />
+            <element signature="e#2674#2675#0" expanded="false" />
+            <element signature="e#2712#2713#0" expanded="false" />
+            <element signature="e#2744#2745#0" expanded="false" />
+            <element signature="e#2777#2778#0" expanded="false" />
+            <element signature="e#2809#2810#0" expanded="false" />
+            <element signature="e#2856#2857#0" expanded="false" />
+            <element signature="e#2898#2899#0" expanded="false" />
+            <element signature="e#2936#2937#0" expanded="false" />
+            <element signature="e#2970#2971#0" expanded="false" />
+            <element signature="e#3024#3025#0" expanded="false" />
+            <element signature="e#3070#3071#0" expanded="false" />
+            <element signature="e#3108#3109#0" expanded="false" />
+            <element signature="e#3142#3143#0" expanded="false" />
+            <element signature="e#3196#3197#0" expanded="false" />
+            <element signature="e#3242#3243#0" expanded="false" />
+            <element signature="e#3276#3277#0" expanded="false" />
+            <element signature="e#3308#3309#0" expanded="false" />
+            <element signature="e#3356#3357#0" expanded="false" />
+            <element signature="e#3398#3399#0" expanded="false" />
+            <element signature="e#3436#3437#0" expanded="false" />
+            <element signature="e#3473#3474#0" expanded="false" />
+            <element signature="e#3530#3531#0" expanded="false" />
+            <element signature="e#3582#3583#0" expanded="false" />
+            <element signature="e#3627#3628#0" expanded="false" />
+            <element signature="e#3657#3658#0" expanded="false" />
+            <element signature="e#3714#3715#0" expanded="false" />
+            <element signature="e#3752#3753#0" expanded="false" />
+            <element signature="e#3789#3790#0" expanded="false" />
+            <element signature="e#3825#3826#0" expanded="false" />
+            <element signature="e#3880#3881#0" expanded="false" />
+            <element signature="e#3930#3931#0" expanded="false" />
+            <element signature="e#3985#3986#0" expanded="false" />
+            <element signature="e#4020#4021#0" expanded="false" />
+            <element signature="e#4092#4093#0" expanded="false" />
+            <element signature="e#4140#4141#0" expanded="false" />
+            <element signature="e#4179#4180#0" expanded="false" />
+            <element signature="e#4214#4215#0" expanded="false" />
+            <element signature="e#4270#4271#0" expanded="false" />
+            <element signature="e#4318#4319#0" expanded="false" />
+            <element signature="e#4353#4354#0" expanded="false" />
+            <element signature="e#4383#4384#0" expanded="false" />
+            <element signature="e#4430#4431#0" expanded="false" />
+            <element signature="e#4468#4469#0" expanded="false" />
+            <element signature="e#4515#4516#0" expanded="false" />
+            <element signature="e#4546#4547#0" expanded="false" />
+            <element signature="e#4606#4607#0" expanded="false" />
+            <element signature="e#4646#4647#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1582,57 +1582,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="24" selection-start-line="52" selection-start-column="24" selection-end-line="52" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/newproject.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="66" selection-start-line="104" selection-start-column="66" selection-end-line="104" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/projects.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="60" selection-start-line="34" selection-start-column="60" selection-end-line="34" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/ListProjects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/function.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
           <folding>
-            <marker date="1450048718099" expanded="true" signature="1542:1558" placeholder="..." />
+            <element signature="e#506#507#0" expanded="false" />
+            <element signature="e#533#534#0" expanded="false" />
+            <element signature="e#573#574#0" expanded="false" />
+            <element signature="e#605#606#0" expanded="false" />
+            <element signature="e#633#634#0" expanded="false" />
+            <element signature="e#660#661#0" expanded="false" />
+            <element signature="e#697#698#0" expanded="false" />
+            <element signature="e#729#730#0" expanded="false" />
+            <element signature="e#766#767#0" expanded="false" />
+            <element signature="e#802#803#0" expanded="false" />
+            <element signature="e#857#858#0" expanded="false" />
+            <element signature="e#907#908#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/SendMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1640,6 +1603,216 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#430#431#0" expanded="false" />
+            <element signature="e#459#460#0" expanded="false" />
+            <element signature="e#983#984#0" expanded="false" />
+            <element signature="e#1022#1023#0" expanded="false" />
+            <element signature="e#1061#1062#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1131#1132#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
+            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="e#1210#1211#0" expanded="false" />
+            <element signature="e#1244#1245#0" expanded="false" />
+            <element signature="e#1266#1267#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/function.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#569#570#0" expanded="false" />
+            <element signature="e#607#608#0" expanded="false" />
+            <element signature="e#2202#2203#0" expanded="false" />
+            <element signature="e#2250#2251#0" expanded="false" />
+            <element signature="e#2285#2286#0" expanded="false" />
+            <element signature="e#2319#2320#0" expanded="false" />
+            <element signature="e#2373#2374#0" expanded="false" />
+            <element signature="e#2437#2438#0" expanded="false" />
+            <element signature="e#2478#2479#0" expanded="false" />
+            <element signature="e#2518#2519#0" expanded="false" />
+            <element signature="method#setProducttypechoose#0;class#Donate#0" expanded="false" />
+            <element signature="e#2693#2694#0" expanded="false" />
+            <element signature="e#2725#2726#0" expanded="false" />
+            <element signature="e#2775#2776#0" expanded="false" />
+            <element signature="e#2835#2836#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6743" column="6" selection-start-line="6743" selection-start-column="6" selection-end-line="6743" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/SendMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="e#520#521#0" expanded="false" />
+            <element signature="e#558#559#0" expanded="false" />
+            <element signature="e#1786#1787#0" expanded="false" />
+            <element signature="e#1834#1835#0" expanded="false" />
+            <element signature="e#1868#1869#0" expanded="false" />
+            <element signature="e#1898#1899#0" expanded="false" />
+            <element signature="e#1944#1945#0" expanded="false" />
+            <element signature="e#1982#1983#0" expanded="false" />
+            <element signature="e#2015#2016#0" expanded="false" />
+            <element signature="e#2047#2048#0" expanded="false" />
+            <element signature="e#2094#2095#0" expanded="false" />
+            <element signature="e#2136#2137#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+          <folding>
+            <element signature="method#setDateLimit#0;class#CreateProject#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/MenuHandling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="5" selection-start-line="27" selection-start-column="4" selection-end-line="39" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="278" column="4" selection-start-line="278" selection-start-column="4" selection-end-line="278" selection-end-column="83" />
+          <folding>
+            <marker date="1450144657335" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
+            <marker date="1450144657335" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
+            <marker date="1450144657335" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="11412:11783" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="12978:13051" placeholder="SELECT usern..users..." />
+            <marker date="1450144657335" expanded="true" signature="14241:14312" placeholder="SELECT votes..types_products..." />
+            <marker date="1450144657335" expanded="true" signature="15258:15338" placeholder="SELECT rewar..rewards..." />
+            <marker date="1450144657335" expanded="true" signature="16479:16588" placeholder="INSERT INTO users_contributes..." />
+            <marker date="1450144657335" expanded="true" signature="17541:17588" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="18018:18077" placeholder="UPDATE types..." />
+            <marker date="1450144657335" expanded="true" signature="18567:18624" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="19547:19620" placeholder="INSERT INTO messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="20764:20906" placeholder="INSERT INTO projects..." />
+            <marker date="1450144657335" expanded="true" signature="21636:21718" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="22376:22442" placeholder="INSERT INTO types_products..." />
+            <marker date="1450144657335" expanded="true" signature="23412:23557" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="24022:24104" placeholder="INSERT INTO rewards..." />
+            <marker date="1450144657335" expanded="true" signature="25120:25265" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="25613:25651" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="26430:26479" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="29107:29166" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="29941:29986" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="30645:30695" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="31422:31461" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32125:32171" placeholder="DELETE FROM ..." />
+            <marker date="1450144657335" expanded="true" signature="32781:32862" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="33347:33396" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="35829:35885" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="36867:37061" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="38438:38578" placeholder="SELECT proje..projects..." />
+            <marker date="1450144657335" expanded="true" signature="39802:39905" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="40834:40915" placeholder="SELECT usern..projects..." />
+            <marker date="1450144657335" expanded="true" signature="41257:41335" placeholder="INSERT INTO messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="42304:42390" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450144657335" expanded="true" signature="43335:43437" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450144657335" expanded="true" signature="44852:44896" placeholder="SELECT money..users..." />
+            <marker date="1450144657335" expanded="true" signature="45270:45317" placeholder="UPDATE users..." />
+            <marker date="1450144657335" expanded="true" signature="46528:46590" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="48401:48481" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="49451:49531" placeholder="UPDATE proje..." />
+            <marker date="1450144657335" expanded="true" signature="50778:50845" placeholder="SELECT proje..projects..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/CancelProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32545045">
+          <caret line="27" column="56" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/newproject.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47563806">
+          <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Reward.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="26" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="242" column="7" selection-start-line="242" selection-start-column="7" selection-end-line="242" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/projects.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="160" column="61" selection-start-line="154" selection-start-column="19" selection-end-line="172" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/profile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="168" column="43" selection-start-line="168" selection-start-column="43" selection-end-line="168" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/ListProjects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1649,111 +1822,34 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.9292196">
+          <caret line="55" column="44" selection-start-line="55" selection-start-column="44" selection-end-line="55" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="368" column="26" selection-start-line="368" selection-start-column="19" selection-end-line="368" selection-end-column="26" />
-          <folding>
-            <marker date="1450049567951" expanded="true" signature="1498:1542" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="4337:4469" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="5753:5900" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="7300:7428" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="8516:8566" placeholder="SELECT * FRO..users..." />
-            <marker date="1450049567951" expanded="true" signature="8928:8996" placeholder="INSERT INTO users..." />
-            <marker date="1450049567951" expanded="true" signature="10136:10507" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="11701:11774" placeholder="SELECT usern..users..." />
-            <marker date="1450049567951" expanded="true" signature="12964:13035" placeholder="SELECT votes..types_products..." />
-            <marker date="1450049567951" expanded="true" signature="13981:14061" placeholder="SELECT rewar..rewards..." />
-            <marker date="1450049567951" expanded="true" signature="15202:15311" placeholder="INSERT INTO users_contributes..." />
-            <marker date="1450049567951" expanded="true" signature="16264:16311" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="16741:16800" placeholder="UPDATE types..." />
-            <marker date="1450049567951" expanded="true" signature="17290:17347" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="18270:18343" placeholder="INSERT INTO messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="19487:19629" placeholder="INSERT INTO projects..." />
-            <marker date="1450049567951" expanded="true" signature="20359:20441" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="21099:21165" placeholder="INSERT INTO types_products..." />
-            <marker date="1450049567951" expanded="true" signature="22135:22280" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="22745:22827" placeholder="INSERT INTO rewards..." />
-            <marker date="1450049567951" expanded="true" signature="23843:23988" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="24336:24374" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="25153:25202" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="27830:27889" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="28664:28709" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="29368:29418" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30145:30184" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="30848:30894" placeholder="DELETE FROM ..." />
-            <marker date="1450049567951" expanded="true" signature="31504:31585" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="32070:32119" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="34552:34608" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="35590:35784" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="37161:37301" placeholder="SELECT proje..projects..." />
-            <marker date="1450049567951" expanded="true" signature="38525:38628" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="39557:39638" placeholder="SELECT usern..projects..." />
-            <marker date="1450049567951" expanded="true" signature="39980:40058" placeholder="INSERT INTO messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="41027:41113" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450049567951" expanded="true" signature="42058:42160" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450049567951" expanded="true" signature="43575:43619" placeholder="SELECT money..users..." />
-            <marker date="1450049567951" expanded="true" signature="43993:44040" placeholder="UPDATE users..." />
-            <marker date="1450049567951" expanded="true" signature="45251:45313" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="47124:47204" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="48174:48254" placeholder="UPDATE proje..." />
-            <marker date="1450049567951" expanded="true" signature="49501:49568" placeholder="SELECT proje..projects..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/SessionModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="332" column="97" selection-start-line="332" selection-start-column="97" selection-end-line="332" selection-end-column="97" />
+          <caret line="323" column="38" selection-start-line="323" selection-start-column="38" selection-end-line="323" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
+    <entry file="file://$PROJECT_DIR$/src/action/ConsultRewards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
           <folding>
-            <element signature="method#setProducttypechoose#0;class#Donate#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/profile.jsp">
+    <entry file="file://$PROJECT_DIR$/web/rewards.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="199" column="7" selection-start-line="199" selection-start-column="7" selection-end-line="199" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.692308">
-          <caret line="242" column="7" selection-start-line="242" selection-start-column="7" selection-end-line="242" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0034482">
-          <caret line="6743" column="6" selection-start-line="6743" selection-start-column="6" selection-end-line="6743" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/creative.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8697318">
-          <caret line="475" column="1" selection-start-line="475" selection-start-column="1" selection-end-line="475" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.51724136">
+          <caret line="103" column="67" selection-start-line="103" selection-start-column="67" selection-end-line="103" selection-end-column="67" />
           <folding />
         </state>
       </provider>

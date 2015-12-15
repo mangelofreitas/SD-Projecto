@@ -33,4 +33,5 @@ public interface RMI extends Remote
     public boolean setFinalProduct(Project project, String text) throws RemoteException;
     public ArrayList<Message> getMySendMessages(User user) throws RemoteException;
     public int renewMoney(User user) throws RemoteException;
+    public ArrayList<Reward> getUserRewardsFuture(User user) throws RemoteException;
 }

@@ -295,6 +295,24 @@ public class SessionModel implements Serializable
 		return null;
 	}
 
+	public ArrayList<Reward> getUserRewards()
+	{
+		if(connection)
+		{
+			try
+			{
+				return rmiConnection.getUserRewardsFuture(user);
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				connection = false;
+				return null;
+			}
+		}
+		return null;
+	}
+
 	public ArrayList<Project> getOldProjects()
 	{
 		if(connection)
