@@ -14,35 +14,35 @@ public class SessionModel implements Serializable
 	private RMI rmiConnection;
 	private boolean connection = false;
 	private User user;
-	
+
 	public SessionModel()
 	{
 		String ip = "localhost";
 		try
 		{
 			System.getProperties().put("java.security.policy", "politics.policy");
-            int rmiport = 7697;
-            String name = "rmi://"+ip+":"+rmiport+"/DB";
-            System.setProperty("java.rmi.server.hostname", ip);
-            rmiConnection = (RMI) Naming.lookup(name);
+			int rmiport = 7697;
+			String name = "rmi://"+ip+":"+rmiport+"/DB";
+			System.setProperty("java.rmi.server.hostname", ip);
+			rmiConnection = (RMI) Naming.lookup(name);
 			System.out.println(rmiConnection.printTest());
 			connection = true;
 		}
-        catch (NotBoundException e)
-        {
-            System.err.println("RMI Not Bound Exception:" + e);
+		catch (NotBoundException e)
+		{
+			System.err.println("RMI Not Bound Exception:" + e);
 			connection = false;
-        }
-        catch (RemoteException e)
-        {
-            System.err.println("RMI is drinking beers, wait for him");
+		}
+		catch (RemoteException e)
+		{
+			System.err.println("RMI is drinking beers, wait for him");
 			connection = false;
-        }
-        catch (MalformedURLException e)
-        {
-            System.err.println("RMI Malformed URL Exception");
+		}
+		catch (MalformedURLException e)
+		{
+			System.err.println("RMI Malformed URL Exception");
 			connection = false;
-        }
+		}
 	}
 
 	public ArrayList<Message> getMessagesProject(int projectid)
@@ -415,7 +415,7 @@ public class SessionModel implements Serializable
 	{
 		return rmiConnection;
 	}
-	
+
 	public User getUser()
 	{
 		return user;

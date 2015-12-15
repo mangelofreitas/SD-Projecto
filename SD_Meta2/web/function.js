@@ -1,3 +1,6 @@
+var webSocket;
+var notifications = document.getElementById("notifications");
+
 function add(divName,idDiv,idInput,nameInput)
 {
     var newdiv = document.createElement('div');
@@ -62,4 +65,54 @@ function donateMoney(rewardName,rewardvalue,producttypes,projectID)
             "</button><br><br></form>";
     }
     document.getElementById('donateptypes').appendChild(newDiv);
+}
+
+function openSocket()
+{
+    if('WebSocket' in window)
+    {
+        webSocket = new WebSocket('ws://'+window.location.host+'/notification');
+    }
+    else if('MozWebSocket' in window)
+    {
+        webSocket = new MozWebSocket('ws://'+window.location.host+'/notification');
+    }
+    else
+    {
+        writeConsole("Erro: WebSocket is not supported by this browser!");
+        return;
+    }
+
+
+    webSocket.onopen = function(event)
+    {
+        if(event.data == undefined)
+        {
+            return;
+        }
+        writeConsole("Socket Opened!");
+    };
+
+    webSocket.onmessage = function(event)
+    {
+        showNotification(event.data);
+    }
+
+    webSocket.onclose = function(event)
+    {
+        writeConsole(event.data);
+        writeConsole("Connection closed");
+    }
+}
+
+function showNotification(text)
+{
+    var newLi = document.createElement('li');
+    newLi.innerHTML = "<a href='#'>"+text+"</a>";
+    notifications.appendChild(newLi);
+}
+
+function writeConsole(text)
+{
+    console.log(text);
 }

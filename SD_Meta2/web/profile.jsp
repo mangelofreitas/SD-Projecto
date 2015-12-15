@@ -58,7 +58,13 @@
 					</form>
 				</div>
 				<li>
-					<a href="notifications">Notifications</a>
+					<a href="#" type="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Notifications
+						<span  class="caret"></span>
+						<ul id="notifications" class="dropdown-menu" aria-labelledby="dropdown">
+
+						</ul>
+					</a>
 				</li>
 				<li>
 					<a href="sms" >Messages</a>
@@ -152,7 +158,7 @@
 					<p class="text-muted">You can see all old projects!</p>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3 text-center">
+			<div class="col-lg-3 col-md-6 text-center">
 				<div class="service-box">
 					<!--<a href="index.html">-->
 					<form action="newproject">
@@ -193,6 +199,12 @@
 		</div>
 	</div>
 </section>
+
+<script src="function.js"></script>
+
+<script type="text/javascript">
+	window.onload = openSocket();
+</script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
