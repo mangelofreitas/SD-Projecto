@@ -20,9 +20,9 @@ public class CreateProject extends ActionSupport implements SessionAware
 {
     private static final long serialVersionUID = 1L;
     private Map<String,Object> session;
-    private String name, description, productType[],reward[];
+    private String name =null, description=null, productType[],reward[];
     private Date dateLimit;
-    private int requestedValue, valueReward[];
+    private int requestedValue=-1, valueReward[];
 
     public void setSession(Map<String, Object> session)
     {
@@ -32,14 +32,41 @@ public class CreateProject extends ActionSupport implements SessionAware
     public String execute()
     {
         SessionModel user = getModel();
-        session.remove("tipo");
-        if(user.getRmiConnection()!=null && user.createProject(name,description,dateLimit,requestedValue,productType,reward,valueReward))
+        if(session.get("tipo")!=null)
         {
-            return "success";
+            session.remove("tipo");
+        }
+        if(user!=null)
+        {
+            if(user.getRmiConnection()!=null)
+            {
+                if(name!=null && description!=null && productType.length!=0 && reward.length!=0 && valueReward.length!=0 && requestedValue!=-1)
+                {
+                    if(user.createProject(name,description,dateLimit,requestedValue,productType,reward,valueReward))
+                    {
+                        name=null;
+                        description=null;
+                        requestedValue=-1;
+                        return "success";
+                    }
+                    else
+                    {
+                        return "index";
+                    }
+                }
+                else
+                {
+                    return "stay";
+                }
+            }
+            else
+            {
+                return "noservice";
+            }
         }
         else
         {
-            return "index";
+            return "login";
         }
 
     }

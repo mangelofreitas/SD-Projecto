@@ -32,5 +32,6 @@
     <orderEntry type="library" name="Struts 2" level="project" />
     <orderEntry type="library" name="websocket" level="project" />
     <orderEntry type="library" name="servlet" level="project" />
+    <orderEntry type="library" name="REST" level="project" />
   </component>
 </module>

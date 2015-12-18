@@ -56,55 +56,6 @@
 				</li>
 			</ul>
 		</div>
-		<div class="modal" id="Signup">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Sign In</h4>
-					</div>
-					<div class="modal-body">
-						</a>
-						<br>
-						<form action="regist" style="text-align:center" class="login-block" method="POST">
-							<input id="username" type="text" class="form-control" placeholder="Username" name="Username"/><br>
-							<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
-							<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
-							<input type="submit" class="btn btn-primary" method="execute" value="Sign in">
-						</form>
-						<div class="modal-footer">
-							<a href="#" data-dismiss="modal" class="btn">Close</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-		<div class="modal" id="Login">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Log in</h4>
-					</div>
-					<div class="modal-body">
-						</a>
-						<a class="btn btn-block btn-social btn-tumblr" onclick="">
-							<i class="fa fa-tumblr"></i> Log in with Tumblr
-						</a>
-						<br>
-						<form action="login" style="text-align:center" class="login-block" method="post">
-							<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
-							<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
-							<input type="submit" class="btn btn-primary" method="execute" value="Log in">
-						</form>
-						<div class="modal-footer">
-							<a href="#" data-dismiss="modal" class="btn">Close</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
 	</div>
 </nav>
 
@@ -237,6 +188,60 @@
 <script src="js/creative.js"></script>
 
 <!-- /.navbar-collapse -->
+
+
+<div class="modal" id="Signup">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Sign In</h4>
+			</div>
+			<div class="modal-body">
+				</a>
+				<br>
+				<form action="regist" style="text-align:center" class="login-block" method="POST">
+					<input id="username" type="text" class="form-control" placeholder="Username" name="Username"/><br>
+					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
+					<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
+					<input type="submit" class="btn btn-primary" method="execute" value="Sign in">
+				</form>
+				<div class="modal-footer">
+					<a href="#" data-dismiss="modal" class="btn">Close</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="modal" id="Login">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Log in</h4>
+			</div>
+			<div class="modal-body">
+				</a>
+				<form action="login" method="post">
+					<input id="loginType" type="text" value="tumblr" name="LoginType" hidden=""/>
+					<button type="submit" method="execute" class="btn btn-block btn-social btn-tumblr">
+						<i class="fa fa-tumblr"></i> Log in with Tumblr
+					</button>
+				</form>
+
+				<br>
+				<form action="login" style="text-align:center" class="login-block" method="post">
+					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
+					<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
+					<input type="submit" class="btn btn-primary" method="execute" value="Log in">
+				</form>
+				<div class="modal-footer">
+					<a href="#" data-dismiss="modal" class="btn">Close</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 
 </body>

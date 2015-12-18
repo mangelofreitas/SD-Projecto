@@ -25,38 +25,54 @@ public class Donate extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
-        if(user.getRmiConnection()!=null && valuedonate!=-1 && producttypechoose !=-1 && projectID!=-1)
+        if(user.getUser()!=null)
         {
-            if(user.donate(producttypechoose,projectID,valuedonate)==false)
+            if(user.getRmiConnection()!=null)
             {
-                return "index";
+                if(valuedonate!=-1 && producttypechoose !=-1 && projectID!=-1)
+                {
+                    if(user.donate(producttypechoose,projectID,valuedonate)==false)
+                    {
+                        return "index";
+                    }
+                    else
+                    {
+                        ArrayList<Project> projects = user.getActualProjects();
+                        for(int i=0;i<projects.size();i++)
+                        {
+                            for (int j = 0; j < projects.size(); j++)
+                            {
+                                if (projects.get(j).getUser().getUsernameID() == user.getUser().getUsernameID())
+                                {
+                                    projects.remove(projects.get(j));
+                                    j--;
+                                }
+                            }
+                            ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
+                            projects.get(i).setMessages(messages);
+                        }
+                        valuedonate=-1;
+                        producttypechoose=-1;
+                        projectID=-1;
+                        session.put("user",user);
+                        session.put("projects",projects);
+                        return "success";
+                    }
+                }
+                else
+                {
+                    return "stay";
+                }
             }
             else
             {
-                ArrayList<Project> projects = user.getActualProjects();
-                for(int i=0;i<projects.size();i++)
-                {
-                    for (int j = 0; j < projects.size(); j++)
-                    {
-                        if (projects.get(j).getUser().getUsernameID() == user.getUser().getUsernameID())
-                        {
-                            projects.remove(projects.get(j));
-                            j--;
-                        }
-                    }
-                    ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
-                    projects.get(i).setMessages(messages);
-                }
-                valuedonate=-1;
-                producttypechoose=-1;
-                projectID=-1;
-                session.put("user",user);
-                session.put("projects",projects);
-
-                return "success";
+                return "noservice";
             }
         }
-        return "error";
+        else
+        {
+            return "login";
+        }
     }
 
     public SessionModel getModel()

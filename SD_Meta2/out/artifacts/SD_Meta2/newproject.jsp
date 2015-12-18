@@ -25,12 +25,10 @@
     <link rel="stylesheet" href="css/creative.css" type="text/css">
 
     <link rel="stylesheet" href="css/Project.css" type="text/css">
-
-    <script src="function.js"></script>
 </head>
 
 <body id="page-top">
-<script src="js/creative.js"></script>
+
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,7 +39,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">FUNDSTARTER</a>
+            <form action="profile" method="post">
+                <button style="background-color: rgba(0,0,0,0)" class="btn btn-primary navbar-brand page-scroll" type="submit">FUNDSTARTER</button>
+            </form>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,41 +58,30 @@
                     </form>
                 </div>
                 <li>
-                    <a href="notifications">Notifications</a>
+                    <a href="#" class="" type="button" id="dropdownnotifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="saw('notifications')">
+                        Notifications
+                        <span  class="caret"></span>
+                        <ul id="notifications" class="dropdown-menu" aria-labelledby="dropdownnotifications">
+                            <li><a></a></li>
+                        </ul>
+                    </a>
                 </li>
                 <li>
-                    <a href="sms">Messages</a>
+                    <a href="#" class="" type="button" id="dropdownmessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="saw('messages')">
+                        Messages
+                        <span  class="caret"></span>
+                        <ul id="messages" class="dropdown-menu" aria-labelledby="dropdownmessages">
+                            <li><a></a></li>
+                        </ul>
+                    </a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#Aboutus">About us</a>
                 </li>
                 <li>
-                    <a data-toggle="modal" href="#Logout" style="margin-left: 10px; margin-right: 10px; height:50px">Log out</a>
+                    <a data-toggle="modal" href="#Logout" style="margin-left: 10px; margin-right: 10px; height:50px">Profile</a>
                 </li>
             </ul>
-        </div>
-    </div>
-    <div class="modal" id="Logout">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">User Profile:</h4>
-                </div>
-                <div class="modal-body">
-                    <br>
-                    <p>${user.getUser().getUsername()}</p>
-                    <br>
-                    <p>Available Money: ${user.getUser().getMoney()}<p/>
-                    <br>
-                    <div class="modal-footer">
-                        <form action="logout" method="post">
-                            <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
-                        </form>
-                        <a href="#" data-dismiss="modal" class="btn">Close</a>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </nav>
@@ -157,6 +146,7 @@
     </div>
 </section>
 
+
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
 
@@ -168,8 +158,40 @@
 <script src="js/jquery.fittext.js"></script>
 <script src="js/wow.min.js"></script>
 
+<script src="js/creative.js"></script>
 
+<script src="function.js"></script>
 
+<%--<script type="text/javascript">
+    window.onload = openSocketNotification();
+    window.onload = openSocketMessage();
+</script>--%>
+
+<div class="modal" id="Logout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">User Profile:</h4>
+            </div>
+            <div class="modal-body">
+                <br>
+                <p>${user.getUser().getUsername()}</p>
+                <br>
+                <p>${user.getUser().getMail()}</p>
+                <br>
+                <p id="userMoney">Available Money: ${user.getUser().getMoney()}<p/>
+                <br>
+                <div class="modal-footer">
+                    <form action="logout" method="post">
+                        <button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+                    </form>
+                    <a href="#" data-dismiss="modal" class="btn">Close</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

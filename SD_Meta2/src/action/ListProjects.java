@@ -26,7 +26,10 @@ public class ListProjects extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
-        session.remove("tipo");
+        if(session.get("tipo")!=null)
+        {
+            session.remove("tipo");
+        }
         if(user.getRmiConnection()!=null)
         {
             ArrayList <Project> projects = null;
@@ -45,7 +48,7 @@ public class ListProjects extends ActionSupport implements SessionAware {
                 projects = user.getActualProjects();
                 for(int i=0;i<projects.size();i++)
                 {
-                    if(projects.get(i).getUser().getUsernameID()==user.getUser().getUsernameID())
+                    if(user.getUser()!=null && projects.get(i).getUser().getUsernameID()==user.getUser().getUsernameID())
                     {
                         projects.remove(projects.get(i));
                         i--;
@@ -64,7 +67,11 @@ public class ListProjects extends ActionSupport implements SessionAware {
             session.put("projects", projects);
             return "success";
         }
-        return "error";
+        else
+        {
+            return "noservice";
+        }
+
     }
 
     public SessionModel getModel()

@@ -15,8 +15,8 @@ public class EditReward extends ActionSupport implements SessionAware
 {
     private static final long serialVersionUID = 1L;
     private Map<String,Object> session;
-    private String type,reward;
-    private int id,valueReward,projectid;
+    private String type=null,reward=null;
+    private int id=-1,valueReward=-1,projectid=-1;
 
     public void setSession(Map<String, Object> session)
     {
@@ -27,35 +27,60 @@ public class EditReward extends ActionSupport implements SessionAware
     {
         SessionModel user = getModel();
         session.remove("tipo");
-        if(type.compareTo("remove")==0)
+        if(user.getUser()!=null)
         {
-            if((user.removeReward(id,projectid))==false)
+            if(user.getRmiConnection()!=null)
             {
-                type = null;
-                return "index";
+                if(reward!=null && id!=-1 && valueReward!=-1 && projectid!=-1 && type.compareTo("remove")==0)
+                {
+                    if((user.removeReward(id,projectid))==false)
+                    {
+                        type = null;
+                        return "index";
+                    }
+                    else
+                    {
+                        ArrayList<Project> projects = user.getMyProjects();
+                        session.put("projects",projects);
+                        reward=null;
+                        id=-1;
+                        valueReward=-1;
+                        projectid=-1;
+                        return "success";
+                    }
+                }
+                else if (reward!=null && id!=-1 && valueReward!=-1 && projectid!=-1 && type.compareTo("add")==0)
+                {
+                    if((user.addReward(reward,valueReward,projectid))==false)
+                    {
+                        type = null;
+                        return "index";
+                    }
+                    else
+                    {
+                        ArrayList<Project> projects = user.getMyProjects();
+                        reward=null;
+                        id=-1;
+                        valueReward=-1;
+                        projectid=-1;
+                        session.put("projects",projects);
+                        return "success";
+                    }
+                }
+                else
+                {
+                    return "stay";
+                }
             }
             else
             {
-                ArrayList<Project> projects = user.getMyProjects();
-                session.put("projects",projects);
-                return "success";
+                return "noservice";
             }
         }
-        else if (type.compareTo("add")==0)
+        else
         {
-            if((user.addReward(reward,valueReward,projectid))==false)
-            {
-                type = null;
-                return "index";
-            }
-            else
-            {
-                ArrayList<Project> projects = user.getMyProjects();
-                session.put("projects",projects);
-                return "success";
-            }
+            return "login";
         }
-        return "error";
     }
 
     public SessionModel getModel()

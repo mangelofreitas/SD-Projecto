@@ -1,9 +1,8 @@
 package model;
 
-import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
+import java.io.*;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -12,42 +11,85 @@ public class SessionModel implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private RMI rmiConnection;
-	private boolean connection = false;
+	private boolean conclude = false;
 	private User user;
+	private String ip = "localhost";
+	private DataInputStream in;
+	private DataOutputStream out;
+	private ObjectOutputStream objOut;
+	private ObjectInputStream objIn;
+	private Socket s;
+	private ArrayList<WaitNotification> waitNotifications;
+	private ArrayList<WaitMessage> waitMessages;
 
 	public SessionModel()
 	{
-		String ip = "localhost";
+		createSocket();
+	}
+
+	public void createSocket()
+	{
+		boolean notIO = false;
+		while(!notIO)
+		{
+			try {
+				s = new Socket("localhost", 6000);
+
+				in = new DataInputStream(s.getInputStream());
+				out = new DataOutputStream(s.getOutputStream());
+				objOut = new ObjectOutputStream(out);
+				objIn = new ObjectInputStream(in);
+				try
+				{
+					rmiConnection = (RMI)objIn.readObject();
+					waitNotifications = (ArrayList<WaitNotification>)objIn.readObject();
+					waitMessages = (ArrayList<WaitMessage>)objIn.readObject();
+					System.out.println(waitNotifications);
+					System.out.println(waitMessages);
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+				catch (ClassNotFoundException e)
+				{
+					e.printStackTrace();
+				}
+				notIO = true;
+			}
+			catch (UnknownHostException e)
+			{
+				System.out.println("Sock:" + e.getMessage());
+			}
+			catch (EOFException e)
+			{
+				System.out.println("EOF:" + e.getMessage());
+			}
+			catch (IOException e)
+			{
+				System.out.println("IO:" + e.getMessage());
+			}
+		}
+
+	}
+
+	public void tryConnectionAgain()
+	{
 		try
 		{
-			System.getProperties().put("java.security.policy", "politics.policy");
-			int rmiport = 7697;
-			String name = "rmi://"+ip+":"+rmiport+"/DB";
-			System.setProperty("java.rmi.server.hostname", ip);
-			rmiConnection = (RMI) Naming.lookup(name);
-			System.out.println(rmiConnection.printTest());
-			connection = true;
+			objOut.writeObject(true);
+			createSocket();
 		}
-		catch (NotBoundException e)
+		catch (IOException e)
 		{
-			System.err.println("RMI Not Bound Exception:" + e);
-			connection = false;
-		}
-		catch (RemoteException e)
-		{
-			System.err.println("RMI is drinking beers, wait for him");
-			connection = false;
-		}
-		catch (MalformedURLException e)
-		{
-			System.err.println("RMI Malformed URL Exception");
-			connection = false;
+			System.err.println("Connection:" + e);
 		}
 	}
 
+
 	public ArrayList<Message> getMessagesProject(int projectid)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -58,8 +100,29 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get My Projects, Remote Exception: "+ex);
-				connection = false;
-				return null;
+				tryConnectionAgain();
+			}
+		}
+		return null;
+	}
+
+	public String getUsernameByProject(int projectid)
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectid);
+				project = rmiConnection.projectDetail(project);
+				User user = new User(project.getUser().getUsernameID());
+				user = rmiConnection.getUserByID(user);
+				return user.getUsername();
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				tryConnectionAgain();
 			}
 		}
 		return null;
@@ -67,7 +130,7 @@ public class SessionModel implements Serializable
 
 	public boolean addReward(String description, int valueOfReward, int projectID)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -88,8 +151,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex) {
 				System.err.println("Error on Login, Remote Exeption: " + ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -97,7 +159,7 @@ public class SessionModel implements Serializable
 
 	public boolean removeReward(int rewardID, int projectID)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -114,8 +176,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex) {
 				System.err.println("Error on Login, Remote Exeption: " + ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -123,7 +184,7 @@ public class SessionModel implements Serializable
 
 	public boolean cancelProject(int projectID)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -141,8 +202,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error on Login, Remote Exeption: "+ ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -150,7 +210,7 @@ public class SessionModel implements Serializable
 
 	public boolean sendMessage(String message, int projectID)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -168,8 +228,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error on Login, Remote Exeption: "+ ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -177,7 +236,7 @@ public class SessionModel implements Serializable
 
 	public boolean sendReply(String message, int projectID, int messageID)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -199,8 +258,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error on Login, Remote Exeption: "+ ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -208,7 +266,7 @@ public class SessionModel implements Serializable
 
 	public boolean login(String mail, String password)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -225,8 +283,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error on Login, Remote Exeption: "+ ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -234,7 +291,7 @@ public class SessionModel implements Serializable
 
 	public boolean regist(String username, String mail, String password)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -252,8 +309,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Regist, Remote Exception: "+ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -261,7 +317,7 @@ public class SessionModel implements Serializable
 
 	public ArrayList<Project> getMyProjects()
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -270,8 +326,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get My Projects, Remote Exception: "+ex);
-				connection = false;
-				return null;
+				tryConnectionAgain();
 			}
 		}
 		return null;
@@ -279,7 +334,7 @@ public class SessionModel implements Serializable
 
 	public ArrayList<Project> getActualProjects()
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -288,8 +343,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get Actual Projects, Remote Exception: "+ex);
-				connection = false;
-				return null;
+				tryConnectionAgain();
 			}
 		}
 		return null;
@@ -297,7 +351,7 @@ public class SessionModel implements Serializable
 
 	public ArrayList<Reward> getUserRewards()
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -306,8 +360,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
-				connection = false;
-				return null;
+				tryConnectionAgain();
 			}
 		}
 		return null;
@@ -315,7 +368,7 @@ public class SessionModel implements Serializable
 
 	public ArrayList<Project> getOldProjects()
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -324,16 +377,33 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
-				connection = false;
-				return null;
+				tryConnectionAgain();
 			}
 		}
 		return null;
 	}
 
+	public int renewMoneyOfUser()
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				System.out.println(this.user);
+				return rmiConnection.renewMoney(this.user);
+			}
+			catch (RemoteException e)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+e);
+				tryConnectionAgain();
+			}
+		}
+		return -1;
+	}
+
 	public boolean donate(int productTypeID, int projectID, int value)
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
@@ -361,8 +431,7 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
@@ -370,14 +439,13 @@ public class SessionModel implements Serializable
 
 	public boolean createProject(String name, String description, Date dateLimit, int requestedValue, String productType[], String reward[], int valueReward[])
 	{
-		if(connection)
+		while(conclude==false)
 		{
 			try
 			{
 				ArrayList<ProductType> productTypes = new ArrayList<>();
 				for(int i=0;i<productType.length;i++)
 				{
-					System.out.println(productType[i]);
 					ProductType ptype = new ProductType();
 					ptype.setType(productType[i]);
 					productTypes.add(ptype);
@@ -385,7 +453,6 @@ public class SessionModel implements Serializable
 				ArrayList<Reward> rewards = new ArrayList<>();
 				for(int i=0;i<reward.length;i++)
 				{
-					System.out.println(reward[i]+":"+valueReward[i]);
 					Reward rwrd = new Reward();
 					rwrd.setName(reward[i]);
 					rwrd.setDescription(reward[i]);
@@ -404,11 +471,119 @@ public class SessionModel implements Serializable
 			catch (RemoteException ex)
 			{
 				System.err.println("Error Create Project, Remote Exception: "+ex);
-				connection = false;
-				return false;
+				tryConnectionAgain();
 			}
 		}
 		return false;
+	}
+
+	public void addWaitMessage(String username, String message)
+	{
+		try
+		{
+			objOut.writeObject(false);
+			objOut.writeObject("addMessage");
+			objOut.writeObject(message);
+			objOut.writeObject(username);
+		}
+		catch (IOException e)
+		{
+			System.err.println("Connection:" + e);
+		}
+	}
+
+	public void addWaitNotification(String username, String message)
+	{
+		try
+		{
+			objOut.writeObject(false);
+			objOut.writeObject("addNotification");
+			objOut.writeObject(message);
+			objOut.writeObject(username);
+		}
+		catch (IOException e)
+		{
+			System.err.println("Connection:" + e);
+		}
+	}
+
+	public void removeWaitMessage(int id)
+	{
+		try
+		{
+			objOut.writeObject(false);
+			objOut.writeObject("removeMessage");
+			objOut.writeObject(id);
+		}
+		catch (IOException e)
+		{
+			System.err.println("Connection:" + e);
+		}
+	}
+
+	public void removeWaitNotification(int id)
+	{
+		try
+		{
+			objOut.writeObject(false);
+			objOut.writeObject("removeNotification");
+			objOut.writeObject(id);
+		}
+		catch (IOException e)
+		{
+			System.err.println("Connection:" + e);
+		}
+	}
+
+	public int getLastMessageID()
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				return rmiConnection.getLastMessageID();
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				tryConnectionAgain();
+			}
+		}
+		return -1;
+	}
+
+	public String getUsernameByMessage(int messageID)
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				return rmiConnection.getUsernameByMessage(messageID);
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				tryConnectionAgain();
+			}
+		}
+		return null;
+	}
+
+	public int getLastReplyID()
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				return rmiConnection.getLastReplyID();
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				tryConnectionAgain();
+			}
+		}
+		return -1;
 	}
 
 	public RMI getRmiConnection()
@@ -419,5 +594,21 @@ public class SessionModel implements Serializable
 	public User getUser()
 	{
 		return user;
+	}
+
+	public ArrayList<WaitNotification> getWaitNotifications() {
+		return waitNotifications;
+	}
+
+	public void setWaitNotifications(ArrayList<WaitNotification> waitNotifications) {
+		this.waitNotifications = waitNotifications;
+	}
+
+	public ArrayList<WaitMessage> getWaitMessages() {
+		return waitMessages;
+	}
+
+	public void setWaitMessages(ArrayList<WaitMessage> waitMessages) {
+		this.waitMessages = waitMessages;
 	}
 }

@@ -6,26 +6,41 @@
 
 <struts>
     <constant name="struts.devMode" value="true" />
-    <constant name="struts.action.excludePattern" value="/notification"/>
+    <constant name="struts.action.excludePattern" value="/notification,/message,/renewMyMoney"/>
 
     <package name="default" extends="struts-default">
-        <action name="profile">
-            <result>/profile.jsp</result>
+
+        <global-results>
+            <result name="login">/index.jsp</result>
+            <result name="noservice">/noservice.jsp</result>
+            <result name="error">/error.jsp</result>
+            <result name="ERROR">/error.jsp</result>
+        </global-results>
+
+        <action name="profile" class="action.MenuHandling">
+            <result name="success">/profile.jsp</result>
         </action>
         <action name="login" class="action.Login">
             <result name="success">/profile.jsp</result>
             <result name="index">/index.jsp</result>
+            <result name="authorization">/authorize.jsp</result>
+            <result name="stay">/index.jsp</result>
         </action>
         <action name="regist" class="action.Regist">
             <result name="success">/profile.jsp</result>
             <result name="index">/index.jsp</result>
+            <result name="stay">/index.jsp</result>
         </action>
         <action name="create" class="action.CreateProject">
             <result name="success">/profile.jsp</result>
             <result name="index">/newproject.jsp</result>
+            <result name="stay">/newproject.jsp</result>
         </action>
         <action name="newproject" class="action.MenuHandling">
             <result name="success">/newproject.jsp</result>
+        </action>
+        <action name="principal" class="action.MenuHandling">
+            <result name="success">/index.jsp</result>
         </action>
         <action name="projects" class="action.ListProjects">
             <result name="success">/projects.jsp</result>
@@ -33,6 +48,7 @@
         <action name="editreward" class="action.EditReward">
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
+            <result name="stay">/project.jsp</result>
         </action>
         <action name="logout" class="action.LogOut">
             <result name="success">/index.jsp</result>
@@ -40,21 +56,25 @@
         <action name="sendmessage" class="action.SendMessage">
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
+            <result name="stay">/projects.jsp</result>
         </action>
         <action name="sendreply" class="action.SendReply">
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
+            <result name="stay">/projects.jsp</result>
         </action>
         <action name="cancel" class="action.CancelProject">
             <result name="success">/projects.jsp</result>
             <result name="index">/projects.jsp</result>
+            <result name="stay">/projects.jsp</result>
         </action>
         <action name="donate" class="action.Donate">
             <result name="success">/projects.jsp</result>
+            <result name="index">/projects.jsp</result>
+            <result name="stay">/projects.jsp</result>
         </action>
         <action name="rewards" class="action.ConsultRewards">
             <result name="success">/rewards.jsp</result>
-            <result name="index">/profile.jsp</result>
         </action>
     </package>
 </struts>

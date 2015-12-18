@@ -21,14 +21,26 @@ public class ConsultRewards extends ActionSupport implements SessionAware{
     public String execute()
     {
         SessionModel user = getModel();
-        if (user.getRmiConnection()!=null){
-            ArrayList <Reward> rewards = user.getUserRewards();
-            session.put("rewards",rewards);
-            return "success";
+        if(session.get("tipo")!=null)
+        {
+            session.remove("tipo");
+        }
+        if(user.getUser()!=null)
+        {
+            if (user.getRmiConnection() != null)
+            {
+                ArrayList<Reward> rewards = user.getUserRewards();
+                session.put("rewards", rewards);
+                return "success";
+            }
+            else
+            {
+                return "noservice";
+            }
         }
         else
         {
-            return "index";
+            return "login";
         }
     }
 

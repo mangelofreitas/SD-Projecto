@@ -1,5 +1,15 @@
-var webSocket;
+var webSocketNotification;
+var webSocketMessage;
+var webSocketRenewMoney;
 var notifications = document.getElementById("notifications");
+var dropdownnotifications = document.getElementById("dropdownnotifications");
+var messages = document.getElementById("messages");;
+var dropdownmessages = document.getElementById("dropdownmessages");
+
+
+
+
+
 
 function add(divName,idDiv,idInput,nameInput)
 {
@@ -57,7 +67,7 @@ function donateMoney(rewardName,rewardvalue,producttypes,projectID)
     console.log(split);
     for(i=2;i<split.length;i=i+11)
     {
-        newDiv.innerHTML += "<form action='donate' method='post'><button type='submit' class='btn btn-primary' methdod='execute'>" +
+        newDiv.innerHTML += "<form action='donate' method='post'><button type='submit' class='btn btn-primary' methdod='execute' onclick=sendDonate('"+projectID+"',"+rewardvalue+")>" +
             "Product Type:"+split[i+3]+"<br> Votes:"+split[i+7]+"" +
             "<input id='producttypechoose' name='Producttypechoose' type='text' value='"+split[i]+"' hidden>" +
             "<input id='projectID' name='ProjectID' type='text' value='"+projectID+"' hidden>" +
@@ -67,38 +77,112 @@ function donateMoney(rewardName,rewardvalue,producttypes,projectID)
     document.getElementById('donateptypes').appendChild(newDiv);
 }
 
-function openSocket()
+function openSocketRenewMoney()
 {
     if('WebSocket' in window)
     {
-        webSocket = new WebSocket('ws://'+window.location.host+'/notification');
+        webSocketRenewMoney = new WebSocket('ws://'+window.location.host+'/renewMyMoney');
     }
     else if('MozWebSocket' in window)
     {
-        webSocket = new MozWebSocket('ws://'+window.location.host+'/notification');
+        webSocketRenewMoney = new MozWebSocket('ws://'+window.location.host+'/renewMyMoney');
     }
     else
     {
-        writeConsole("Erro: WebSocket is not supported by this browser!");
+        writeConsole("Error: WebSocket is not supported by this browser!");
         return;
     }
 
-
-    webSocket.onopen = function(event)
+    webSocketRenewMoney.onopen = function(event)
     {
         if(event.data == undefined)
         {
             return;
         }
-        writeConsole("Socket Opened!");
+        writeConsole("Socket Renew Money Opened!");
     };
 
-    webSocket.onmessage = function(event)
+    webSocketRenewMoney.onmessage = function(event)
+    {
+        $('#userMoney').text('Available Money: ' + event.data);
+    }
+
+    webSocketRenewMoney.onclose = function(event)
+    {
+        writeConsole(event.data);
+        writeConsole("Connection closed");
+    }
+}
+
+function openSocketMessage()
+{
+    if('WebSocket' in window)
+    {
+        webSocketMessage = new WebSocket('ws://'+window.location.host+'/message');
+    }
+    else if('MozWebSocket' in window)
+    {
+        webSocketMessage = new MozWebSocket('ws://'+window.location.host+'/message');
+    }
+    else
+    {
+        writeConsole("Error: WebSocket is not supported by this browser!");
+        return;
+    }
+
+    webSocketMessage.onopen = function(event)
+    {
+        if(event.data == undefined)
+        {
+            return;
+        }
+        writeConsole("Socket Message Opened!");
+    };
+
+    webSocketMessage.onmessage = function(event)
+    {
+        var split = event.data.split(":");
+        showMessages(split[1], split[0]);
+    }
+    webSocketMessage.onclose = function(event)
+    {
+        writeConsole(event.data);
+        writeConsole("Connection closed");
+    }
+}
+
+function openSocketNotification()
+{
+    if('WebSocket' in window)
+    {
+        webSocketNotification = new WebSocket('ws://'+window.location.host+'/notification');
+    }
+    else if('MozWebSocket' in window)
+    {
+        webSocketNotification = new MozWebSocket('ws://'+window.location.host+'/notification');
+    }
+    else
+    {
+        writeConsole("Error: WebSocket is not supported by this browser!");
+        return;
+    }
+
+
+    webSocketNotification.onopen = function(event)
+    {
+        if(event.data == undefined)
+        {
+            return;
+        }
+        writeConsole("Socket Notification Opened!");
+    };
+
+    webSocketNotification.onmessage = function(event)
     {
         showNotification(event.data);
     }
 
-    webSocket.onclose = function(event)
+    webSocketNotification.onclose = function(event)
     {
         writeConsole(event.data);
         writeConsole("Connection closed");
@@ -107,12 +191,67 @@ function openSocket()
 
 function showNotification(text)
 {
-    var newLi = document.createElement('li');
-    newLi.innerHTML = "<a href='#'>"+text+"</a>";
+    var newLi = document.createElement("LI");
+    newLi.innerHTML = "<a>"+text+"</a>";
     notifications.appendChild(newLi);
+    dropdownnotifications.className = "btn-warning";
+}
+
+function showMessages(text,id)
+{
+    var newLi = document.createElement("LI");
+    var split = id.split("_");
+    if(split[0] == "message")
+    {
+        newLi.innerHTML = "<a class='page-scroll' href='projects?type=myprojects#"+id+"'>"+text+"</a>";
+    }
+    else if(split[0] == "reply")
+    {
+        newLi.innerHTML = "<a class='page-scroll' href='projects?type=actualprojects#"+id+"'>"+text+"</a>";
+    }
+    messages.appendChild(newLi);
+    dropdownmessages.className = "btn-warning";
 }
 
 function writeConsole(text)
 {
     console.log(text);
 }
+
+function sendRequestRenewMoney()
+{
+    var text = "My Money?";
+    webSocketRenewMoney.send(text);
+}
+
+function sendDonate(projectID,value)
+{
+    var text = projectID+" "+value;
+    webSocketNotification.send(text);
+}
+
+function sendMessage(type,differedID)
+{
+    var text = type+" "+differedID;
+    webSocketMessage.send(text);
+}
+
+function saw(text)
+{
+    if(text == 'messages')
+    {
+        dropdownmessages.className = "";
+    }
+    else if(text == 'notifications')
+    {
+        dropdownnotifications.className = "";
+    }
+}
+
+window.onload = openSocketRenewMoney();
+window.onload = openSocketNotification();
+window.onload = openSocketMessage();
+
+setInterval(function(){sendRequestRenewMoney()},5000);
+
+setTimeout(function(){sendRequestRenewMoney();},5000);

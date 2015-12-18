@@ -19,15 +19,33 @@ public class Regist extends ActionSupport implements SessionAware{
     {
         SessionModel user = getModel();
         session.remove("user");
-        if(user.getRmiConnection()!=null && user.regist(username,mail, password)!=false)
+        if(user.getRmiConnection()!=null)
         {
-            session.put("user", user);
-            session.put("tipo","regist");
-            return "success";
+            if(mail!=null && password!=null && username!=null)
+            {
+                if(user.regist(username,mail, password)!=false)
+                {
+                    session.put("user", user);
+                    session.put("tipo","regist");
+                    mail = null;
+                    password = null;
+                    username = null;
+                    return "success";
+                }
+                else
+                {
+                    return "index";
+                }
+            }
+            else
+            {
+                return "stay";
+            }
+
         }
         else
         {
-            return "index";
+            return "noservice";
         }
     }
 

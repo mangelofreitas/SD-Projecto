@@ -1,5 +1,3 @@
-import com.mysql.jdbc.*;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 import model.*;
 
 import java.rmi.RemoteException;
@@ -56,6 +54,7 @@ public class RMIServer implements RMI
 
     public int renewMoney(User user) throws RemoteException
     {
+        System.out.println("Renew Money of "+user.getUsernameID()+"!");
         try
         {
             query = "SELECT money FROM users WHERE usernameID = ?";
@@ -74,12 +73,74 @@ public class RMIServer implements RMI
         return -1;
     }
 
+    public int getLastMessageID() throws RemoteException
+    {
+        System.out.println("Get Last MessageID!");
+        try
+        {
+            query = "SELECT messageSendID FROM messages_send ORDER BY messageSendID DESC LIMIT 1";
+            preparedStatement = conn.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("messageSendID");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return -1;
+    }
+
+    public int getLastReplyID() throws RemoteException
+    {
+        System.out.println("Get Last ReplyID!");
+        try
+        {
+            query = "SELECT messageReplyID FROM messages_reply ORDER BY messageReplyID DESC LIMIT 1";
+            preparedStatement = conn.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("messageReplyID");
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return -1;
+    }
+
+    public String getUsernameByMessage(int messageID) throws RemoteException
+    {
+        System.out.println("Get Username By MessageID "+messageID+"!");
+        try
+        {
+            query = "SELECT usernameID FROM messages_send WHERE messageSendID = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1,messageID);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                return getUserByID(new User(rs.getInt("usernameID"))).getUsername();
+            }
+        }
+        catch(SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return null;
+    }
+
     /*
     * Esta classe � apenas usada para obter o nome de um utilizador no qual s� temos o ID dele,
     * como por exemplo Send Message, s� temos o ID mas ao imprimir para o cliente aparece o Nome dele.
     * **/
     public User getUserByID(User user) throws RemoteException
     {
+        System.out.println("Get User By ID "+user.getUsernameID()+"!");
         try
         {
             /*query = "SELECT username, mail FROM users WHERE usernameID=?";  //criamos a query
@@ -938,6 +999,7 @@ public class RMIServer implements RMI
 
     public ArrayList<Message> getMySendMessages(User user) throws RemoteException
     {
+        System.out.println("Get "+user.getUsernameID()+" Send Messages!");
         try
         {
             query = "SELECT messageSendID, projectID, message, projectID, usernameID FROM messages_send WHERE usernameID = ?";

@@ -1,5 +1,7 @@
 package model;
 
+import model.*;
+
 import java.rmi.*;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -34,4 +36,8 @@ public interface RMI extends Remote
     public ArrayList<Message> getMySendMessages(User user) throws RemoteException;
     public int renewMoney(User user) throws RemoteException;
     public ArrayList<Reward> getUserRewardsFuture(User user) throws RemoteException;
+    public User getUserByID(User user) throws RemoteException;
+    public int getLastMessageID() throws RemoteException;
+    public int getLastReplyID() throws RemoteException;
+    public String getUsernameByMessage(int messageID) throws RemoteException;
 }

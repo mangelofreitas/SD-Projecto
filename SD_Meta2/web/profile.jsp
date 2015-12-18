@@ -41,7 +41,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">FUNDSTARTER</a>
+			<form action="profile" method="post">
+				<button style="background-color: rgba(0,0,0,0)" class="btn btn-primary navbar-brand page-scroll" type="submit">FUNDSTARTER</button>
+			</form>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,45 +60,30 @@
 					</form>
 				</div>
 				<li>
-					<a href="#" type="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<a href="#" class="" type="button" id="dropdownnotifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="saw('notifications')">
 						Notifications
 						<span  class="caret"></span>
-						<ul id="notifications" class="dropdown-menu" aria-labelledby="dropdown">
-
+						<ul id="notifications" class="dropdown-menu" aria-labelledby="dropdownnotifications">
+							<li><a></a></li>
 						</ul>
 					</a>
 				</li>
 				<li>
-					<a href="sms" >Messages</a>
+					<a href="#" class="" type="button" id="dropdownmessages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onclick="saw('messages')">
+						Messages
+						<span  class="caret"></span>
+						<ul id="messages" class="dropdown-menu" aria-labelledby="dropdownmessages">
+							<li><a></a></li>
+						</ul>
+					</a>
 				</li>
 				<li>
 					<a class="page-scroll" href="#Aboutus">About us</a>
 				</li>
 				<li>
-					<a data-toggle="modal" href="#Logout" style="margin-left: 10px; margin-right: 10px; height:50px">Log out</a>
+					<a data-toggle="modal" href="#Logout" style="margin-left: 10px; margin-right: 10px; height:50px">Profile</a>
 				</li>
 			</ul>
-		</div>
-	</div>
-	<div class="modal" id="Logout">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">User Profile:</h4>
-				</div>
-				<div class="modal-body">
-					<form style="text-align:left" class="login-block" method="post">
-						<h3>${user.getUser().getUsername()}</h3>
-						<br>
-						<p>${user.getUser().getMail()}</p>
-						<br>
-						<p>Available Money: ${user.getUser().getMoney()}<p/>
-					</form>
-					<form action="logout" method="post">
-						<button type="submit" class="btn btn-primary" method="execute">Log Out</button>
-					</form>
-				</div>
-			</div>
 		</div>
 	</div>
 </nav>
@@ -200,11 +187,7 @@
 	</div>
 </section>
 
-<script src="function.js"></script>
 
-<script type="text/javascript">
-	window.onload = openSocket();
-</script>
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
@@ -219,5 +202,34 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="js/creative.js"></script>
+
+<script src="function.js"></script>
+
+<%--<script type="text/javascript">
+	window.onload = openSocketNotification();
+	window.onload = openSocketMessage();
+</script>--%>
+
+<div class="modal" id="Logout">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">User Profile:</h4>
+			</div>
+			<div class="modal-body">
+				<form style="text-align:left" class="login-block" method="post">
+					<h3>${user.getUser().getUsername()}</h3>
+					<br>
+					<p>${user.getUser().getMail()}</p>
+					<br>
+					<p id="userMoney">Available Money: ${user.getUser().getMoney()}<p/>
+				</form>
+				<form action="logout" method="post">
+					<button type="submit" class="btn btn-primary" method="execute">Log Out</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>

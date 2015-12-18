@@ -25,20 +25,42 @@ public class CancelProject extends ActionSupport implements SessionAware {
     public String execute()
     {
         SessionModel user = getModel();
-        if(projectID!=-1 && user.cancelProject(projectID))
+        if(user.getUser() != null)
         {
-            ArrayList<Project> projects = user.getActualProjects();
-            for(int i=0;i<projects.size();i++)
+            if(user.getRmiConnection() == null)
             {
-                ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
-                projects.get(i).setMessages(messages);
+                return "noservice";
             }
-            session.put("projects",projects);
-            return "success";
+            else
+            {
+                if (projectID != -1)
+                {
+                    if(user.cancelProject(projectID))
+                    {
+                        ArrayList<Project> projects = user.getActualProjects();
+                        for (int i = 0; i < projects.size(); i++)
+                        {
+                            ArrayList<Message> messages = user.getMessagesProject(projects.get(i).getProjectID());
+                            projects.get(i).setMessages(messages);
+                        }
+                        session.put("projects", projects);
+                        projectID = -1;
+                        return "success";
+                    }
+                    else
+                    {
+                        return "index";
+                    }
+                }
+                else
+                {
+                    return "stay";
+                }
+            }
         }
         else
         {
-            return "index";
+            return "login";
         }
     }
 
