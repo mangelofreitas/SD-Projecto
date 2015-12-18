@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class RMIConn
 {
@@ -18,6 +19,9 @@ public class RMIConn
 
     public static void main(String args[])
     {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("IP of RMI: ");
+        ip = sc.nextLine();
         connectToRMI();
         ServerSocket listenSocket = null;
         try
