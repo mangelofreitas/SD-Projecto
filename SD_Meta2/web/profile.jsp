@@ -122,7 +122,7 @@
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-unlock wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>See My Projects</h3>
-					<p class="text-muted">You can see your all projects!</p>
+					<p class="text-muted">You can see all your projects!</p>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 text-center">
@@ -132,7 +132,7 @@
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-search wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>Actual Projects</h3>
-					<p class="text-muted">You can see all actual projects!</p>
+					<p class="text-muted">You can see all the actual projects!</p>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3 text-center">
@@ -142,7 +142,7 @@
 						<button class="btn btn-default" type="submit"><i class="fa fa-4x fa-paper-plane wow bounceIn" data-wow-delay=".1s"></i></button>
 					</form>
 					<h3>Old Projects</h3>
-					<p class="text-muted">You can see all old projects!</p>
+					<p class="text-muted">You can see all the old projects!</p>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-6 text-center">

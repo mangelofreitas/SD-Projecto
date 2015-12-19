@@ -62,17 +62,17 @@
 <header>
 	<div class="header-content">
 		<div class="header-content-inner">
-			<h1>It makes small ideas are turned into reality</h1>
+			<h1>If you have an idea, start a project in Fundstarter!</h1>
 			<hr>
 			<form action="projects">
 				<s:hidden key="type" value="actualprojects"/>
 				<br><br>
-				<button type="submit" class="btn btn-primary btn-xl">See all new projects</button>
+				<button type="submit" class="btn btn-primary btn-xl">See the all new projects</button>
 			</form>
 			<form action="projects">
 				<s:hidden key="type" value="oldprojects"/>
 				<br><br>
-				<button type="submit" class="btn btn-primary btn-xl">See old projects</button>
+				<button type="submit" class="btn btn-primary btn-xl">See the old projects</button>
 			</form>
 		</div>
 	</div>
