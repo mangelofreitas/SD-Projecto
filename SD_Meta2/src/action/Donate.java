@@ -1,10 +1,19 @@
 package action;
 
+import com.github.scribejava.core.exceptions.OAuthException;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuthService;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Message;
 import model.Project;
 import model.SessionModel;
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -16,6 +25,7 @@ public class Donate extends ActionSupport implements SessionAware {
     private static final long serialVersionUID = 1L;
     private Map<String,Object> session;
     private int valuedonate=-1,producttypechoose=-1,projectID=-1;
+    private static final String API_APP_KEY = "JzPwkGfrxOa0nbxx1G4JxqL5qkEBFLGUmlfFlcUmdSsIFfpmxc";
 
     public void setSession(Map<String, Object> session)
     {
@@ -37,6 +47,60 @@ public class Donate extends ActionSupport implements SessionAware {
                     }
                     else
                     {
+                        if(user.getUser().getMail().contains("tumblr.com"))
+                        {
+                            int get_inside = 0;
+                            String reblogKey = null;
+                            String project_post_id = ""+user.getProjectByID(projectID).getPostID();
+                            if(project_post_id.compareTo("0")!=0)
+                            {
+                                System.out.println("project_post_id:"+project_post_id);
+                                String blogName = user.getUsernameByProject(projectID);
+                                OAuthService service = (OAuthService) session.get("service");
+                                String API_USER_TOKEN = (String) session.get("accessTokenKey");
+                                String API_USER_SECRET = (String) session.get("accessTokenSecret");
+                                Token accessToken = new Token( API_USER_TOKEN, API_USER_SECRET);
+
+                                try
+                                {
+                                    String getReblogKey = "https://api.tumblr.com/v2/blog/"+blogName+".tumblr.com/posts/text?api_key="+API_APP_KEY;
+                                    OAuthRequest reblogKeyRequest = new OAuthRequest(Verb.GET,getReblogKey,service);
+                                    Response reblogKeyResponse = reblogKeyRequest.send();
+                                    service.signRequest(accessToken, reblogKeyRequest);
+                                    JSONObject inf = (JSONObject) JSONValue.parse(reblogKeyResponse.getBody());
+                                    JSONArray arr = (JSONArray) ((JSONObject) inf.get("response")).get("posts");
+                                    for(int i=0; i< arr.size(); i++)
+                                    {
+                                        JSONObject item = (JSONObject) arr.get(i);
+                                        if ((item.get("id").toString()).compareTo(project_post_id) == 0)
+                                        {
+                                            System.out.println("ENCONTREI O PAR PERFEITO: " + item.get("reblog_key"));
+                                            reblogKey = (String)item.get("reblog_key");
+                                            get_inside = 1;
+                                            break;
+                                        }
+                                    }
+                                    if(get_inside==1)
+                                    {
+                                        OAuthRequest requestLike = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/user/like", service);
+                                        requestLike.addBodyParameter("id", project_post_id.toString());
+                                        requestLike.addBodyParameter("reblog_key",reblogKey);
+                                        requestLike.addHeader("Accept", "application/json");
+                                        service.signRequest(accessToken, requestLike);
+                                        Response responseLike = requestLike.send();
+                                        System.out.println("Got it! Lets see what we found...");
+                                        System.out.println("HTTP RESPONSE: =============");
+                                        System.out.println(responseLike.getCode());
+                                        System.out.println(responseLike.getBody());
+                                        System.out.println("END RESPONSE ===============");
+                                    }
+                                }
+                                catch(OAuthException e)
+                                {
+                                    System.err.println("OAuthException: "+e);
+                                }
+                            }
+                        }
                         ArrayList<Project> projects = user.getActualProjects();
                         for(int i=0;i<projects.size();i++)
                         {

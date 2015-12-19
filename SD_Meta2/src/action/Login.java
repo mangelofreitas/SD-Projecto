@@ -20,8 +20,8 @@ public class Login extends ActionSupport implements SessionAware{
 	private Map<String,Object> session;
 	private String mail = null, password = null, oauth_verifier = null, loginType=null;
 
-	private static final String API_APP_KEY = "lgwSHsxW7wW6lDW0Ne5FIHjUzgkum2nmsosIqkuPjjXIXy7UM1";
-	private static final String API_APP_SECRET = "uqC2XhRUfTjgaNDdr4jmJwe3xIK6UKUtG24J7w7iigHVR4oUSd";
+	private static final String API_APP_KEY = "JzPwkGfrxOa0nbxx1G4JxqL5qkEBFLGUmlfFlcUmdSsIFfpmxc";
+	private static final String API_APP_SECRET = "BCVjKWaEx6Jy35tHtIYFbg6CroooAyCHUdMaI3Yx1wo9fwy0xI";
 
 	
 	@Override
@@ -84,6 +84,8 @@ public class Login extends ActionSupport implements SessionAware{
 						return "success";
 					}
 				}
+				session.put("user", user);
+				session.put("tipo","login");
 				return "success";
 
 			}

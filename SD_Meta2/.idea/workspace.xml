@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
+      <artifact name="RMIConn" />
       <artifact name="RMIServer" />
       <artifact name="SD_Meta2" />
     </artifacts-to-build>
@@ -29,22 +30,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="authorize.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/authorize.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Chat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/Chat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="33" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#873#874#0" expanded="false" />
+                <element signature="e#913#914#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/action/Login.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="73" selection-start-line="59" selection-start-column="73" selection-end-line="59" selection-end-column="73" />
+              <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -63,7 +58,89 @@
         <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
+              <caret line="79" column="73" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Donate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.19636963">
+              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.862068">
+              <caret line="261" column="28" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="28" />
+              <folding>
+                <marker date="1450544259504" expanded="true" signature="1856:1900" placeholder="SELECT money..users..." />
+                <marker date="1450544259504" expanded="true" signature="2482:2557" placeholder="SELECT messa..messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="3080:3158" placeholder="SELECT messa..messages_reply..." />
+                <marker date="1450544259504" expanded="true" signature="3727:3787" placeholder="SELECT usern..messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="6686:6825" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="8169:8316" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="9716:9852" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="11000:11050" placeholder="SELECT * FRO..users..." />
+                <marker date="1450544259504" expanded="true" signature="11412:11480" placeholder="INSERT INTO users..." />
+                <marker date="1450544259504" expanded="true" signature="12620:12991" placeholder="SELECT rewar..users_contributes..." />
+                <marker date="1450544259504" expanded="true" signature="13896:14267" placeholder="SELECT rewar..users_contributes..." />
+                <marker date="1450544259504" expanded="true" signature="15461:15534" placeholder="SELECT usern..users..." />
+                <marker date="1450544259504" expanded="true" signature="16724:16795" placeholder="SELECT votes..types_products..." />
+                <marker date="1450544259504" expanded="true" signature="17741:17821" placeholder="SELECT rewar..rewards..." />
+                <marker date="1450544259504" expanded="true" signature="18962:19071" placeholder="INSERT INTO users_contributes..." />
+                <marker date="1450544259504" expanded="true" signature="20024:20071" placeholder="UPDATE users..." />
+                <marker date="1450544259504" expanded="true" signature="20501:20560" placeholder="UPDATE types..." />
+                <marker date="1450544259504" expanded="true" signature="21050:21107" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="22030:22103" placeholder="INSERT INTO messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="23006:23055" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="23006:23068" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="23259:23309" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="24278:24420" placeholder="INSERT INTO projects..." />
+                <marker date="1450544259504" expanded="true" signature="25150:25232" placeholder="INSERT INTO rewards..." />
+                <marker date="1450544259504" expanded="true" signature="25890:25956" placeholder="INSERT INTO types_products..." />
+                <marker date="1450544259504" expanded="true" signature="26926:27071" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="27536:27618" placeholder="INSERT INTO rewards..." />
+                <marker date="1450544259504" expanded="true" signature="28634:28779" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="29127:29165" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="29944:29993" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="32621:32680" placeholder="SELECT messa..messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="33455:33500" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="34159:34209" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="34936:34975" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="35639:35685" placeholder="DELETE FROM ..." />
+                <marker date="1450544259504" expanded="true" signature="36295:36376" placeholder="SELECT usern..projects..." />
+                <marker date="1450544259504" expanded="true" signature="36861:36910" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="39343:39399" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="40381:40575" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="41952:42099" placeholder="SELECT proje..projects..." />
+                <marker date="1450544259504" expanded="true" signature="43458:43561" placeholder="SELECT messa..messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="44490:44571" placeholder="SELECT usern..projects..." />
+                <marker date="1450544259504" expanded="true" signature="44913:44991" placeholder="INSERT INTO messages_reply..." />
+                <marker date="1450544259504" expanded="true" signature="45960:46046" placeholder="SELECT messa..messages_reply..." />
+                <marker date="1450544259504" expanded="true" signature="46991:47093" placeholder="SELECT messa..messages_send..." />
+                <marker date="1450544259504" expanded="true" signature="48508:48552" placeholder="SELECT money..users..." />
+                <marker date="1450544259504" expanded="true" signature="48926:48973" placeholder="UPDATE users..." />
+                <marker date="1450544259504" expanded="true" signature="50184:50246" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="52057:52137" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="53107:53187" placeholder="UPDATE proje..." />
+                <marker date="1450544259504" expanded="true" signature="54434:54501" placeholder="SELECT proje..projects..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RMI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -74,90 +151,25 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/struts.xml">
-          <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.9454546">
-              <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RMIServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1450497364062" expanded="true" signature="1856:1900" placeholder="SELECT money..users..." />
-                <marker date="1450497364062" expanded="true" signature="2482:2557" placeholder="SELECT messa..messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="3080:3158" placeholder="SELECT messa..messages_reply..." />
-                <marker date="1450497364062" expanded="true" signature="3727:3787" placeholder="SELECT usern..messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="6686:6818" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="8102:8249" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="9649:9777" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="10865:10915" placeholder="SELECT * FRO..users..." />
-                <marker date="1450497364062" expanded="true" signature="11277:11345" placeholder="INSERT INTO users..." />
-                <marker date="1450497364062" expanded="true" signature="12485:12856" placeholder="SELECT rewar..users_contributes..." />
-                <marker date="1450497364062" expanded="true" signature="13761:14132" placeholder="SELECT rewar..users_contributes..." />
-                <marker date="1450497364062" expanded="true" signature="15326:15399" placeholder="SELECT usern..users..." />
-                <marker date="1450497364062" expanded="true" signature="16589:16660" placeholder="SELECT votes..types_products..." />
-                <marker date="1450497364062" expanded="true" signature="17606:17686" placeholder="SELECT rewar..rewards..." />
-                <marker date="1450497364062" expanded="true" signature="18827:18936" placeholder="INSERT INTO users_contributes..." />
-                <marker date="1450497364062" expanded="true" signature="19889:19936" placeholder="UPDATE users..." />
-                <marker date="1450497364062" expanded="true" signature="20366:20425" placeholder="UPDATE types..." />
-                <marker date="1450497364062" expanded="true" signature="20915:20972" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="21895:21968" placeholder="INSERT INTO messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="23112:23254" placeholder="INSERT INTO projects..." />
-                <marker date="1450497364062" expanded="true" signature="23984:24066" placeholder="INSERT INTO rewards..." />
-                <marker date="1450497364062" expanded="true" signature="24724:24790" placeholder="INSERT INTO types_products..." />
-                <marker date="1450497364062" expanded="true" signature="25760:25905" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="26370:26452" placeholder="INSERT INTO rewards..." />
-                <marker date="1450497364062" expanded="true" signature="27468:27613" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="27961:27999" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="28778:28827" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="31455:31514" placeholder="SELECT messa..messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="32289:32334" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="32993:33043" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="33770:33809" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="34473:34519" placeholder="DELETE FROM ..." />
-                <marker date="1450497364062" expanded="true" signature="35129:35210" placeholder="SELECT usern..projects..." />
-                <marker date="1450497364062" expanded="true" signature="35695:35744" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="38177:38233" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="39215:39409" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="40786:40926" placeholder="SELECT proje..projects..." />
-                <marker date="1450497364062" expanded="true" signature="42225:42328" placeholder="SELECT messa..messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="43257:43338" placeholder="SELECT usern..projects..." />
-                <marker date="1450497364062" expanded="true" signature="43680:43758" placeholder="INSERT INTO messages_reply..." />
-                <marker date="1450497364062" expanded="true" signature="44727:44813" placeholder="SELECT messa..messages_reply..." />
-                <marker date="1450497364062" expanded="true" signature="45758:45860" placeholder="SELECT messa..messages_send..." />
-                <marker date="1450497364062" expanded="true" signature="47275:47319" placeholder="SELECT money..users..." />
-                <marker date="1450497364062" expanded="true" signature="47693:47740" placeholder="UPDATE users..." />
-                <marker date="1450497364062" expanded="true" signature="48951:49013" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="50824:50904" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="51874:51954" placeholder="UPDATE proje..." />
-                <marker date="1450497364062" expanded="true" signature="53201:53268" placeholder="SELECT proje..projects..." />
+                <element signature="imports" expanded="false" />
+                <element signature="e#462#463#0" expanded="false" />
+                <element signature="e#500#501#0" expanded="false" />
+                <element signature="e#1618#1619#0" expanded="false" />
+                <element signature="e#1666#1667#0" expanded="false" />
+                <element signature="e#1710#1711#0" expanded="false" />
+                <element signature="e#1742#1743#0" expanded="false" />
+                <element signature="e#1794#1795#0" expanded="false" />
+                <element signature="e#1834#1835#0" expanded="false" />
+                <element signature="e#1869#1870#0" expanded="false" />
+                <element signature="e#1896#1897#0" expanded="false" />
+                <element signature="e#1935#1936#0" expanded="false" />
+                <element signature="e#1966#1967#0" expanded="false" />
+                <element signature="e#2001#2002#0" expanded="false" />
+                <element signature="e#2032#2033#0" expanded="false" />
+                <element signature="e#2080#2081#0" expanded="false" />
+                <element signature="e#2120#2121#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RMI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="77" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -165,8 +177,8 @@
       <file leaf-file-name="SessionModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/SessionModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.724138">
-              <caret line="321" column="44" selection-start-line="321" selection-start-column="44" selection-end-line="321" selection-end-column="44" />
+            <state vertical-scroll-proportion="-19.862068">
+              <caret line="91" column="28" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="28" />
               <folding>
                 <element signature="method#setWaitNotifications#0;class#SessionModel#0" expanded="false" />
               </folding>
@@ -174,11 +186,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="renewMyMoney.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="renewMyMoney.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/renewMyMoney.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.25">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -209,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/action/ListMyProjects.java" />
         <option value="$PROJECT_DIR$/web/myprojects.jsp" />
         <option value="$PROJECT_DIR$/src/action/LogOut.java" />
-        <option value="$PROJECT_DIR$/src/model/Project.java" />
         <option value="$PROJECT_DIR$/src/action/SendMensage.java" />
         <option value="$PROJECT_DIR$/web/css/bootstrap_overwrite.css" />
         <option value="$PROJECT_DIR$/src/model/ProductType.java" />
@@ -218,7 +229,6 @@
         <option value="$PROJECT_DIR$/src/websocket/HandShake.java" />
         <option value="$PROJECT_DIR$/src/action/ConsultRewards.java" />
         <option value="$PROJECT_DIR$/src/action/CancelProject.java" />
-        <option value="$PROJECT_DIR$/src/action/Donate.java" />
         <option value="$PROJECT_DIR$/src/action/Regist.java" />
         <option value="$PROJECT_DIR$/src/action/SendMessage.java" />
         <option value="$PROJECT_DIR$/src/action/SendReply.java" />
@@ -247,13 +257,15 @@
         <option value="$PROJECT_DIR$/src/model/Notification.java" />
         <option value="$PROJECT_DIR$/src/com/github/scribejava/core/oauth/OAuth10aServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/model/TumblrInfo.java" />
-        <option value="$PROJECT_DIR$/src/RMIServer.java" />
-        <option value="$PROJECT_DIR$/src/model/RMI.java" />
-        <option value="$PROJECT_DIR$/src/model/SessionModel.java" />
         <option value="$PROJECT_DIR$/web/authorize.jsp" />
-        <option value="$PROJECT_DIR$/src/action/Login.java" />
-        <option value="$PROJECT_DIR$/src/action/CreateProject.java" />
         <option value="$PROJECT_DIR$/src/model/renewMyMoney.java" />
+        <option value="$PROJECT_DIR$/src/model/Project.java" />
+        <option value="$PROJECT_DIR$/src/model/SessionModel.java" />
+        <option value="$PROJECT_DIR$/src/model/RMI.java" />
+        <option value="$PROJECT_DIR$/src/RMIServer.java" />
+        <option value="$PROJECT_DIR$/src/action/CreateProject.java" />
+        <option value="$PROJECT_DIR$/src/action/Login.java" />
+        <option value="$PROJECT_DIR$/src/action/Donate.java" />
       </list>
     </option>
   </component>
@@ -305,7 +317,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -318,83 +330,13 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SD_Meta2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DUMP" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.20229885" />
     <property name="settings.editor.selected.configurable" value="preferences.applicationServers" />
@@ -978,15 +920,16 @@
       <workItem from="1450398475077" duration="9820000" />
       <workItem from="1450459144007" duration="1700000" />
       <workItem from="1450461149463" duration="24773000" />
+      <workItem from="1450542426527" duration="7654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208486000" />
+    <option name="totallyTimeSpent" value="216140000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -997,13 +940,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6687697" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4101852" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1014,6 +956,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32754758" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1066,6 +1009,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/model/renewMyMoney.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/Regist.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1158,13 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="57" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/ConsultRewards.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1200,13 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Project.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36468646">
@@ -1239,7 +1176,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1247,7 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="154" column="4" selection-start-line="154" selection-start-column="0" selection-end-line="157" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1271,17 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1636#1637#0" expanded="false" />
-            <element signature="e#1672#1673#0" expanded="false" />
-            <element signature="e#1727#1728#0" expanded="false" />
-            <element signature="e#1777#1778#0" expanded="false" />
-            <element signature="e#1806#1807#0" expanded="false" />
-            <element signature="e#1831#1832#0" expanded="false" />
-            <element signature="e#1867#1868#0" expanded="false" />
-            <element signature="e#1895#1896#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1313,9 +1237,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,9 +1260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-          <folding>
-            <marker date="1450468462715" expanded="true" signature="1883:1899" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1349,14 +1267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="77" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
           <folding />
         </state>
       </provider>
@@ -1383,82 +1293,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27224198">
           <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1450497364062" expanded="true" signature="1856:1900" placeholder="SELECT money..users..." />
-            <marker date="1450497364062" expanded="true" signature="2482:2557" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="3080:3158" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450497364062" expanded="true" signature="3727:3787" placeholder="SELECT usern..messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="6686:6818" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="8102:8249" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="9649:9777" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="10865:10915" placeholder="SELECT * FRO..users..." />
-            <marker date="1450497364062" expanded="true" signature="11277:11345" placeholder="INSERT INTO users..." />
-            <marker date="1450497364062" expanded="true" signature="12485:12856" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450497364062" expanded="true" signature="13761:14132" placeholder="SELECT rewar..users_contributes..." />
-            <marker date="1450497364062" expanded="true" signature="15326:15399" placeholder="SELECT usern..users..." />
-            <marker date="1450497364062" expanded="true" signature="16589:16660" placeholder="SELECT votes..types_products..." />
-            <marker date="1450497364062" expanded="true" signature="17606:17686" placeholder="SELECT rewar..rewards..." />
-            <marker date="1450497364062" expanded="true" signature="18827:18936" placeholder="INSERT INTO users_contributes..." />
-            <marker date="1450497364062" expanded="true" signature="19889:19936" placeholder="UPDATE users..." />
-            <marker date="1450497364062" expanded="true" signature="20366:20425" placeholder="UPDATE types..." />
-            <marker date="1450497364062" expanded="true" signature="20915:20972" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="21895:21968" placeholder="INSERT INTO messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="23112:23254" placeholder="INSERT INTO projects..." />
-            <marker date="1450497364062" expanded="true" signature="23984:24066" placeholder="INSERT INTO rewards..." />
-            <marker date="1450497364062" expanded="true" signature="24724:24790" placeholder="INSERT INTO types_products..." />
-            <marker date="1450497364062" expanded="true" signature="25760:25905" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="26370:26452" placeholder="INSERT INTO rewards..." />
-            <marker date="1450497364062" expanded="true" signature="27468:27613" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="27961:27999" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="28778:28827" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="31455:31514" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="32289:32334" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="32993:33043" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="33770:33809" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="34473:34519" placeholder="DELETE FROM ..." />
-            <marker date="1450497364062" expanded="true" signature="35129:35210" placeholder="SELECT usern..projects..." />
-            <marker date="1450497364062" expanded="true" signature="35695:35744" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="38177:38233" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="39215:39409" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="40786:40926" placeholder="SELECT proje..projects..." />
-            <marker date="1450497364062" expanded="true" signature="42225:42328" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="43257:43338" placeholder="SELECT usern..projects..." />
-            <marker date="1450497364062" expanded="true" signature="43680:43758" placeholder="INSERT INTO messages_reply..." />
-            <marker date="1450497364062" expanded="true" signature="44727:44813" placeholder="SELECT messa..messages_reply..." />
-            <marker date="1450497364062" expanded="true" signature="45758:45860" placeholder="SELECT messa..messages_send..." />
-            <marker date="1450497364062" expanded="true" signature="47275:47319" placeholder="SELECT money..users..." />
-            <marker date="1450497364062" expanded="true" signature="47693:47740" placeholder="UPDATE users..." />
-            <marker date="1450497364062" expanded="true" signature="48951:49013" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="50824:50904" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="51874:51954" placeholder="UPDATE proje..." />
-            <marker date="1450497364062" expanded="true" signature="53201:53268" placeholder="SELECT proje..projects..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.9454546">
+        <state vertical-scroll-proportion="0.0">
           <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="com.intellij.struts2.graph.fileEditor.Struts2GraphFileEditorProvider">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/authorize.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
+        <state vertical-scroll-proportion="0.0">
           <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
           <folding />
         </state>
@@ -1468,33 +1319,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/SessionModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.724138">
-          <caret line="321" column="44" selection-start-line="321" selection-start-column="44" selection-end-line="321" selection-end-column="44" />
           <folding>
-            <element signature="method#setWaitNotifications#0;class#SessionModel#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#462#463#0" expanded="false" />
+            <element signature="e#500#501#0" expanded="false" />
+            <element signature="e#1618#1619#0" expanded="false" />
+            <element signature="e#1666#1667#0" expanded="false" />
+            <element signature="e#1710#1711#0" expanded="false" />
+            <element signature="e#1742#1743#0" expanded="false" />
+            <element signature="e#1794#1795#0" expanded="false" />
+            <element signature="e#1834#1835#0" expanded="false" />
+            <element signature="e#1869#1870#0" expanded="false" />
+            <element signature="e#1896#1897#0" expanded="false" />
+            <element signature="e#1935#1936#0" expanded="false" />
+            <element signature="e#1966#1967#0" expanded="false" />
+            <element signature="e#2001#2002#0" expanded="false" />
+            <element signature="e#2032#2033#0" expanded="false" />
+            <element signature="e#2080#2081#0" expanded="false" />
+            <element signature="e#2120#2121#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="73" selection-start-line="59" selection-start-column="73" selection-end-line="59" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1502,14 +1345,128 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#873#874#0" expanded="false" />
+            <element signature="e#913#914#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Project.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2087599">
+          <caret line="175" column="27" selection-start-line="175" selection-start-column="27" selection-end-line="175" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/RMI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/SessionModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.862068">
+          <caret line="91" column="28" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="28" />
+          <folding>
+            <element signature="method#setWaitNotifications#0;class#SessionModel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RMIServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.862068">
+          <caret line="261" column="28" selection-start-line="261" selection-start-column="19" selection-end-line="261" selection-end-column="28" />
+          <folding>
+            <marker date="1450544259504" expanded="true" signature="1856:1900" placeholder="SELECT money..users..." />
+            <marker date="1450544259504" expanded="true" signature="2482:2557" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="3080:3158" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450544259504" expanded="true" signature="3727:3787" placeholder="SELECT usern..messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="6686:6825" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="8169:8316" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="9716:9852" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="11000:11050" placeholder="SELECT * FRO..users..." />
+            <marker date="1450544259504" expanded="true" signature="11412:11480" placeholder="INSERT INTO users..." />
+            <marker date="1450544259504" expanded="true" signature="12620:12991" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450544259504" expanded="true" signature="13896:14267" placeholder="SELECT rewar..users_contributes..." />
+            <marker date="1450544259504" expanded="true" signature="15461:15534" placeholder="SELECT usern..users..." />
+            <marker date="1450544259504" expanded="true" signature="16724:16795" placeholder="SELECT votes..types_products..." />
+            <marker date="1450544259504" expanded="true" signature="17741:17821" placeholder="SELECT rewar..rewards..." />
+            <marker date="1450544259504" expanded="true" signature="18962:19071" placeholder="INSERT INTO users_contributes..." />
+            <marker date="1450544259504" expanded="true" signature="20024:20071" placeholder="UPDATE users..." />
+            <marker date="1450544259504" expanded="true" signature="20501:20560" placeholder="UPDATE types..." />
+            <marker date="1450544259504" expanded="true" signature="21050:21107" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="22030:22103" placeholder="INSERT INTO messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="23006:23055" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="23006:23068" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="23259:23309" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="24278:24420" placeholder="INSERT INTO projects..." />
+            <marker date="1450544259504" expanded="true" signature="25150:25232" placeholder="INSERT INTO rewards..." />
+            <marker date="1450544259504" expanded="true" signature="25890:25956" placeholder="INSERT INTO types_products..." />
+            <marker date="1450544259504" expanded="true" signature="26926:27071" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="27536:27618" placeholder="INSERT INTO rewards..." />
+            <marker date="1450544259504" expanded="true" signature="28634:28779" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="29127:29165" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="29944:29993" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="32621:32680" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="33455:33500" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="34159:34209" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="34936:34975" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="35639:35685" placeholder="DELETE FROM ..." />
+            <marker date="1450544259504" expanded="true" signature="36295:36376" placeholder="SELECT usern..projects..." />
+            <marker date="1450544259504" expanded="true" signature="36861:36910" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="39343:39399" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="40381:40575" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="41952:42099" placeholder="SELECT proje..projects..." />
+            <marker date="1450544259504" expanded="true" signature="43458:43561" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="44490:44571" placeholder="SELECT usern..projects..." />
+            <marker date="1450544259504" expanded="true" signature="44913:44991" placeholder="INSERT INTO messages_reply..." />
+            <marker date="1450544259504" expanded="true" signature="45960:46046" placeholder="SELECT messa..messages_reply..." />
+            <marker date="1450544259504" expanded="true" signature="46991:47093" placeholder="SELECT messa..messages_send..." />
+            <marker date="1450544259504" expanded="true" signature="48508:48552" placeholder="SELECT money..users..." />
+            <marker date="1450544259504" expanded="true" signature="48926:48973" placeholder="UPDATE users..." />
+            <marker date="1450544259504" expanded="true" signature="50184:50246" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="52057:52137" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="53107:53187" placeholder="UPDATE proje..." />
+            <marker date="1450544259504" expanded="true" signature="54434:54501" placeholder="SELECT proje..projects..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/renewMyMoney.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.25">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="17" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/CreateProject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="73" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/Donate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19636963">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1520,7 +1477,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>SD_Meta2</last-edited>
+          <last-edited>RMIServer</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -12,6 +12,8 @@ import model.Reward;
 import model.SessionModel;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 
 import java.rmi.RemoteException;
@@ -68,6 +70,10 @@ public class CreateProject extends ActionSupport implements SessionAware
                                 System.out.println(response.getCode());
                                 System.out.println(response.getBody());
                                 System.out.println("END RESPONSE ===============");
+                                JSONObject inf = (JSONObject) JSONValue.parse(response.getBody());
+                                JSONObject response1 = (JSONObject) inf.get("response");
+                                long postID = (long)response1.get("id");
+                                user.updateProjectPostID(postID);
                             }
                             catch(OAuthException e)
                             {

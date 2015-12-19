@@ -197,7 +197,7 @@ public class RMIServer implements RMI
         System.out.println("Actual Projects!");
         try
         {
-            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount,success FROM projects WHERE alive=?";
+            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount,success,postID FROM projects WHERE alive=?";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setBoolean(1, true);
             ArrayList<Project> projects = new ArrayList<Project>();
@@ -209,6 +209,7 @@ public class RMIServer implements RMI
                 Project newProject = new Project(user, rs.getInt("projectID"), rs.getString("projectName"), rs.getString("description"), rs.getDate("dateLimit"), rs.getInt("requestedValue"), rs.getInt("currentAmount"),rs.getBoolean("success"));
                 newProject.setRewards(projectRewards(newProject));
                 newProject.setProductTypes(productTypes(newProject));
+                newProject.setPostID(rs.getLong("postID"));
                 projects.add(newProject);
             }
             return projects;
@@ -263,13 +264,14 @@ public class RMIServer implements RMI
         System.out.println("Project Detail of "+project.getProjectID());
         try
         {
-            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount FROM projects WHERE projectID=?";
+            query = "SELECT projectID, usernameID, projectName, description, dateLimit, requestedValue, currentAmount, postID FROM projects WHERE projectID=?";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, project.getProjectID());
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next())
             {
                 Project newProject = new Project(new User(rs.getInt("usernameID")), rs.getInt("projectID"), rs.getString("projectName"), rs.getString("description"), rs.getDate("dateLimit"), rs.getInt("requestedValue"), rs.getInt("currentAmount"), projectRewards(project), productTypes(project));
+                newProject.setPostID(rs.getLong("postID"));
                 return newProject;
             }
         }
@@ -549,6 +551,35 @@ public class RMIServer implements RMI
             return true;
         }
         catch (SQLException e)
+        {
+            System.err.println("SQLException:" + e);
+        }
+        return false;
+    }
+
+    public boolean setPostIDProject(Long postID) throws RemoteException
+    {
+        System.out.println("Set postID into last created project");
+        try
+        {
+            query = "SELECT projectID FROM projects ORDER BY projectID DESC LIMIT 1";
+            preparedStatement = conn.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next())
+            {
+                query = "UPDATE projects SET postID = ? WHERE projectID = ?";
+                preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setLong(1,postID);
+                preparedStatement.setInt(2,rs.getInt("projectID"));
+                int result = preparedStatement.executeUpdate();
+                if(result!=1)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+        catch(SQLException e)
         {
             System.err.println("SQLException:" + e);
         }
@@ -980,7 +1011,7 @@ public class RMIServer implements RMI
         System.out.println("Get Projects of "+user.getUsername()+"!");
         try
         {
-            query = "SELECT projectID, projectName, description, dateLimit, requestedValue, currentAmount, success FROM projects WHERE usernameID=? AND alive = ?";
+            query = "SELECT projectID, projectName, description, dateLimit, requestedValue, currentAmount, success,postID FROM projects WHERE usernameID=? AND alive = ?";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, user.getUsernameID());
             preparedStatement.setBoolean(2, true);
@@ -991,6 +1022,7 @@ public class RMIServer implements RMI
                 Project newProject = new Project(user, rs.getInt("projectID"), rs.getString("projectName"), rs.getString("description"), rs.getDate("dateLimit"), rs.getInt("requestedValue"), rs.getInt("currentAmount"),rs.getBoolean("success"));
                 newProject.setRewards(projectRewards(newProject));
                 newProject.setProductTypes(productTypes(newProject));
+                newProject.setPostID(rs.getLong("postID"));
                 projects.add(newProject);
             }
             return projects;

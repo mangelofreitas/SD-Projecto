@@ -42,4 +42,5 @@ public interface RMI extends Remote
     public int getLastMessageID() throws RemoteException;
     public int getLastReplyID() throws RemoteException;
     public String getUsernameByMessage(int messageID) throws RemoteException;
+    public boolean setPostIDProject(Long postID) throws RemoteException;
 }

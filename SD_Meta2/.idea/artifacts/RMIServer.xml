@@ -7,6 +7,12 @@
       </element>
       <element id="extracted-dir" path="$PROJECT_DIR$/mysql-connector-java-5.1.18.jar" path-in-jar="/" />
       <element id="dir-copy" path="$PROJECT_DIR$" />
+      <element id="library" level="project" name="mysql-connector-java-5.1.18" />
+      <element id="module-output" name="SD_Meta2" />
+      <element id="library" level="project" name="REST" />
+      <element id="library" level="project" name="servlet" />
+      <element id="library" level="project" name="Struts 2" />
+      <element id="library" level="project" name="websocket" />
     </root>
   </artifact>
 </component>

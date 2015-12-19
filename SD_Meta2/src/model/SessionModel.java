@@ -337,6 +337,23 @@ public class SessionModel implements Serializable
 		return false;
 	}
 
+	public boolean updateProjectPostID(Long postID)
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				return rmiConnection.setPostIDProject(postID);
+			}
+			catch (RemoteException e)
+			{
+				System.err.println("Error Get My Projects, Remote Exception: "+e);
+				tryConnectionAgain();
+			}
+		}
+		return false;
+	}
+
 	public ArrayList<Project> getMyProjects()
 	{
 		while(conclude==false)

@@ -22,6 +22,7 @@ public class Project implements Serializable
     private String finalProduct;
     private Boolean success;
     private ArrayList<Message> messages;
+    private long postID;
 
     public Project()
     {
@@ -170,6 +171,14 @@ public class Project implements Serializable
 
     public void setMessages(ArrayList<Message> messages) {
         this.messages = messages;
+    }
+
+    public long getPostID() {
+        return postID;
+    }
+
+    public void setPostID(long postID) {
+        this.postID = postID;
     }
 
     public String toString() {
