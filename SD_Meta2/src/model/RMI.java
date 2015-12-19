@@ -1,5 +1,7 @@
 package model;
 
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.oauth.OAuthService;
 import model.*;
 
 import java.rmi.*;

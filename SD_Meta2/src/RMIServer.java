@@ -1,4 +1,12 @@
+import com.github.scribejava.apis.TumblrApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.exceptions.OAuthException;
+import com.github.scribejava.core.model.*;
+import com.github.scribejava.core.oauth.OAuthService;
 import model.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -20,6 +28,8 @@ public class RMIServer implements RMI
     private Connection conn = null;
     private PreparedStatement preparedStatement = null;
     private String query;
+
+
 
     public RMIServer() throws RemoteException
     {
@@ -361,7 +371,6 @@ public class RMIServer implements RMI
         }
         return null;
     }
-
 
     /*
     * Fun��o que realiza o login, isto �, faz um SELECT do utilizador pelo mail e password que no TCPClient foi dado

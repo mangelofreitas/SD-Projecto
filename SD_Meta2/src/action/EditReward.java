@@ -31,7 +31,7 @@ public class EditReward extends ActionSupport implements SessionAware
         {
             if(user.getRmiConnection()!=null)
             {
-                if(reward!=null && id!=-1 && valueReward!=-1 && projectid!=-1 && type.compareTo("remove")==0)
+                if(id!=-1 && projectid!=-1 && type.compareTo("remove")==0)
                 {
                     if((user.removeReward(id,projectid))==false)
                     {
@@ -49,7 +49,7 @@ public class EditReward extends ActionSupport implements SessionAware
                         return "success";
                     }
                 }
-                else if (reward!=null && id!=-1 && valueReward!=-1 && projectid!=-1 && type.compareTo("add")==0)
+                else if (reward!=null && valueReward!=-1 && projectid!=-1 && type.compareTo("add")==0)
                 {
                     if((user.addReward(reward,valueReward,projectid))==false)
                     {

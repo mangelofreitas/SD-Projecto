@@ -134,7 +134,7 @@
                 <br>
                 <h2 class="section-heading">Requested Value:  <c:out value="${project.getRequestedValue()}"/></h2>
                 <br>
-                <h2 class="section-heading">Current Amount: <c:out value="${project.getCurrentAmount()}"/></h2>
+                <h2 id="currentAmount_${project.getProjectID()}" class="section-heading">Current Amount: <c:out value="${project.getCurrentAmount()}"/></h2>
                 <br>
 
                 <h2 class="section-heading">Rewards: </h2>

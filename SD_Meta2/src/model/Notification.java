@@ -39,7 +39,7 @@ public class Notification
         int projectID = Integer.parseInt(split[0]);
         int value = Integer.parseInt(split[1]);
         String username = user.getUsernameByProject(projectID);
-        notify(username,value);
+        notify(projectID,username,value);
     }
 
     public void notifyWait()
@@ -82,19 +82,24 @@ public class Notification
         }
     }
 
-    public void notify(String user,int value)
+    public void notify(int projectID,String user,int value)
     {
         for(Notification client:connections)
         {
             try
             {
                 boolean send = false;
+                Project project = client.user.getProjectByID(projectID);
                 synchronized (client)
                 {
                     if (client.user.getUser().getUsername().matches(user))
                     {
-                        client.session.getBasicRemote().sendText("You have received a pledge of value "+value+"€ from "+this.user.getUser().getUsername());
+                        client.session.getBasicRemote().sendText("You have received a pledge of value "+value+"€ from "+this.user.getUser().getUsername()+","+projectID+","+(project.getCurrentAmount()+value));
                         send = true;
+                    }
+                    else
+                    {
+                        client.session.getBasicRemote().sendText(","+projectID+","+(project.getCurrentAmount()+value));
                     }
                 }
                 if(send == false)

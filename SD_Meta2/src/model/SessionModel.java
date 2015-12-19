@@ -1,5 +1,8 @@
 package model;
 
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.oauth.OAuthService;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -84,6 +87,25 @@ public class SessionModel implements Serializable
 		{
 			System.err.println("Connection:" + e);
 		}
+	}
+
+	public Project getProjectByID(int projectid)
+	{
+		while(conclude==false)
+		{
+			try
+			{
+				Project project = new Project();
+				project.setProjectID(projectid);
+				return rmiConnection.projectDetail(project);
+			}
+			catch (RemoteException ex)
+			{
+				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				tryConnectionAgain();
+			}
+		}
+		return null;
 	}
 
 
@@ -389,7 +411,6 @@ public class SessionModel implements Serializable
 		{
 			try
 			{
-				System.out.println(this.user);
 				return rmiConnection.renewMoney(this.user);
 			}
 			catch (RemoteException e)

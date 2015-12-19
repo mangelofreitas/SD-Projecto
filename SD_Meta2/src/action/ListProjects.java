@@ -64,6 +64,15 @@ public class ListProjects extends ActionSupport implements SessionAware {
             {
                 projects = user.getOldProjects();
             }
+            else
+            {
+                projects = user.getActualProjects();
+                ArrayList<Project> otherProjects = user.getOldProjects();
+                for(int i=0;i<otherProjects.size();i++)
+                {
+                    projects.add(otherProjects.get(i));
+                }
+            }
             session.put("projects", projects);
             return "success";
         }

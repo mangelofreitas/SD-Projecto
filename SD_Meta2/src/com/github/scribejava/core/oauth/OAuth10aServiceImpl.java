@@ -2,6 +2,7 @@ package com.github.scribejava.core.oauth;
 
 import com.ning.http.client.ProxyServer;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.Future;
 import com.github.scribejava.core.builder.api.DefaultApi10a;

@@ -64,8 +64,7 @@ function donateMoney(rewardName,rewardvalue,producttypes,projectID)
     newDiv.id = 'types';
     var discard = producttypes.split("]");
     var split = discard[0].split(" ");
-    console.log(split);
-    for(i=2;i<split.length;i=i+11)
+    for(var i=2;i<split.length;i=i+11)
     {
         newDiv.innerHTML += "<form action='donate' method='post'><button type='submit' class='btn btn-primary' methdod='execute' onclick=sendDonate('"+projectID+"',"+rewardvalue+")>" +
             "Product Type:"+split[i+3]+"<br> Votes:"+split[i+7]+"" +
@@ -191,10 +190,21 @@ function openSocketNotification()
 
 function showNotification(text)
 {
-    var newLi = document.createElement("LI");
-    newLi.innerHTML = "<a>"+text+"</a>";
-    notifications.appendChild(newLi);
-    dropdownnotifications.className = "btn-warning";
+    var url = document.URL;
+    if(url.indexOf("projects") > -1 || url.indexOf("donate") > -1 || url.indexOf("sendmessage") > -1 || url.indexOf("editreward") > -1 || url.indexOf("sendreply") > -1)
+    {
+        var split = text.split(",");
+        text = split[0];
+        $('#userMoney').text('Available Money: ' + event.data);
+        $('#currentAmount_'+split[1]).text('Current Amount: '+split[2]);
+    }
+    if(text.indexOf("you") > -1)
+    {
+        var newLi = document.createElement("LI");
+        newLi.innerHTML = "<a>"+text+"</a>";
+        notifications.appendChild(newLi);
+        dropdownnotifications.className = "btn-warning";
+    }
 }
 
 function showMessages(text,id)

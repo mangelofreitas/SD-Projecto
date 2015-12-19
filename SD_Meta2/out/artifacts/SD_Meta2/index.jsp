@@ -122,9 +122,9 @@
 				</a>
 				<br>
 				<form action="regist" style="text-align:center" class="login-block" method="POST">
-					<input id="username" type="text" class="form-control" placeholder="Username" name="Username"/><br>
-					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
-					<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
+					<input id="username" type="text" class="form-control" placeholder="Username" name="Username" required/><br>
+					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail" required/><br>
+					<input id="password" type="password" class="form-control" placeholder="Password" name="Password" required/><br>
 					<input type="submit" class="btn btn-primary" method="execute" value="Sign in">
 				</form>
 				<div class="modal-footer">
@@ -146,15 +146,15 @@
 				</a>
 				<form action="login" method="post">
 					<input id="loginType" type="text" value="tumblr" name="LoginType" hidden=""/>
-					<button type="submit" method="execute" class="btn btn-block btn-social btn-tumblr">
+					<button type="submit" method="execute" class="btn btn-block btn-primary btn-tumblr">
 						<i class="fa fa-tumblr"></i> Log in with Tumblr
 					</button>
 				</form>
 
 				<br>
 				<form action="login" style="text-align:center" class="login-block" method="post">
-					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail"/><br>
-					<input id="password" type="password" class="form-control" placeholder="Password" name="Password"/><br>
+					<input id="mail" type="text" class="form-control" placeholder="Email" name="Mail" required/><br>
+					<input id="password" type="password" class="form-control" placeholder="Password" name="Password" required/><br>
 					<input type="submit" class="btn btn-primary" method="execute" value="Log in">
 				</form>
 				<div class="modal-footer">

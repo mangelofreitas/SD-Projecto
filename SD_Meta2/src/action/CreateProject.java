@@ -1,5 +1,11 @@
 package action;
 
+import com.github.scribejava.core.exceptions.OAuthException;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuthService;
 import com.opensymphony.xwork2.ActionSupport;
 import model.ProductType;
 import model.Reward;
@@ -44,6 +50,30 @@ public class CreateProject extends ActionSupport implements SessionAware
                 {
                     if(user.createProject(name,description,dateLimit,requestedValue,productType,reward,valueReward))
                     {
+                        if(user.getUser().getMail().contains("tumblr.com"))
+                        {
+                            OAuthService service = (OAuthService) session.get("service");
+                            String blogName = user.getUser().getUsername();
+                            String API_USER_TOKEN = (String) session.get("accessTokenKey");
+                            String API_USER_SECRET = (String) session.get("accessTokenSecret");
+                            Token accessToken = new Token( API_USER_TOKEN, API_USER_SECRET);
+                            try{
+                                OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/blog/"+blogName+".tumblr.com/post",service); //request que vai postar qualquer coisa
+                                request.addHeader("Accept", "application/json");
+                                request.addBodyParameter("body", "I have created the project: "+name+", that consist on "+description+"\nDonate me to complete this project!");
+                                service.signRequest(accessToken, request);
+                                Response response = request.send();
+                                System.out.println("Got it! Lets see what we found...");
+                                System.out.println("HTTP RESPONSE: =============");
+                                System.out.println(response.getCode());
+                                System.out.println(response.getBody());
+                                System.out.println("END RESPONSE ===============");
+                            }
+                            catch(OAuthException e)
+                            {
+                                System.err.println("OAuthException: "+e);
+                            }
+                        }
                         name=null;
                         description=null;
                         requestedValue=-1;
