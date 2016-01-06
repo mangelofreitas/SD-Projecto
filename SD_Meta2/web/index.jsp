@@ -67,12 +67,12 @@
 			<form action="projects">
 				<s:hidden key="type" value="actualprojects"/>
 				<br><br>
-				<button type="submit" class="btn btn-primary btn-xl">See the all new projects</button>
+				<button type="submit" class="btn btn-primary btn-xl">See all the new projects</button>
 			</form>
 			<form action="projects">
 				<s:hidden key="type" value="oldprojects"/>
 				<br><br>
-				<button type="submit" class="btn btn-primary btn-xl">See the old projects</button>
+				<button type="submit" class="btn btn-primary btn-xl">See all the old projects</button>
 			</form>
 		</div>
 	</div>

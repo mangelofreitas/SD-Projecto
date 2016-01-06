@@ -91,10 +91,10 @@
 	<div class="container">
 		<c:choose>
 			<c:when test="${session.tipo == 'login'}">
-				<h3>Login com sucesso!</h3>
+				<h3>Successful login!</h3>
 			</c:when>
 			<c:when test="${session.tipo == 'regist'}">
-				<h3>Registo com sucesso!</h3>
+				<h3>Successful registration!</h3>
 			</c:when>
 			<c:otherwise>
 

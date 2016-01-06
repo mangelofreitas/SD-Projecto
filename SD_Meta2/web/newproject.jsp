@@ -98,7 +98,7 @@
                 <input id="description" type="text" class="form-control" placeholder="Description" name="Description" required/><br>
                 <br>
                 <h2 class="section-heading">Date Limit: </h2>
-                <input id="dateLimit" type="date" class="form-control" placeholder="Date Limit" name="DateLimit" required/><br>
+                <input id="dateLimit" type="date" class="form-control" placeholder="Deadline" name="DateLimit" required/><br>
                 <br>
                 <h2 class="section-heading">Requested Value: </h2>
                 <input id="requestedValue" type="text" class="form-control" placeholder="Requested Value" name="RequestedValue" required/><br>

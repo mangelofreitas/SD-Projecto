@@ -238,7 +238,6 @@
                             </c:choose>
                         </c:when>
                         <c:otherwise>
-                            <hr>
                             <c:choose>
                                 <c:when test="${project.getSuccess() == true}">
                                     <h2 style="color: green;" class="section-heading">Success!</h2>
@@ -247,6 +246,7 @@
                                     <h2 style="color: darkred" class="section-heading">No success!</h2>
                                 </c:otherwise>
                             </c:choose>
+                            <hr>
                         </c:otherwise>
                     </c:choose>
                 <br><br>

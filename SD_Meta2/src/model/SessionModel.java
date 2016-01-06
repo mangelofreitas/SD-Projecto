@@ -36,7 +36,7 @@ public class SessionModel implements Serializable
 		while(!notIO)
 		{
 			try {
-				s = new Socket("localhost", 6000);
+				s = new Socket("localhost", 6005);
 
 				in = new DataInputStream(s.getInputStream());
 				out = new DataOutputStream(s.getOutputStream());
@@ -101,7 +101,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Project By ID, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -121,7 +121,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Messages of Project, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -143,7 +143,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get My Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Username By Project, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -172,7 +172,7 @@ public class SessionModel implements Serializable
 				}
 			}
 			catch (RemoteException ex) {
-				System.err.println("Error on Login, Remote Exeption: " + ex);
+				System.err.println("Error Add Reward, Remote Exeption: " + ex);
 				tryConnectionAgain();
 			}
 		}
@@ -197,7 +197,7 @@ public class SessionModel implements Serializable
 				}
 			}
 			catch (RemoteException ex) {
-				System.err.println("Error on Login, Remote Exeption: " + ex);
+				System.err.println("Error Remove Reward, Remote Exeption: " + ex);
 				tryConnectionAgain();
 			}
 		}
@@ -223,7 +223,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				System.err.println("Error Cancel Project, Remote Exeption: "+ ex);
 				tryConnectionAgain();
 			}
 		}
@@ -249,7 +249,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				System.err.println("Error Send Message, Remote Exeption: "+ ex);
 				tryConnectionAgain();
 			}
 		}
@@ -279,7 +279,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error on Login, Remote Exeption: "+ ex);
+				System.err.println("Error Send Reply, Remote Exeption: "+ ex);
 				tryConnectionAgain();
 			}
 		}
@@ -347,7 +347,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException e)
 			{
-				System.err.println("Error Get My Projects, Remote Exception: "+e);
+				System.err.println("Error Update Project Post ID, Remote Exception: "+e);
 				tryConnectionAgain();
 			}
 		}
@@ -398,7 +398,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				System.err.println("Error Get User Rewards, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -432,7 +432,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException e)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+e);
+				System.err.println("Error Renew Money of User, Remote Exception: "+e);
 				tryConnectionAgain();
 			}
 		}
@@ -468,10 +468,12 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				System.err.println("Error Donate Money, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
+			conclude = true;
 		}
+		conclude = false;
 		return false;
 	}
 
@@ -583,7 +585,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Last MessageID, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -600,7 +602,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Username By Message, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}
@@ -617,7 +619,7 @@ public class SessionModel implements Serializable
 			}
 			catch (RemoteException ex)
 			{
-				System.err.println("Error Get Old Projects, Remote Exception: "+ex);
+				System.err.println("Error Get Last ReplyID, Remote Exception: "+ex);
 				tryConnectionAgain();
 			}
 		}

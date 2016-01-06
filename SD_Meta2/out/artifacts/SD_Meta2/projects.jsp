@@ -123,14 +123,11 @@
                 </c:choose>
                 <h2 class="section-heading">Administrator: <c:out value="${project.getUser().getUsername()}"/></h2>
                 <br>
-                <br>
                 <h2 class="section-heading">Project: <c:out value="${project.getProjectName()}"/></h2>
                 <br>
-                <hr>
-                <br><br>
                 <h2 class="section-heading">Decription: <c:out value="${project.getDescription()}"/></h2>
                 <br>
-                <h2 class="section-heading">Date Limit: <c:out value="${project.getDateLimit()}"/></h2>
+                <h2 class="section-heading">Deadline: <c:out value="${project.getDateLimit()}"/></h2>
                 <br>
                 <h2 class="section-heading">Requested Value:  <c:out value="${project.getRequestedValue()}"/></h2>
                 <br>
@@ -241,6 +238,7 @@
                             </c:choose>
                         </c:when>
                         <c:otherwise>
+                            <hr>
                             <c:choose>
                                 <c:when test="${project.getSuccess() == true}">
                                     <h2 style="color: green;" class="section-heading">Success!</h2>

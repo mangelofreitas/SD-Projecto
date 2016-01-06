@@ -21,7 +21,7 @@ function add(divName,idDiv,idInput,nameInput)
     }
     if(divName == 'rwrd')
     {
-        newdiv.innerHTML ="<input id="+idInput+" type='text' class='form-control' placeholder='Product Type' name="+nameInput+" required>";
+        newdiv.innerHTML ="<input id="+idInput+" type='text' class='form-control' placeholder='Reward' name="+nameInput+" required>";
         newdiv.innerHTML += "<input id='valueReward' type='number' class='form-control' placeholder='100' name='ValueReward' required>";
     }
     document.getElementById(divName).appendChild(newdiv);

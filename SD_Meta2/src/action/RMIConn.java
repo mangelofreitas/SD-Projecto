@@ -26,7 +26,7 @@ public class RMIConn
         ServerSocket listenSocket = null;
         try
         {
-            listenSocket = new ServerSocket(6000);
+            listenSocket = new ServerSocket(6005);
         }
         catch (IOException e)
         {

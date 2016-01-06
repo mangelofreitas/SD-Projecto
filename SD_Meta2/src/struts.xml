@@ -64,7 +64,7 @@
             <result name="stay">/projects.jsp</result>
         </action>
         <action name="cancel" class="action.CancelProject">
-            <result name="success">/projects.jsp</result>
+            <result name="success">/profile.jsp</result>
             <result name="index">/projects.jsp</result>
             <result name="stay">/projects.jsp</result>
         </action>
